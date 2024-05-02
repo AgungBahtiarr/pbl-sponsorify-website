@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use App\Models\Role;
+use Illuminate\Support\Facades\Http;
 
 class RoleController extends Controller
 {
@@ -13,7 +14,10 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $response = Http::get("http://localhost:8000/api/roles");
+        return view('auth.register', [
+            'data' => json_decode($response)
+        ]);
     }
 
     /**
