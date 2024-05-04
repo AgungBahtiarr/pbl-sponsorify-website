@@ -20,7 +20,7 @@ class AuthController extends Controller
 
         $response = Http::get("http://localhost:8080/api/roles");
         return view('auth.register', [
-            'data' => json_decode($response)
+            'data' => json_decode($response),
         ]);
     }
 
@@ -64,7 +64,15 @@ class AuthController extends Controller
 
         $response = Http::post("http://localhost:8080/api/register", $parameter);
 
-        return view('event.dashboard');
+        $res = json_decode($response);
+
+        if ($res->success == false) {
+            if ($res->data->email) {
+                return redirect('/auth/register')->with('warning', 'Email telah terdaftar');
+            }
+        }
+
+        return view('event.dashboard',);
 
 
 

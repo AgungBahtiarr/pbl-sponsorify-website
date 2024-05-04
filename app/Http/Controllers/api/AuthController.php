@@ -30,7 +30,6 @@ class AuthController extends Controller
             ], 401);
         }
 
-
         $data = [
             'name' => $request->name,
             'email' => $request->email,
@@ -42,7 +41,7 @@ class AuthController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => $user
+            'data' => $user,
         ], 201);
     }
 

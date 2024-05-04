@@ -14,7 +14,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $response = Http::get("http://localhost:8000/api/roles");
+        $response = Http::get("http://localhost:8080/api/roles");
         return view('auth.register', [
             'data' => json_decode($response)
         ]);
