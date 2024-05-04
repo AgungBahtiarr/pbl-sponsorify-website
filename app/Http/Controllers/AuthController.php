@@ -32,18 +32,18 @@ class AuthController extends Controller
         ];
 
         try {
-
             $response = Http::post("http://localhost:8080/api/login", $data);
         } catch (Exception $e) {
             echo $e;
         }
+
 
         if ($response->getStatusCode() == 200) {
             $token = $response["token"];
             Cookie::queue(Cookie::make('token', $token));
             return view('event.dashboard');
         } else {
-            return view("auth.login", ['failed' => true]);
+            return redirect('/auth/login')->with('error','Email atau password salah, silahkan login kembali');
         }
     }
 
@@ -72,7 +72,7 @@ class AuthController extends Controller
             }
         }
 
-        return view('event.dashboard',);
+        return redirect('/auth/login');
 
 
 
