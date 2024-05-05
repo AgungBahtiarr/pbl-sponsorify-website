@@ -6,6 +6,7 @@ use App\Models\Sponsor;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 
 class SponsorController extends Controller
@@ -25,19 +26,25 @@ class SponsorController extends Controller
 
         $isFirst = Sponsor::where('id_user', $authUser->id)->get();
 
-        if ($isFirst) {
+        if (count($isFirst) != 0) {
+            return redirect("/sponsor/dashboard");
+        }else {
             return view("sponsor.addSponsor",[
                 'authUser'=> $authUser,
                 'categories' => $responseCat
             ]);
-        }else {
-            return redirect("/sponsor/dashboard");
         }
 
     }
 
 
     public function store(Request $request){
+
+        $file = $request->file('image');
+        $fileName = $request->idUser . '.' . time() . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('image'), $fileName);
+        $filePath = 'image/' . $fileName;
+
 
         $data = [
             "name" => $request->name,
@@ -46,7 +53,7 @@ class SponsorController extends Controller
             "address" => $request->address,
             "id_category" => $request->category,
             "max_submission_date" => $request->maxSubmissionDate,
-            "image"=> $request->image,
+            "image" => $filePath,
             "id_user" => $request->idUser
         ];
 
@@ -56,6 +63,7 @@ class SponsorController extends Controller
         if ($response->getStatusCode() == 201) {
             return redirect('/sponsor/dashboard');
         }else{
+            return $response;
             return redirect('/auth/sponsor');
         }
     }

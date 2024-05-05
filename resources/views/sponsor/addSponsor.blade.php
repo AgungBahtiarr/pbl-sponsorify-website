@@ -10,7 +10,7 @@
 <body>
     <div class="flex items-center justify-center min-h-screen bg-gray-100">
         <div class="w-full max-w-md">
-            <form method="POST" class="bg-white shadow-md rounded-xl px-8 pt-6 pb-8 mb-4 flex flex-col items-center">
+            <form method="POST" class="bg-white shadow-md rounded-xl px-8 pt-6 pb-8 mb-4 flex flex-col items-center" enctype="multipart/form-data">
                 <div class="mb-8 text-center">
                     <p class="text-xl font-bold">Data Sponsor</p>
                     <p class="text-sm text-gray-400">Silahkan isi data sponsor dengan benar</p>
@@ -77,10 +77,6 @@
                     <button class="btn bg-gray-600 text-white w-80">Submit</button>
                 </div>
 
-                <div class="text-center mt-4">
-                    <p class="text-gray-600 text-sm">Already have an account? <a href="/auth/register"
-                            class="text-blue-500 hover:underline">Sign Up</a></p>
-                </div>
             </form>
         </div>
     </div>

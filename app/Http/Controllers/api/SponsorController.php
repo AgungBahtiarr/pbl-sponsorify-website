@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Sponsor;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class SponsorController extends Controller
 {
