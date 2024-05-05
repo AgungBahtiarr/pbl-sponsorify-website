@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Cookie;
+use Illuminate\Support\Facades\Cookie;
 
 class AuthController extends Controller
 {
@@ -41,7 +40,15 @@ class AuthController extends Controller
         if ($response->getStatusCode() == 200) {
             $token = $response["token"];
             Cookie::queue(Cookie::make('token', $token));
-            return view('event.dashboard');
+
+            $res = json_decode($response);
+            Cookie::queue(Cookie::make('authUser', $res->user->id));
+
+            if ($res->user->id_role == 1) {
+                return redirect('/event/dashboard');
+            }elseif ($res->user->id_role == 2) {
+                return redirect('/auth/sponsor');
+            }
         } else {
             return redirect('/auth/login')->with('error','Email atau password salah, silahkan login kembali');
         }
@@ -73,8 +80,6 @@ class AuthController extends Controller
         }
 
         return redirect('/auth/login');
-
-
-
     }
+
 }
