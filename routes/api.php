@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\CategoryController;
+use App\Http\Controllers\api\EventController;
 use App\Http\Controllers\api\RoleController;
 use App\Http\Controllers\api\SponsorController;
 use Illuminate\Http\Request;
@@ -25,3 +26,7 @@ Route::get('/roles',[RoleController::class,'index']);
 
 // Categories
 Route::get('/categories',[CategoryController::class, 'index']);
+
+// Event
+Route::get('/events',[EventController::class,'index'])->middleware('auth:sanctum');
+Route::post('/event',[EventController::class,'store']);

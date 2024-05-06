@@ -19,6 +19,8 @@ Route::post('/auth/login', [AuthController::class, 'login']);
 
 // Event
 Route::get('/event/dashboard',[EventController::class, 'index']);
+Route::get('/event/my_event',[EventController::class, 'indexMyEvent']);
+Route::post('/event/my_event',[EventController::class, 'storeEvent']);
 
 
 
