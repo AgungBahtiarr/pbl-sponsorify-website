@@ -2,12 +2,13 @@
 
 use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\AuthController;
+
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\SponsorController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/auth/login');
 });
 
 
@@ -21,6 +22,8 @@ Route::post('/auth/login', [AuthController::class, 'login']);
 Route::get('/event/dashboard',[EventController::class, 'index']);
 Route::get('/event/my_event',[EventController::class, 'indexMyEvent']);
 Route::post('/event/my_event',[EventController::class, 'storeEvent']);
+Route::get('/event/sponsors',[SponsorController::class, 'indexSearchSponsor']);
+
 
 
 
