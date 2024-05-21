@@ -6,7 +6,6 @@ use App\Models\Sponsor;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 
 class SponsorController extends Controller
@@ -21,6 +20,7 @@ class SponsorController extends Controller
         $categories = Http::get('http://localhost:8080/api/categories');
         $responseCat = json_decode($categories);
 
+        // Ini masih pake eloquent harusnya dari api
         $authUser = User::where('id', Cookie::get('authUser'))->first();
 
 
@@ -63,8 +63,11 @@ class SponsorController extends Controller
         if ($response->getStatusCode() == 201) {
             return redirect('/sponsor/dashboard');
         }else{
-            return $response;
             return redirect('/auth/sponsor');
         }
+    }
+
+    public function indexSearchSponsor(){
+        return view('event.sponsor');
     }
 }

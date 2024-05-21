@@ -40,7 +40,7 @@
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1">
                 <li><a href="/event/dashboard">Dashboard</a></li>
-                <li><a>Sponsors</a></li>
+                <li><a href="/event/sponsors">Sponsors</a></li>
                 <li><a href="/event/my_event">My event</a></li>
                 <li><a href="">Status</a></li>
             </ul>

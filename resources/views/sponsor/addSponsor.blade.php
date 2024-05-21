@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="flex items-center justify-center min-h-screen bg-gray-100">
-        <div class="w-full max-w-md">
+        <div class="w-full max-w-md m-4">
             <form method="POST" class="bg-white shadow-md rounded-xl px-8 pt-6 pb-8 mb-4 flex flex-col items-center" enctype="multipart/form-data">
                 <div class="mb-8 text-center">
                     <p class="text-xl font-bold">Data Sponsor</p>

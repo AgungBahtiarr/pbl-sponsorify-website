@@ -15,12 +15,16 @@ class EventController extends Controller
     public function indexMyEvent(){
 
         $token =  Cookie::get('token');
-
-
         $events = Http::withToken($token)->get('http://localhost:8080/api/events');
+        if ($events === null) {
+             $events = [];
+        }else{
+             $events = json_decode($events);
+        }
+
 
         return view('event.my_event',[
-            'events' => json_decode($events)
+            'events' => $events
         ]);
     }
 
