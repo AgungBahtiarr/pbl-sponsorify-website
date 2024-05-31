@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->string('description');
+            $table->text('description');
             $table->string('address');
             $table->string('max_submission_date');
             $table->string('image');

@@ -5,9 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model
+class Transaction extends Model
 {
     use HasFactory;
-
-    protected $fillable = ['name','description','location','proposal','start_date','end_date','id_user','end_date'];
+     protected $fillable = ['id_user','id_sponsor','id_status','id_event'];
 }

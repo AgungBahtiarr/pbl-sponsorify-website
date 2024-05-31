@@ -27,6 +27,7 @@ class EventController extends Controller
             'location' => $request->location,
             'proposal' => $request->proposal,
             'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
             'id_user' => $request->id_user
         ];
 

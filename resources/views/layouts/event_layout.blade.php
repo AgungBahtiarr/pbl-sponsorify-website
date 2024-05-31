@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Event - Sponsorify</title>
     @vite('resources/css/app.css')
+    <script src="https://kit.fontawesome.com/95327fac23.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
