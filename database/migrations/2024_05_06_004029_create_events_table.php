@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
+            $table->string('email');
             $table->string('location');
             $table->string('proposal');
             $table->date('start_date');

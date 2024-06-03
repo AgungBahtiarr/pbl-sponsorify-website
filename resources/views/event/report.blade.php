@@ -18,15 +18,17 @@
             </div>
         </div>
         <div class="flex flex-col">
-            <div class="grid grid-cols-5 text-center items-center mx-12 border border-black rounded-lg my-4 py-3">
-                <h1>semarak</h1>
+        @foreach ($data as $event)
+             <div class="grid grid-cols-5 text-center items-center mx-12 border border-black rounded-lg my-4 py-3">
+                <h1>{{$event->event->name}}</h1>
                 <h1>Rp.10,000</h1>
-                <h1>12/12/12</h1>
-                <h1>Honda</h1>
+                <h1>{{date('d/m/Y',strtotime($event->created_at))}}</h1>
+                <h1>{{$event->sponsor->name}}</h1>
                 <div><button class="bg-neutral px-4 py-2 rounded-xl text-white">kirim</button></div>
 
             </div>
 
+        @endforeach
         </div>
     </div>
 @endsection

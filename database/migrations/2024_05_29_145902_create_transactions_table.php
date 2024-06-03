@@ -17,6 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_sponsor');
             $table->unsignedBigInteger('id_status');
             $table->unsignedBigInteger('id_user');
+            $table->integer('total_fund');
+            $table->text('comment');
             $table->timestamps();
         });
     }
