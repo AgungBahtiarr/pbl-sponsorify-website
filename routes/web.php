@@ -4,7 +4,9 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SponsorController;
+use App\Http\Controllers\StatusController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -25,7 +27,8 @@ Route::post('/event/my_event',[EventController::class, 'storeEvent']);
 Route::get('/event/sponsors',[SponsorController::class, 'indexSearchSponsor']);
 Route::get('/event/sponsor/detail/{id}',[TransactionController::class, 'indexDetail']);
 Route::post('/event/sponsor/detail',[TransactionController::class, 'store']);
-
+Route::get('/event/status',[StatusController::class, 'index']);
+Route::get('/event/report',[ReportController::class, 'index']);
 
 
 

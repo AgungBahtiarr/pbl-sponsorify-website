@@ -12,7 +12,7 @@ class TransactionController extends Controller
     public function index(){
         $user = Auth::user();
 
-        $data = Transaction::where('id_user', $user->id)->get();
+        $data = Transaction::with('event','sponsor','status')->where('id_user', $user->id)->get();
 
         return response()->json($data);
     }
