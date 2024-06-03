@@ -15,7 +15,24 @@ class SponsorController extends Controller
      */
     public function index()
     {
-        //
+        $sponsors = Sponsor::with('category')->get();
+
+        return response()->json($sponsors);
+    }
+
+    public function indexCategory(Request $request){
+        $id_category = $request->id_category;
+
+        $sponsors = Sponsor::with('category')->where('id_category',$id_category)->get();
+
+        return response()->json($sponsors);
+    }
+
+    public function search(Request $request){
+        $str = $request->str;
+        $data = Sponsor::with('category')->where('name', 'like', '%' . $str . '%')->get();
+
+        return response()->json($data);
     }
 
     /**
@@ -45,9 +62,11 @@ class SponsorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Sponsor $sponsor)
+    public function show($id)
     {
-        //
+        $sponsor = Sponsor::with('category')->findOrFail($id);
+
+        return response()->json($sponsor);
     }
 
     /**

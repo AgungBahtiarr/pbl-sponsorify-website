@@ -43,6 +43,13 @@
                                     <input type="date" placeholder="Type here"
                                         class="input input-bordered w-full max-w-xs" name="start_date" />
                                 </label>
+                                <label class="form-control w-full max-w-xs">
+                                    <div class="label">
+                                        <span class="label-text">End date</span>
+                                    </div>
+                                    <input type="date" placeholder="Type here"
+                                        class="input input-bordered w-full max-w-xs" name="end_date" />
+                                </label>
 
                                 <label class="form-control w-full max-w-xs">
                                     <div class="label">
@@ -113,6 +120,14 @@
                                                 </div>
                                                 <input type="date" placeholder="Type here"
                                                     class="input input-bordered w-full max-w-xs" name="start_date" />
+                                            </label>
+
+                                            <label class="form-control w-full max-w-xs">
+                                                <div class="label">
+                                                    <span class="label-text">End date</span>
+                                                </div>
+                                                <input type="date" placeholder="Type here"
+                                                    class="input input-bordered w-full max-w-xs" name="end_date" />
                                             </label>
 
                                             <label class="form-control w-full max-w-xs">

@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Event - Sponsorify</title>
     @vite('resources/css/app.css')
+    <script src="https://kit.fontawesome.com/95327fac23.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -42,7 +43,8 @@
                 <li><a href="/event/dashboard">Dashboard</a></li>
                 <li><a href="/event/sponsors">Sponsors</a></li>
                 <li><a href="/event/my_event">My event</a></li>
-                <li><a href="">Status</a></li>
+                <li><a href="/event/status">Status</a></li>
+                <li><a href="/event/report">Laporan</a></li>
             </ul>
         </div>
         <div class="navbar-end">
