@@ -18,17 +18,45 @@
             </div>
         </div>
         <div class="flex flex-col">
-        @foreach ($data as $event)
-             <div class="grid grid-cols-5 text-center items-center mx-12 border border-black rounded-lg my-4 py-3">
-                <h1>{{$event->event->name}}</h1>
-                <h1>Rp.10,000</h1>
-                <h1>{{date('d/m/Y',strtotime($event->created_at))}}</h1>
-                <h1>{{$event->sponsor->name}}</h1>
-                <div><button class="bg-neutral px-4 py-2 rounded-xl text-white">kirim</button></div>
+            @foreach ($data as $event)
+                <div class="grid grid-cols-5 items-center mx-12 border border-black rounded-lg my-4 py-3">
+                    <h1 class="text-center ">{{ $event->event->name }}</h1>
+                    <h1 class="text-center ">Rp. {{ $event->total_fund }}</h1>
+                    <h1 class="text-center ">{{ date('d/m/Y', strtotime($event->created_at)) }}</h1>
+                    <h1 class="text-center ">{{ $event->sponsor->name }}</h1>
+                    <div>
+                        <div class="flex justify-center">
+                            <button onclick="my_modal_{{$event->id}}.showModal()" class="bg-neutral px-4 py-2 rounded-xl text-white "><i
+                                class="fa-solid fa-upload mr-2"></i>kirim laporan</button>
+                            <dialog id="my_modal_{{$event->id}}" class="modal">
+                                <div class="modal-box">
+                                    <form method="dialog">
+                                        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                                    </form>
+                                    <h3 class="font-bold text-lg text-center">Kirim laporan</h3>
+                                    <p class="py-1 text-center">Kirimkan tautan laporanmu</p>
+                                    <form action="/event/report" method="POST">
+                                        @csrf
 
-            </div>
+                                        <label class="form-control w-full max-w-xs">
+                                            <div class="label">
+                                              <span class="label-text font-semibold text-lg">Tautan</span>
+                                            </div>
+                                            <div class="flex items-center gap-3">
+                                            <input type="text" placeholder="tautan laporan" class="input input-bordered w-full max-w-xs" name="report" />
+                                          </label>
+                                            <input type="hidden" name="id_transaction" value={{$event->id}}>
+                                          <div><button class="bg-neutral px-7 py-2 rounded-xl text-white">Kirim</button></div>
+                                          </div>
 
-        @endforeach
+                                    </form>
+                                </div>
+                            </dialog>
+                        </div>
+                    </div>
+
+                </div>
+            @endforeach
         </div>
     </div>
 @endsection

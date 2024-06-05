@@ -39,7 +39,7 @@
         <div class="flex justify-center items-center gap-2 overflow-scroll flex-col md:flex-row">
             @foreach ($data as $sponsor)
                 <div class="card w-72 bg-base-100 shadow-xl md:w-96 ">
-                    <figure><img src="http://127.0.0.1:8000/{{ $sponsor->image }}" alt="{{$sponsor->name}}" /></figure>
+                    <figure><img src="http://127.0.0.1:8080/{{ $sponsor->image }}" alt="{{$sponsor->name}}" /></figure>
                     <div class="card-body">
                         <div class="flex flex-col gap-2 md:flex-row">
                             <h2 class="card-title">

@@ -13,6 +13,7 @@ class ReportController extends Controller
         $token =  Cookie::get('token');
         $trans = Http::withToken($token)->get('http://localhost:8080/api/transactions');
         $trans = json_decode($trans);
+
         $data = [];
         foreach ($trans as $item ) {
           if ($item->id_status == 2) {
@@ -23,5 +24,16 @@ class ReportController extends Controller
         return view('event.report',[
             'data' => $data
         ]);
+    }
+
+    public function store(Request $request){
+        $data = [
+            'report' => $request->report,
+            'id_transaction' => $request->id_transaction
+        ];
+
+        $response = Http::post('http://localhost:8080/api/report',$data);
+
+        return redirect('/event/report');
     }
 }
