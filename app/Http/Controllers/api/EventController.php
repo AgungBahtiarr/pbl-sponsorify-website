@@ -23,6 +23,7 @@ class EventController extends Controller
     public function store(Request $request){
         $data = [
             'name' => $request->name,
+            'email' => $request->email,
             'description' => $request->description,
             'location' => $request->location,
             'proposal' => $request->proposal,

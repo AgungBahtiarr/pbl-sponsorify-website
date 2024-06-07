@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SponsorController;
+use App\Http\Controllers\SponsorEventController;
 use App\Http\Controllers\StatusController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,13 +32,20 @@ Route::get('/event/status',[StatusController::class, 'index']);
 Route::get('/event/report',[ReportController::class, 'index']);
 
 
-
 // Sponsor
 Route::get('/auth/sponsor',[SponsorController::class,'indexAddSponsor']);
 Route::post('/auth/sponsor',[SponsorController::class,'store']);
 Route::get('/sponsor/dashboard',[SponsorController::class,'index']);
 Route::post('/sponsor/categories',[SponsorController::class,'indexSearchSponsor']);
 Route::post('/sponsor/search',[SponsorController::class,'indexSearchSponsor']);
+Route::get('/sponsor/detail',[SponsorEventController::class,'show']);
+Route::get('/sponsor/event',[SponsorEventController::class,'index']);
+
+
+// Report
+Route::post('/event/report',[ReportController::class,'store']);
+
+
 
 
 

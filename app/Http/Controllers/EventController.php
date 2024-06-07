@@ -39,10 +39,13 @@ class EventController extends Controller
         $file->move(public_path('proposal'), $fileName);
         $filePath = 'proposal/' . $fileName;
 
+        $location = $request->desa . ' ' . $request->kecamatan . ' ' . $request->kabupaten;
+
         $data = [
             'name' => $request->name,
+            'email' => $request->email,
             'description' => $request->description,
-            'location' => $request->location,
+            'location' => $location,
             'proposal' => $filePath,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,

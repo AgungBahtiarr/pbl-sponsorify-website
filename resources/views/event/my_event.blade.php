@@ -16,36 +16,57 @@
                                 @csrf
                                 <label class="form-control w-full max-w-xs">
                                     <div class="label">
-                                        <span class="label-text">Event name</span>
+                                        <span class="label-text">Nama event</span>
                                     </div>
                                     <input type="text" placeholder="Type here"
                                         class="input input-bordered w-full max-w-xs" name="name" />
                                 </label>
                                 <label class="form-control w-full max-w-xs">
                                     <div class="label">
-                                        <span class="label-text">Description</span>
+                                        <span class="label-text">Email penanggung jawab</span>
+                                    </div>
+                                    <input type="email" placeholder="email"
+                                        class="input input-bordered w-full max-w-xs" name="email" />
+                                </label>
+                                <label class="form-control w-full max-w-xs">
+                                    <div class="label">
+                                        <span class="label-text">Deskripsi event</span>
                                     </div>
                                     <input type="text" placeholder="Type here"
                                         class="input input-bordered w-full max-w-xs" name="description" />
                                 </label>
                                 <label class="form-control w-full max-w-xs">
                                     <div class="label">
-                                        <span class="label-text">Location</span>
+                                        <span class="label-text">Desa</span>
                                     </div>
-                                    <input type="text" placeholder="Type here"
-                                        class="input input-bordered w-full max-w-xs" name="location" />
+                                    <input type="text" placeholder="desa"
+                                        class="input input-bordered w-full max-w-xs" name="desa" />
+                                </label>
+                                <label class="form-control w-full max-w-xs">
+                                    <div class="label">
+                                        <span class="label-text">Kecamatan</span>
+                                    </div>
+                                    <input type="text" placeholder="kecamatan"
+                                        class="input input-bordered w-full max-w-xs" name="kecamatan" />
+                                </label>
+                                <label class="form-control w-full max-w-xs">
+                                    <div class="label">
+                                        <span class="label-text">Kabupaten</span>
+                                    </div>
+                                    <input type="text" placeholder="Kabupaten"
+                                        class="input input-bordered w-full max-w-xs" name="kabupaten" />
                                 </label>
 
                                 <label class="form-control w-full max-w-xs">
                                     <div class="label">
-                                        <span class="label-text">Start date</span>
+                                        <span class="label-text">tanggal event mulai</span>
                                     </div>
                                     <input type="date" placeholder="Type here"
                                         class="input input-bordered w-full max-w-xs" name="start_date" />
                                 </label>
                                 <label class="form-control w-full max-w-xs">
                                     <div class="label">
-                                        <span class="label-text">End date</span>
+                                        <span class="label-text">Tanggal event berakhir</span>
                                     </div>
                                     <input type="date" placeholder="Type here"
                                         class="input input-bordered w-full max-w-xs" name="end_date" />
@@ -59,7 +80,7 @@
                                         class="file-input file-input-bordered w-full max-w-xs" name="proposal" />
                                 </label>
                                 <div class="flex justify-end">
-                                    <button class="btn btn-primary">Submit</button>
+                                    <button class="btn btn-primary">Kirim</button>
                                 </div>
                             </form>
                         </div>
@@ -69,19 +90,22 @@
         </div>
     @else
         <div>
-            <div class="flex justify-center my-14">
-                <h1 class="text-2xl font-bold">Your Events</h1>
+            <div class="flex flex-col items-center justify-center my-14">
+                <h1 class="text-2xl font-bold">Daftar Event</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
             </div>
             <div class="overflow-x-auto mb-10 mx-6">
                 <table class="table border ">
                     <!-- head -->
                     <thead>
                         <tr class="text-black">
-                            <th class="font-bold text-[18px]">Name</th>
-                            <th class="font-bold text-[18px]">Description</th>
-                            <th class="font-bold text-[18px]">Location</th>
+                            <th class="font-bold text-[18px]">Nama Event</th>
+                            <th class="font-bold text-[18px]">Email PIC</th>
+                            <th class="font-bold text-[18px]">Deskripsi Event</th>
+                            <th class="font-bold text-[18px]">Lokasi</th>
                             <th class="font-bold text-[18px]">Proposal</th>
-                            <th class="font-bold text-[18px]">Start date</th>
+                            <th class="font-bold text-[18px]">Tanggal Mulai</th>
+                            <th class="font-bold text-[18px]">Tanggal Berakhir</th>
                             <th>                <div>
                                 <button class="btn btn-primary font-semibold" onclick="noEvent.showModal()">Tambah Event</button>
                                 <dialog id="noEvent" class="modal">
@@ -94,37 +118,57 @@
                                             @csrf
                                             <label class="form-control w-full max-w-xs">
                                                 <div class="label">
-                                                    <span class="label-text">Event name</span>
+                                                    <span class="label-text">Nama event</span>
                                                 </div>
                                                 <input type="text" placeholder="Type here"
                                                     class="input input-bordered w-full max-w-xs" name="name" />
                                             </label>
                                             <label class="form-control w-full max-w-xs">
                                                 <div class="label">
-                                                    <span class="label-text">Description</span>
+                                                    <span class="label-text">Email penanggung jawab</span>
+                                                </div>
+                                                <input type="email" placeholder="email"
+                                                    class="input input-bordered w-full max-w-xs" name="email" />
+                                            </label>
+                                            <label class="form-control w-full max-w-xs">
+                                                <div class="label">
+                                                    <span class="label-text">Deskripsi event</span>
                                                 </div>
                                                 <input type="text" placeholder="Type here"
                                                     class="input input-bordered w-full max-w-xs" name="description" />
                                             </label>
                                             <label class="form-control w-full max-w-xs">
                                                 <div class="label">
-                                                    <span class="label-text">Location</span>
+                                                    <span class="label-text">Desa</span>
                                                 </div>
-                                                <input type="text" placeholder="Type here"
-                                                    class="input input-bordered w-full max-w-xs" name="location" />
+                                                <input type="text" placeholder="desa"
+                                                    class="input input-bordered w-full max-w-xs" name="desa" />
+                                            </label>
+                                            <label class="form-control w-full max-w-xs">
+                                                <div class="label">
+                                                    <span class="label-text">Kecamatan</span>
+                                                </div>
+                                                <input type="text" placeholder="kecamatan"
+                                                    class="input input-bordered w-full max-w-xs" name="kecamatan" />
+                                            </label>
+                                            <label class="form-control w-full max-w-xs">
+                                                <div class="label">
+                                                    <span class="label-text">Kabupaten</span>
+                                                </div>
+                                                <input type="text" placeholder="Kabupaten"
+                                                    class="input input-bordered w-full max-w-xs" name="kabupaten" />
                                             </label>
 
                                             <label class="form-control w-full max-w-xs">
                                                 <div class="label">
-                                                    <span class="label-text">Start date</span>
+                                                    <span class="label-text">tanggal event mulai</span>
                                                 </div>
                                                 <input type="date" placeholder="Type here"
                                                     class="input input-bordered w-full max-w-xs" name="start_date" />
                                             </label>
-
                                             <label class="form-control w-full max-w-xs">
                                                 <div class="label">
-                                                    <span class="label-text">End date</span>
+                                                    <span class="label-text">Tanggal event berakhir</span>
                                                 </div>
                                                 <input type="date" placeholder="Type here"
                                                     class="input input-bordered w-full max-w-xs" name="end_date" />
@@ -138,7 +182,7 @@
                                                     class="file-input file-input-bordered w-full max-w-xs" name="proposal" />
                                             </label>
                                             <div class="flex justify-end">
-                                                <button class="btn btn-primary">Submit</button>
+                                                <button class="btn btn-primary">Kirim</button>
                                             </div>
                                         </form>
                                     </div>
@@ -157,6 +201,9 @@
                                     </div>
                                 </td>
                                 <td>
+                                    {{$item->email}}
+                                </td>
+                                <td>
                                     {{ $item->description }}
                                 </td>
                                 <td>{{ $item->location }}</td>
@@ -165,6 +212,9 @@
                                 </th>
                                 <td>
                                     {{ $item->start_date }}
+                                </td>
+                                <td>
+                                    {{ $item->end_date }}
                                 </td>
                             </tr>
                         @endforeach

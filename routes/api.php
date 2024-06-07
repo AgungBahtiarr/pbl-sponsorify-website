@@ -3,6 +3,7 @@
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\api\EventController;
+use App\Http\Controllers\api\ReportController;
 use App\Http\Controllers\api\RoleController;
 use App\Http\Controllers\api\SponsorController;
 use App\Http\Controllers\api\TransactionController;
@@ -41,4 +42,9 @@ Route::post('/event',[EventController::class,'store']);
 // Transaction
 Route::get('/transactions', [TransactionController::class,'index'])->middleware('auth:sanctum');
 Route::post('/transaction', [TransactionController::class,'store'])->middleware('auth:sanctum');
+
+
+// Report
+
+Route::post('/report',[ReportController::class,'store']);
 
