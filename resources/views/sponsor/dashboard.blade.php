@@ -1,4 +1,4 @@
 @extends('layouts.sponsor_layout')
 @section('content')
-<h1>Dashboard event</h1>
+<h1>Dashboard Sponsor</h1>
 @endsection

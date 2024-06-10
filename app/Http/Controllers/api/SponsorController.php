@@ -20,6 +20,11 @@ class SponsorController extends Controller
         return response()->json($sponsors);
     }
 
+    public function currentSponsor(Request $request){
+        $sponsors = Sponsor::with('category')->where('id_user',$request->id)->first();
+        return response()->json($sponsors);
+    }
+
     public function indexCategory(Request $request){
         $id_category = $request->id_category;
 

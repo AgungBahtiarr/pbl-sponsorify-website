@@ -36,7 +36,6 @@ class AuthController extends Controller
             echo $e;
         }
 
-
         if ($response->getStatusCode() == 200) {
             $token = $response["token"];
             Cookie::queue(Cookie::make('token', $token));

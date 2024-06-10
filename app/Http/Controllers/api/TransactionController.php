@@ -17,10 +17,21 @@ class TransactionController extends Controller
         return response()->json($data);
     }
 
+    public function indexSponsor(Request $request){
+        $transactions = Transaction::with('event','sponsor','status')->where('id_sponsor',$request->id)->get();
+
+        return response()->json($transactions);
+    }
+
+
+    public function show($id){
+        $transaction = Transaction::with('event','sponsor','status')->findOrFail($id);
+
+       return response()->json($transaction);
+    }
+
     public function store(Request $request){
         $user = Auth::user();
-
-
         $data = [
             'id_event' => $request->id_event,
             'id_sponsor' => $request->id_sponsor,

@@ -56,10 +56,4 @@ class EventController extends Controller
 
         return redirect('/event/my_event');
     }
-
-    public function indexDetail(Request $request)
-    {
-
-
-    }
 }

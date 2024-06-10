@@ -38,7 +38,7 @@ Route::post('/auth/sponsor',[SponsorController::class,'store']);
 Route::get('/sponsor/dashboard',[SponsorController::class,'index']);
 Route::post('/sponsor/categories',[SponsorController::class,'indexSearchSponsor']);
 Route::post('/sponsor/search',[SponsorController::class,'indexSearchSponsor']);
-Route::get('/sponsor/detail',[SponsorEventController::class,'show']);
+Route::get('/sponsor/detail/{id}',[SponsorEventController::class,'show']);
 Route::get('/sponsor/event',[SponsorEventController::class,'index']);
 
 

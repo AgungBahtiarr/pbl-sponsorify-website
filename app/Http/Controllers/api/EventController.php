@@ -40,4 +40,12 @@ class EventController extends Controller
 
         return response()->json($event,201);
     }
+
+
+    public function show($id){
+        $event = Event::with('user')->findOrFail($id);
+
+        return response()->json($event);
+    }
+
 }
