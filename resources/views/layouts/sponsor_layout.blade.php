@@ -32,8 +32,7 @@
                             <!-- Sidebar content here -->
                             <li><a href="/sponsor/dashboard">Dashboard</a></li>
                             <li><a href="/sponsor/detail">My event</a></li>
-                            <li><a href="">Status</a></li>
-                            <li><a href="">Laporan</a></li>
+                            <li><a href="/sponsor/history">Laporan</a></li>
 
                         </ul>
                     </div>
@@ -44,8 +43,7 @@
                 <ul class="menu menu-horizontal px-1">
                     <li><a href="/sponsor/dashboard">Dashboard</a></li>
                     <li><a href="/sponsor/event">My event</a></li>
-                    <li><a href="">Status</a></li>
-                    <li><a href="">Laporan</a></li>
+                    <li><a href="/sponsor/history">Laporan</a></li>
                 </ul>
             </div>
             <div class="navbar-end">

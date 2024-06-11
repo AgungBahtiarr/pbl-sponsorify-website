@@ -4,6 +4,7 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\SponsorEventController;
@@ -40,7 +41,7 @@ Route::post('/sponsor/categories',[SponsorController::class,'indexSearchSponsor'
 Route::post('/sponsor/search',[SponsorController::class,'indexSearchSponsor']);
 Route::get('/sponsor/detail/{id}',[SponsorEventController::class,'show']);
 Route::get('/sponsor/event',[SponsorEventController::class,'index']);
-
+Route::get('/sponsor/history',[HistoryController::class,'index']);
 
 // Report
 Route::post('/event/report',[ReportController::class,'store']);
