@@ -60,12 +60,22 @@
                         <form method="dialog">
                             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                             <h3 class="font-bold text-lg mt-5 mb-4">Kirim pesan untuk Event organizer</h3>
+                        </form>
+                        <div>
+                             <form action="/sponsor/review" method="post">
+                             @csrf
+                        @method('patch')
                             <label class="input input-bordered flex items-center gap-2">
-                                <input type="text" class="grow" placeholder="komentar" />
+                                <input type="number" name="total_fund" class="grow" placeholder="Jumlah Dana Sponsor Yang Akan Diberikan" />
                             </label>
+                            <label class="input input-bordered flex items-center gap-2 mt-2">
+                                <input type="text" class="grow" name="comment" placeholder="komentar" />
+                            </label>
+                            <input type="hidden" name="id_status" value="2">
+                            <input type="hidden" name="id" value={{$transaction->id}}>
                             <button class="px-10 py-2 rounded-2xl text-white bg-neutral mt-5 font-semibold">kirim</button>
                         </form>
-
+                        </div>
                     </div>
                 </dialog>
 
@@ -79,15 +89,21 @@
                         <form method="dialog">
                             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                             <h3 class="font-bold text-lg mt-5 mb-4">Kirim alasan untuk Event organizer</h3>
+                        </form>
+                        <div>
+                            <form action="/sponsor/review" method="post">
+                            @csrf
+                        @method('patch')
                             <label class="input input-bordered flex items-center gap-2">
-                                <input type="text" class="grow" placeholder="komentar" />
+                                <input type="text" name="comment" class="grow" placeholder="komentar" />
                             </label>
+                            <input type="hidden" name="id_status" value="3">
+                             <input type="hidden" name="id" value={{$transaction->id}}>
                             <button class="px-10 py-2 rounded-2xl text-white bg-neutral mt-5 font-semibold">kirim</button>
                         </form>
-
+                        </div>
                     </div>
                 </dialog>
-
             </div>
         </div>
     </div>

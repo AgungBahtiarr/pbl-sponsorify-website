@@ -16,8 +16,16 @@ class SponsorEventController extends Controller
         $sponsor = Http::post('http://localhost:8080/api/sponsor/currentSponsor',['id'=>$idAuthUSer]);
         $sponsor = json_decode($sponsor);
         $transaction = Http::post('http://localhost:8080/api/transactions/sponsor',['id'=>$sponsor->id]);
+        $transaction = json_decode($transaction);
+
+        $transactionfix = [];
+        foreach($transaction as $item){
+            if($item->id_status == 1){
+                array_push($transactionfix,$item);
+            }
+        };
         return view('sponsor.event',[
-            'transactions' => json_decode($transaction),
+            'transactions' =>$transactionfix,
         ]);
     }
 

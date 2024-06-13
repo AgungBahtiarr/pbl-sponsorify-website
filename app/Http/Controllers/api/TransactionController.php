@@ -43,4 +43,30 @@ class TransactionController extends Controller
 
         return response()->json($data);
     }
+
+
+    public function update(Request $request){
+
+        $id = $request->id;
+        $data = [];
+        if ($request->id_status == 2) {
+            $data = [
+                'id' => $id,
+                'id_status' => $request->id_status,
+                'total_fund' => $request->total_fund,
+                'comment' => $request->comment,
+                ];
+        }else if($request->id_status == 3){
+            $data = [
+                'id' => $id,
+                'id_status' => $request->id_status,
+                'comment' => $request->comment,
+                ];
+        }
+
+        $trans = Transaction::findOrFail($id);
+        $trans->update($data);
+
+        return response()->json($trans);
+    }
 }

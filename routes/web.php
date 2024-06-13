@@ -42,6 +42,7 @@ Route::post('/sponsor/search',[SponsorController::class,'indexSearchSponsor']);
 Route::get('/sponsor/detail/{id}',[SponsorEventController::class,'show']);
 Route::get('/sponsor/event',[SponsorEventController::class,'index']);
 Route::get('/sponsor/history',[HistoryController::class,'index']);
+Route::patch('/sponsor/review', [TransactionController::class,'update']);
 
 // Report
 Route::post('/event/report',[ReportController::class,'store']);

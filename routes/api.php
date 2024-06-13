@@ -48,7 +48,7 @@ Route::get('/transactions', [TransactionController::class,'index'])->middleware(
 Route::post('/transaction', [TransactionController::class,'store'])->middleware('auth:sanctum');
 Route::post('/transactions/sponsor', [TransactionController::class,'indexSponsor']);
 Route::get('/transaction/{id}',[TransactionController::class,'show']);
-
+Route::patch('/transaction', [TransactionController::class,'update']);
 // Report
 
 Route::post('/report',[ReportController::class,'store']);
