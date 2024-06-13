@@ -10,4 +10,8 @@ class Report extends Model
     use HasFactory;
 
     protected $fillable = ['report','id_transaction'];
+
+    public function transaction(){
+        return $this->belongsTo(Transaction::class, 'id_transaction');
+    }
 }

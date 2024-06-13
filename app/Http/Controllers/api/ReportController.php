@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Report;
 use Illuminate\Http\Request;
 
+
 class ReportController extends Controller
 {
     /**
@@ -13,7 +14,9 @@ class ReportController extends Controller
      */
     public function index()
     {
+        $report = Report::with('transaction')->get();
 
+        return response()->json($report);
     }
 
     /**

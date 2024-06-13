@@ -31,8 +31,6 @@ Route::post('/sponsor/search',[SponsorController::class,'search']);
 Route::post('/sponsor',[SponsorController::class,'store']);
 Route::post('/sponsor/categories',[SponsorController::class,'indexCategory']);
 Route::post('/sponsor/currentSponsor',[SponsorController::class,'currentSponsor']);
-
-// Roles
 Route::get('/roles',[RoleController::class,'index']);
 
 // Categories
@@ -49,7 +47,8 @@ Route::post('/transaction', [TransactionController::class,'store'])->middleware(
 Route::post('/transactions/sponsor', [TransactionController::class,'indexSponsor']);
 Route::get('/transaction/{id}',[TransactionController::class,'show']);
 Route::patch('/transaction', [TransactionController::class,'update']);
-// Report
 
+// Report
+Route::get('/reports',[ReportController::class,'index']);
 Route::post('/report',[ReportController::class,'store']);
 
