@@ -17,20 +17,21 @@
             </div>
         </div>
         <div class="flex flex-col">
+        @foreach ($data as $item)
             <div class="grid grid-cols-5 items-center mx-12 border border-black rounded-lg my-4 py-3">
-                <h1 class="text-center ">Nama event</h1>
-                <h1 class="text-center ">Rp. 90.000</h1>
-                <h1 class="text-center ">12/12/12</h1>
-                <h1 class="text-center ">rifqi@gmail.com</h1>
+                <h1 class="text-center ">{{$item[1]->event->name}}</h1>
+                <h1 class="text-center ">{{$item[0]->transaction->total_fund}}</h1>
+                <h1 class="text-center ">{{ date('d/m/Y',strtotime($item[0]->transaction->created_at))}}</h1>
+                <h1 class="text-center ">{{$item[1]->event->email}}</h1>
                 <div class="flex justify-center">
-                    <a class="flex gap-2 bg-neutral text-white px-10 py-2 rounded-xl">
+                    <a href={{$item[0]->report}} class="flex font-medium gap-2 bg-neutral text-white px-10 py-2 rounded-xl">
                         <i class="fa-solid fa-download"></i>
-                        <h1 class="font-medium">Unduh laporan</h1>
+                        Unduh laporan
                     </a>
                 </div>
-
             </div>
 
+        @endforeach
         </div>
     </div>
 @endsection
