@@ -30,8 +30,12 @@
                     <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
                     <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
                         <!-- Sidebar content here -->
-                        <li><a>Sidebar Item 1</a></li>
-                        <li><a>Sidebar Item 2</a></li>
+                        <li><a href="/event/dashboard">Dashboard</a></li>
+                <li><a href="/event/sponsors">Sponsors</a></li>
+                <li><a href="/event/my_event">My event</a></li>
+                <li><a href="/event/status">Status</a></li>
+                <li><a href="/event/report">Laporan</a></li>
+                <li><a href="/sponsor/Withdraw">Pencairan</a></li>
 
                     </ul>
                 </div>
@@ -45,6 +49,8 @@
                 <li><a href="/event/my_event">My event</a></li>
                 <li><a href="/event/status">Status</a></li>
                 <li><a href="/event/report">Laporan</a></li>
+                <li><a href="/sponsor/Withdraw">Pencairan</a></li>
+
             </ul>
         </div>
         <div class="navbar-end">

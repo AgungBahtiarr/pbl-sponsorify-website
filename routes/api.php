@@ -3,6 +3,7 @@
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\api\EventController;
+use App\Http\Controllers\api\PaymentController;
 use App\Http\Controllers\api\ReportController;
 use App\Http\Controllers\api\RoleController;
 use App\Http\Controllers\api\SponsorController;
@@ -51,4 +52,8 @@ Route::patch('/transaction', [TransactionController::class,'update']);
 // Report
 Route::get('/reports',[ReportController::class,'index']);
 Route::post('/report',[ReportController::class,'store']);
+
+//Payment
+Route::get('/payments',[PaymentController::class,'index'])->middleware('auth:sanctum');
+
 

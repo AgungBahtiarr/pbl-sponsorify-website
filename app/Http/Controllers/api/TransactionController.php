@@ -36,7 +36,9 @@ class TransactionController extends Controller
             'id_event' => $request->id_event,
             'id_sponsor' => $request->id_sponsor,
             'id_user' => $user->id,
-            'id_status' => 1
+            'id_status' => 1,
+            'id_payment_status' => 1,
+            'id_withdraw_status' => 1,
         ];
 
         $data = Transaction::create($data);

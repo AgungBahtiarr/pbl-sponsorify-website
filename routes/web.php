@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\SponsorEventController;
@@ -31,6 +32,8 @@ Route::get('/event/sponsor/detail/{id}',[TransactionController::class, 'indexDet
 Route::post('/event/sponsor/detail',[TransactionController::class, 'store']);
 Route::get('/event/status',[StatusController::class, 'index']);
 Route::get('/event/report',[ReportController::class, 'index']);
+Route::get('/sponsor/Withdraw',[PaymentController::class,'indexWithdraw']);
+
 
 
 // Sponsor
@@ -43,9 +46,13 @@ Route::get('/sponsor/detail/{id}',[SponsorEventController::class,'show']);
 Route::get('/sponsor/event',[SponsorEventController::class,'index']);
 Route::get('/sponsor/history',[HistoryController::class,'index']);
 Route::patch('/sponsor/review', [TransactionController::class,'update']);
+Route::get('/sponsor/payment',[PaymentController::class,'index']);
 
 // Report
 Route::post('/event/report',[ReportController::class,'store']);
+
+
+//Payment
 
 
 
