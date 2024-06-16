@@ -33,6 +33,7 @@
                             <li><a href="/sponsor/dashboard">Dashboard</a></li>
                             <li><a href="/sponsor/detail">My event</a></li>
                             <li><a href="/sponsor/history">Laporan</a></li>
+                            <li><a href="/sponsor/payment">Pembayaran</a></li>
 
                         </ul>
                     </div>
@@ -44,6 +45,7 @@
                     <li><a href="/sponsor/dashboard">Dashboard</a></li>
                     <li><a href="/sponsor/event">My event</a></li>
                     <li><a href="/sponsor/history">Laporan</a></li>
+                    <li><a href="/sponsor/payment">Pembayaran</a></li>
                 </ul>
             </div>
             <div class="navbar-end">

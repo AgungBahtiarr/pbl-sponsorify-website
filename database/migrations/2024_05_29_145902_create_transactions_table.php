@@ -19,6 +19,9 @@ return new class extends Migration
             $table->unsignedBigInteger('id_user');
             $table->integer('total_fund')->nullable(true);
             $table->text('comment')->nullable(true);
+            $table->string('no_rek')->nullable(true);
+            $table->unsignedBigInteger('id_payment_status')->nullable(true);
+            $table->unsignedBigInteger('id_withdraw_status')->nullable(true);
             $table->timestamps();
         });
     }

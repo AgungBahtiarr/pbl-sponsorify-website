@@ -25,8 +25,8 @@
                                     <div class="label">
                                         <span class="label-text">Email penanggung jawab</span>
                                     </div>
-                                    <input type="email" placeholder="email"
-                                        class="input input-bordered w-full max-w-xs" name="email" />
+                                    <input type="email" placeholder="email" class="input input-bordered w-full max-w-xs"
+                                        name="email" />
                                 </label>
                                 <label class="form-control w-full max-w-xs">
                                     <div class="label">
@@ -39,8 +39,8 @@
                                     <div class="label">
                                         <span class="label-text">Desa</span>
                                     </div>
-                                    <input type="text" placeholder="desa"
-                                        class="input input-bordered w-full max-w-xs" name="desa" />
+                                    <input type="text" placeholder="desa" class="input input-bordered w-full max-w-xs"
+                                        name="desa" />
                                 </label>
                                 <label class="form-control w-full max-w-xs">
                                     <div class="label">
@@ -94,133 +94,121 @@
                 <h1 class="text-2xl font-bold">Daftar Event</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
             </div>
-            <div class="overflow-x-auto mb-10 mx-6">
-                <table class="table border ">
-                    <!-- head -->
-                    <thead>
-                        <tr class="text-black">
-                            <th class="font-bold text-[18px]">Nama Event</th>
-                            <th class="font-bold text-[18px]">Email PIC</th>
-                            <th class="font-bold text-[18px]">Deskripsi Event</th>
-                            <th class="font-bold text-[18px]">Lokasi</th>
-                            <th class="font-bold text-[18px]">Proposal</th>
-                            <th class="font-bold text-[18px]">Tanggal Mulai</th>
-                            <th class="font-bold text-[18px]">Tanggal Berakhir</th>
-                            <th>                <div>
-                                <button class="btn btn-primary font-semibold" onclick="noEvent.showModal()">Tambah Event</button>
-                                <dialog id="noEvent" class="modal">
-                                    <div class="modal-box">
-                                        <form method="dialog">
-                                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                                        </form>
-                                        <h3 class="font-bold text-lg">Tambah Event</h3>
-                                        <form method="post" enctype="multipart/form-data">
-                                            @csrf
-                                            <label class="form-control w-full max-w-xs">
-                                                <div class="label">
-                                                    <span class="label-text">Nama event</span>
-                                                </div>
-                                                <input type="text" placeholder="Type here"
-                                                    class="input input-bordered w-full max-w-xs" name="name" />
-                                            </label>
-                                            <label class="form-control w-full max-w-xs">
-                                                <div class="label">
-                                                    <span class="label-text">Email penanggung jawab</span>
-                                                </div>
-                                                <input type="email" placeholder="email"
-                                                    class="input input-bordered w-full max-w-xs" name="email" />
-                                            </label>
-                                            <label class="form-control w-full max-w-xs">
-                                                <div class="label">
-                                                    <span class="label-text">Deskripsi event</span>
-                                                </div>
-                                                <input type="text" placeholder="Type here"
-                                                    class="input input-bordered w-full max-w-xs" name="description" />
-                                            </label>
-                                            <label class="form-control w-full max-w-xs">
-                                                <div class="label">
-                                                    <span class="label-text">Desa</span>
-                                                </div>
-                                                <input type="text" placeholder="desa"
-                                                    class="input input-bordered w-full max-w-xs" name="desa" />
-                                            </label>
-                                            <label class="form-control w-full max-w-xs">
-                                                <div class="label">
-                                                    <span class="label-text">Kecamatan</span>
-                                                </div>
-                                                <input type="text" placeholder="kecamatan"
-                                                    class="input input-bordered w-full max-w-xs" name="kecamatan" />
-                                            </label>
-                                            <label class="form-control w-full max-w-xs">
-                                                <div class="label">
-                                                    <span class="label-text">Kabupaten</span>
-                                                </div>
-                                                <input type="text" placeholder="Kabupaten"
-                                                    class="input input-bordered w-full max-w-xs" name="kabupaten" />
-                                            </label>
-
-                                            <label class="form-control w-full max-w-xs">
-                                                <div class="label">
-                                                    <span class="label-text">tanggal event mulai</span>
-                                                </div>
-                                                <input type="date" placeholder="Type here"
-                                                    class="input input-bordered w-full max-w-xs" name="start_date" />
-                                            </label>
-                                            <label class="form-control w-full max-w-xs">
-                                                <div class="label">
-                                                    <span class="label-text">Tanggal event berakhir</span>
-                                                </div>
-                                                <input type="date" placeholder="Type here"
-                                                    class="input input-bordered w-full max-w-xs" name="end_date" />
-                                            </label>
-
-                                            <label class="form-control w-full max-w-xs">
-                                                <div class="label">
-                                                    <span class="label-text">Proposal</span>
-                                                </div>
-                                                <input type="file" placeholder="Type here"
-                                                    class="file-input file-input-bordered w-full max-w-xs" name="proposal" />
-                                            </label>
-                                            <div class="flex justify-end">
-                                                <button class="btn btn-primary">Kirim</button>
+            <div class="border-b border-black mx-12 pb-3">
+                <ul class="grid grid-cols-8 text-center font-semibold items-center">
+                    <li>Nama Event</li>
+                    <li>Email PIC</li>
+                    <li>Deskripsi Event</li>
+                    <li>Lokasi</li>
+                    <li>proposal</li>
+                    <li>Tanggal Mulai</li>
+                    <li>Tanggal Berakhir</li>
+                    <li>
+                        <div>
+                            <button class="btn btn-primary font-semibold" onclick="noEvent.showModal()">Tambah
+                                Event</button>
+                            <dialog id="noEvent" class="modal">
+                                <div class="modal-box">
+                                    <form method="dialog">
+                                        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                                    </form>
+                                    <h3 class="font-bold text-lg">Tambah Event</h3>
+                                    <form method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <label class="form-control w-full max-w-xs">
+                                            <div class="label">
+                                                <span class="label-text">Nama event</span>
                                             </div>
-                                        </form>
-                                    </div>
-                                </dialog>
-                            </div></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($events as $item)
-                            <tr>
-                                <td>
-                                    <div class="flex items-center gap-3">
-                                        <div>
-                                            <div class="font-bold">{{ $item->name }}</div>
+                                            <input type="text" placeholder="Type here"
+                                                class="input input-bordered w-full max-w-xs" name="name" />
+                                        </label>
+                                        <label class="form-control w-full max-w-xs">
+                                            <div class="label">
+                                                <span class="label-text">Email penanggung jawab</span>
+                                            </div>
+                                            <input type="email" placeholder="email"
+                                                class="input input-bordered w-full max-w-xs" name="email" />
+                                        </label>
+                                        <label class="form-control w-full max-w-xs">
+                                            <div class="label">
+                                                <span class="label-text">Deskripsi event</span>
+                                            </div>
+                                            <input type="text" placeholder="Type here"
+                                                class="input input-bordered w-full max-w-xs" name="description" />
+                                        </label>
+                                        <label class="form-control w-full max-w-xs">
+                                            <div class="label">
+                                                <span class="label-text">Desa</span>
+                                            </div>
+                                            <input type="text" placeholder="desa"
+                                                class="input input-bordered w-full max-w-xs" name="desa" />
+                                        </label>
+                                        <label class="form-control w-full max-w-xs">
+                                            <div class="label">
+                                                <span class="label-text">Kecamatan</span>
+                                            </div>
+                                            <input type="text" placeholder="kecamatan"
+                                                class="input input-bordered w-full max-w-xs" name="kecamatan" />
+                                        </label>
+                                        <label class="form-control w-full max-w-xs">
+                                            <div class="label">
+                                                <span class="label-text">Kabupaten</span>
+                                            </div>
+                                            <input type="text" placeholder="Kabupaten"
+                                                class="input input-bordered w-full max-w-xs" name="kabupaten" />
+                                        </label>
+
+                                        <label class="form-control w-full max-w-xs">
+                                            <div class="label">
+                                                <span class="label-text">tanggal event mulai</span>
+                                            </div>
+                                            <input type="date" placeholder="Type here"
+                                                class="input input-bordered w-full max-w-xs" name="start_date" />
+                                        </label>
+                                        <label class="form-control w-full max-w-xs">
+                                            <div class="label">
+                                                <span class="label-text">Tanggal event berakhir</span>
+                                            </div>
+                                            <input type="date" placeholder="Type here"
+                                                class="input input-bordered w-full max-w-xs" name="end_date" />
+                                        </label>
+
+                                        <label class="form-control w-full max-w-xs">
+                                            <div class="label">
+                                                <span class="label-text">Proposal</span>
+                                            </div>
+                                            <input type="file" placeholder="Type here"
+                                                class="file-input file-input-bordered w-full max-w-xs" name="proposal" />
+                                        </label>
+                                        <div class="flex justify-end">
+                                            <button class="btn btn-primary">Kirim</button>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    {{$item->email}}
-                                </td>
-                                <td>
-                                    {{ $item->description }}
-                                </td>
-                                <td>{{ $item->location }}</td>
-                                <th>
-                                    <a href={{"http://localhost:8000/" .  $item->proposal }}>Download</a>
-                                </th>
-                                <td>
-                                    {{ $item->start_date }}
-                                </td>
-                                <td>
-                                    {{ $item->end_date }}
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                    </form>
+                                </div>
+                            </dialog>
+                        </div>
+                    </li>
+                </ul>
             </div>
+            @foreach ($events as $item)
+                <div class="flex flex-col">
+                    <div class="grid grid-cols-8 items-center mx-12 border border-black rounded-lg my-4 py-3">
+                        <h1 class="text-center">{{ $item->name }}</h1>
+                        <h1 class="text-center"> {{ $item->email }}</h1>
+                        <h1 class="text-center">{{ $item->description }}</h1>
+
+                        <h1 class="text-center">{{ $item->location }}</h1>
+                        <div class="text-center"><a href={{ 'http://localhost:8000/' . $item->proposal }}>Download</a></div>
+                        <h1 class="text-center">{{ $item->start_date }}</h1>
+                        <h1 class="text-center">{{ $item->end_date }}</h1>
+                        <div class="text-center">
+                            <button class="text-[#dd3429]">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+            @endforeach
+        </div>
+        </div>
         </div>
     @endif
 @endsection
