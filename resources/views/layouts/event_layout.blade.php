@@ -31,11 +31,11 @@
                     <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
                         <!-- Sidebar content here -->
                         <li><a href="/event/dashboard">Dashboard</a></li>
-                <li><a href="/event/sponsors">Sponsors</a></li>
-                <li><a href="/event/my_event">My event</a></li>
-                <li><a href="/event/status">Status</a></li>
-                <li><a href="/event/report">Laporan</a></li>
-                <li><a href="/event/withdraw">Pencairan</a></li>
+                        <li><a href="/event/sponsors">Sponsor</a></li>
+                        <li><a href="/event/my_event">Event</a></li>
+                        <li><a href="/event/status">Status</a></li>
+                        <li><a href="/event/report">Laporan</a></li>
+                        <li><a href="/event/withdraw">Pencairan</a></li>
                     </ul>
                 </div>
             </div>
@@ -44,8 +44,8 @@
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1">
                 <li><a href="/event/dashboard">Dashboard</a></li>
-                <li><a href="/event/sponsors">Sponsors</a></li>
-                <li><a href="/event/my_event">My event</a></li>
+                <li><a href="/event/sponsors">Sponsor</a></li>
+                <li><a href="/event/my_event">Event</a></li>
                 <li><a href="/event/status">Status</a></li>
                 <li><a href="/event/report">Laporan</a></li>
                 <li><a href="/event/withdraw">Pencairan</a></li>

@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <h2 class="card-title">Deskripsi</h2>
-                <p class="text-justify">{{$item->event->description}}</p>
+                <p class="text-justify truncate">{{$item->event->description}}</p>
                 <div class="card-actions justify-center">
                     <a class="bg-yellow-400 px-28 py-2 rounded-lg" href="/sponsor/detail/{{$item->id}}">Lihat detail</a>
                 </div>

@@ -195,8 +195,7 @@
                     <div class="grid grid-cols-8 items-center mx-12 border border-black rounded-lg my-4 py-3">
                         <h1 class="text-center">{{ $item->name }}</h1>
                         <h1 class="text-center"> {{ $item->email }}</h1>
-                        <h1 class="text-center">{{ $item->description }}</h1>
-
+                        <p class="truncate">{{ $item->description }}</p>
                         <h1 class="text-center">{{ $item->location }}</h1>
                         <div class="text-center"><a href={{ 'http://localhost:8000/' . $item->proposal }}>Download</a></div>
                         <h1 class="text-center">{{ $item->start_date }}</h1>
@@ -206,9 +205,10 @@
                                 <i class="fa-solid fa-trash-can"></i>
                             </button>
                         </div>
+                    </div>
+                </div>
             @endforeach
-        </div>
-        </div>
+
         </div>
     @endif
 @endsection
