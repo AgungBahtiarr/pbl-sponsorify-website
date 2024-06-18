@@ -11,6 +11,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\SponsorEventController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\admin\WithdrawController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -56,13 +57,10 @@ Route::post('/event/report',[ReportController::class,'store']);
 
 
 //Admin
-Route::get('/admin/payment', function(){
-    return view('admin.payment');
-});
-Route::get('/admin/withdraw', function(){
-    return view('admin.withdraw');
-});
-
+Route::get('/admin/payment',[AdminPaymentController::class,'index']);
+Route::post('/admin/payment',[AdminPaymentController::class,'confirmPayment']);
+Route::get('/admin/withdraw',[WithdrawController::class,'index']);
+Route::post('/admin/withdraw',[WithdrawController::class,'confirmWithdraw']);
 
 
 

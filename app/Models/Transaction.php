@@ -34,5 +34,15 @@ class Transaction extends Model
      public function status()
      {
          return $this->belongsTo(Status::class, 'id_status');
+    }
+
+     public function withdraw()
+     {
+         return $this->belongsTo(WithdrawStatus::class, 'id_withdraw_status');
+    }
+
+     public function payment()
+     {
+         return $this->belongsTo(PaymentStatus::class, 'id_payment_status');
      }
 }

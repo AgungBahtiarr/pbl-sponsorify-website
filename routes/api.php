@@ -60,3 +60,9 @@ Route::post('/payment/payNow',[PaymentController::class,'payNow']);
 //Withdraw
 Route::get('/withdraws',[PaymentController::class,'indexWithdraw'])->middleware('auth:sanctum');
 Route::post('/withdraw',[PaymentController::class, 'storeWd']);
+
+//Admin
+Route::get('/admin/withdraws',[PaymentController::class,'indexWithdrawAdmin']);
+Route::post('/admin/withdraw',[PaymentController::class,'confirmWithdrawAdmin']);
+Route::get('/admin/payments',[PaymentController::class,'indexPaymentAdmin']);
+Route::post('/admin/payment',[PaymentController::class,'confirmPaymentAdmin']);

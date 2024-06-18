@@ -59,22 +59,20 @@ class PaymentController extends Controller
     }
 
     public function indexPaymentAdmin(){
-        $trans = Transaction::with('event','sponsor','status')->where('id_payment_status','2')->get();
+        $trans = Transaction::with('event','sponsor','status','payment')->where('id_payment_status','2')->get();
 
         return response()->json($trans);
     }
 
     public function indexWithdrawAdmin(){
-        $trans = Transaction::with('event','sponsor','status')->where('id_withdraw_status','2')->get();
+        $trans = Transaction::with('event','sponsor','status','withdraw')->where('id_withdraw_status','2')->get();
         return response()->json($trans);
     }
 
     public function confirmPaymentAdmin(Request $request){
-
         $data = [
             'id_payment_status' => $request->id_payment_status,
         ];
-
         $tran = Transaction::findOrFail($request->id);
         $tran->update($data);
 

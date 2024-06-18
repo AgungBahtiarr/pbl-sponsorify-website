@@ -18,7 +18,7 @@ class TransactionController extends Controller
     }
 
     public function indexSponsor(Request $request){
-        $transactions = Transaction::with('event','sponsor','status')->where('id_sponsor',$request->id)->get();
+        $transactions = Transaction::with('event','sponsor','status',)->where('id_sponsor',$request->id)->get();
 
         return response()->json($transactions);
     }
