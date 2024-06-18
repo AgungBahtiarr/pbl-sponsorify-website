@@ -45,6 +45,6 @@ class TransactionController extends Controller
 
         $response = Http::patch('http://localhost:8080/api/transaction', $data);
 
-        return redirect('/sponsor/history');
+        return redirect('/sponsor/payment');
     }
 }

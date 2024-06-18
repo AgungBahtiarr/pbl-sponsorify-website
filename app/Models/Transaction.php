@@ -8,7 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     use HasFactory;
-     protected $fillable = ['id_user','id_sponsor','id_status','id_event','total_fund','comment'];
+    protected $fillable = [
+        'id_user',
+        'id_sponsor',
+        'id_status',
+        'id_event',
+        'total_fund',
+        'comment',
+        'no_rek',
+        'bank_name',
+        'account_name',
+        'id_payment_status',
+        'id_withdraw_status'
+    ];
 
      public function sponsor()
      {

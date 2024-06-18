@@ -55,5 +55,8 @@ Route::post('/report',[ReportController::class,'store']);
 
 //Payment
 Route::get('/payments',[PaymentController::class,'index'])->middleware('auth:sanctum');
+Route::post('/payment/payNow',[PaymentController::class,'payNow']);
 
-
+//Withdraw
+Route::get('/withdraws',[PaymentController::class,'indexWithdraw'])->middleware('auth:sanctum');
+Route::post('/withdraw',[PaymentController::class, 'storeWd']);

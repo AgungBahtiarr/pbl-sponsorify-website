@@ -32,7 +32,8 @@ Route::get('/event/sponsor/detail/{id}',[TransactionController::class, 'indexDet
 Route::post('/event/sponsor/detail',[TransactionController::class, 'store']);
 Route::get('/event/status',[StatusController::class, 'index']);
 Route::get('/event/report',[ReportController::class, 'index']);
-Route::get('/sponsor/Withdraw',[PaymentController::class,'indexWithdraw']);
+Route::get('/event/withdraw',[PaymentController::class,'indexWithdraw']);
+Route::post('event/withdraw',[PaymentController::class,'storeWd']);
 
 
 
@@ -47,12 +48,16 @@ Route::get('/sponsor/event',[SponsorEventController::class,'index']);
 Route::get('/sponsor/history',[HistoryController::class,'index']);
 Route::patch('/sponsor/review', [TransactionController::class,'update']);
 Route::get('/sponsor/payment',[PaymentController::class,'index']);
+Route::post('/sponsor/payNow',[PaymentController::class,'payNow']);
 
 // Report
 Route::post('/event/report',[ReportController::class,'store']);
 
 
-//Payment
+//Admin
+Route::get('/admin/dashboard', function(){
+    return view('admin.dashboard');
+});
 
 
 

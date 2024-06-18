@@ -36,6 +36,4 @@ class ReportController extends Controller
 
         return redirect('/event/report');
     }
-
-
 }

@@ -20,8 +20,10 @@ return new class extends Migration
             $table->integer('total_fund')->nullable(true);
             $table->text('comment')->nullable(true);
             $table->string('no_rek')->nullable(true);
-            $table->unsignedBigInteger('id_payment_status')->nullable(true);
-            $table->unsignedBigInteger('id_withdraw_status')->nullable(true);
+            $table->string('bank_name')->nullable(true);
+            $table->string('account_name')->nullable(true);
+            $table->unsignedBigInteger('id_payment_status')->default(1);
+            $table->unsignedBigInteger('id_withdraw_status')->default(1);
             $table->timestamps();
         });
     }

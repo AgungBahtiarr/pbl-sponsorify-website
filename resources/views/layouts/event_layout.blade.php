@@ -35,8 +35,7 @@
                 <li><a href="/event/my_event">My event</a></li>
                 <li><a href="/event/status">Status</a></li>
                 <li><a href="/event/report">Laporan</a></li>
-                <li><a href="/sponsor/Withdraw">Pencairan</a></li>
-
+                <li><a href="/event/withdraw">Pencairan</a></li>
                     </ul>
                 </div>
             </div>
@@ -49,7 +48,7 @@
                 <li><a href="/event/my_event">My event</a></li>
                 <li><a href="/event/status">Status</a></li>
                 <li><a href="/event/report">Laporan</a></li>
-                <li><a href="/sponsor/Withdraw">Pencairan</a></li>
+                <li><a href="/event/withdraw">Pencairan</a></li>
 
             </ul>
         </div>

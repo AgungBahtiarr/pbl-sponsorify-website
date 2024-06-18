@@ -17,47 +17,51 @@
         </div>
 
         <div class="flex flex-col">
+
+        @foreach ($data as $item)
             <div class="grid grid-cols-4 items-center mx-12 border border-black rounded-lg my-4 py-3">
-                <h1 class="text-center ">hm</h1>
-                <h1 class="text-center ">hm</h1>
+                <h1 class="text-center ">{{$item->event->name}}</h1>
+                <h1 class="text-center ">{{$item->sponsor->name}}</h1>
 
                 <div class="flex justify-center">
-                    <button href=""
+                    <div
                         class="px-7 py-1 bg-white border rounded-2xl border-[#fbbf0f] font-semibold text-[#fbbf0f]">
                         Proses verifikasi
-                    </button>
+                    </div>
                 </div>
 
 
                 <div class="flex justify-center">
                     <button class="flex font-semibold gap-2 bg-neutral text-white px-5 py-2 rounded-xl items-center"
-                        onclick="my_modal_3.showModal()"><i class="fa-solid fa-hand-holding-dollar"></i></button>
-                    <dialog id="my_modal_3" class="modal">
+                        onclick="my_modalwd_{{$item->id}}.showModal()"><i class="fa-solid fa-hand-holding-dollar"></i></button>
+                    <dialog id="my_modalwd_{{$item->id}}" class="modal">
                         <div class="modal-box">
                             <form method="dialog">
                                 <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                             </form>
-                            <form action="">
+                            <form action="" method="POST">
+                            @csrf
+                            <input type="hidden" name="id" value={{$item->id}}>
                                 <label class="form-control w-full max-w-xs">
                                     <div class="label">
                                         <span class="label-text font-semibold text-lg">Nama bank</span>
                                     </div>
                                     <input type="text" placeholder="Type here"
-                                        class="input input-bordered w-full max-w-xs" name="" />
+                                        class="input input-bordered w-full max-w-xs" name="bank_name" />
                                 </label>
                                 <label class="form-control w-full max-w-xs">
                                     <div class="label">
                                         <span class="label-text font-semibold text-lg">Nama pemilik bank</span>
                                     </div>
                                     <input type="text" placeholder="Type here"
-                                        class="input input-bordered w-full max-w-xs" name="" />
+                                        class="input input-bordered w-full max-w-xs" name="account_name" />
                                 </label>
                                 <label class="form-control w-full max-w-xs">
                                     <div class="label">
                                         <span class="label-text font-semibold text-lg">Nomer rekening</span>
                                     </div>
                                     <input type="text" placeholder="Type here"
-                                        class="input input-bordered w-full max-w-xs" name="" />
+                                        class="input input-bordered w-full max-w-xs" name="no_rek" />
                                 </label>
                                 <button
                                     class="flex font-semibold gap-2 bg-neutral text-white px-5 py-2 rounded-xl items-center mt-6">
@@ -68,6 +72,8 @@
                 </div>
             </div>
 
+
+        @endforeach
 
         </div>
     </div>

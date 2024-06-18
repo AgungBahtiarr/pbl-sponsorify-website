@@ -41,14 +41,23 @@
             @endif
 
             <div class="flex justify-center">
-                <a href="" class="flex font-semibold gap-2 bg-neutral text-white px-10 py-2 rounded-xl items-center">
-                    <i class="fa-solid fa-money-check-dollar"></i>
-                    <p>Bayar</p>
-                </a>
+            <button class="btn btn-primary" onclick="my_modal_{{$item->id}}.showModal()">Bayar</button>
+            <dialog id="my_modal_{{$item->id}}" class="modal">
+                <div class="modal-box">
+                    <form method="dialog">
+                        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    </form>
+                    <h3 class="font-bold text-lg">Silahkan lakukan pembayaran sebesar {{$item->total_fund}}</h3>
+                    <form action="/sponsor/payNow" method="POST">
+                    @csrf
+                        <input type="hidden" name="id" value={{$item->id}} />
+                        <button class="btn btn-primary">Bayar sekarang</button>
+                    </form>
+                </div>
+            </dialog>
             </div>
         </div>
     @endforeach
-
     </div>
 </div>
 @endsection
