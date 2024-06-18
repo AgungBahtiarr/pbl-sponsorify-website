@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\PaymentController as AdminPaymentController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\AuthController;
 
@@ -55,9 +56,13 @@ Route::post('/event/report',[ReportController::class,'store']);
 
 
 //Admin
-Route::get('/admin/dashboard', function(){
-    return view('admin.dashboard');
+Route::get('/admin/payment', function(){
+    return view('admin.payment');
 });
+Route::get('/admin/withdraw', function(){
+    return view('admin.withdraw');
+});
+
 
 
 

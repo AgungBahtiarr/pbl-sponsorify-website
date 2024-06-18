@@ -22,20 +22,26 @@
             <h1 class="text-center ">{{ $item->total_fund }}</h1>
             @if ($item->id_payment_status==1)
             <div class="flex justify-center">
-                <button href="" class="px-7 py-1 bg-white border rounded-2xl border-[#fbbf0f] font-semibold text-[#fbbf0f]">
-                    Proses verifikasi
+                <button href="" class="px-7 py-1 bg-white border rounded-2xl border-neutral font-semibold text-neutral">
+                    Belum di cairkan
                 </button>
             </div>
             @elseif ($item->id_payment_status==2)
             <div class="flex justify-center">
                 <button href="" class="px-7 py-1 bg-white border rounded-2xl border-[#21be32] font-semibold text-[#21be32]">
-                    Selesai
+                    Sedang di proses
                 </button>
             </div>
             @elseif ($item->id_payment_status==3)
             <div class="flex justify-center">
+                <button href="" class="px-7 py-1 bg-white border rounded-2xl border-[#2a9c49] font-semibold text-[#2a9c49]">
+                    Selesai
+                </button>
+            </div>
+            @elseif ($item->id_payment_status==4)
+            <div class="flex justify-center">
                 <button href="" class="px-7 py-1 bg-white border rounded-2xl border-[#db3227] font-semibold text-[#db3227]">
-                    Terkirim
+                    Gagal
                 </button>
             </div>
             @endif
