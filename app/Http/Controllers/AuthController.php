@@ -42,11 +42,14 @@ class AuthController extends Controller
 
             $res = json_decode($response);
             Cookie::queue(Cookie::make('authUser', $res->user->id));
+            Cookie::queue(Cookie::make('roleUser', $res->user->id_role));
 
             if ($res->user->id_role == 1) {
                 return redirect('/event/dashboard');
             }elseif ($res->user->id_role == 2) {
                 return redirect('/auth/sponsor');
+            }elseif ($res->user->id_role == 3) {
+                return redirect('/admin/dashboard');
             }
         } else {
             return redirect('/auth/login')->with('error','Email atau password salah, silahkan login kembali');
@@ -81,4 +84,13 @@ class AuthController extends Controller
         return redirect('/auth/login');
     }
 
+    public function logout(Request $request){
+        $token = Cookie::get('token');
+
+        $response = Http::withToken($token)->delete('http://localhost:8080/api/logout');
+
+        Cookie::queue(Cookie::make('token', null));
+
+        return redirect('/auth/login');
+    }
 }

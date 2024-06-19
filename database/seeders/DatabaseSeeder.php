@@ -29,6 +29,10 @@ class DatabaseSeeder extends Seeder
             'role' => 'Sponsor'
         ]);
 
+        Role::create([
+            'role' => 'Admin'
+        ]);
+
         //User
         User::create([
             'name' => 'Agung Berkah',
@@ -42,6 +46,13 @@ class DatabaseSeeder extends Seeder
             'email' => 'r@gmail.com',
             'password' => bcrypt('1'),
             'id_role' => 2
+        ]);
+
+        User::create([
+            'name' => 'Admin Baik',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('1'),
+            'id_role' => 3
         ]);
 
         //Status

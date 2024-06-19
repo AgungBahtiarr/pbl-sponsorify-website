@@ -32,8 +32,6 @@
                             <!-- Sidebar content here -->
                             <li><a href="/admin/withdraw">Pencairan</a></li>
                             <li><a href="/admin/payment">Pembayaran</a></li>
-
-
                         </ul>
                     </div>
                 </div>
@@ -47,9 +45,6 @@
             </div>
             <div class="navbar-end">
                 <div class="flex gap-2">
-                    <div class="form-control hidden lg:block">
-                        <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
-                    </div>
                     <div class="dropdown dropdown-end">
                         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                             <div class="w-10 rounded-full">
@@ -65,7 +60,13 @@
                                 </a>
                             </li>
                             <li><a>Settings</a></li>
-                            <li><a>Logout</a></li>
+                            <li>
+                            <form action="/auth/logout" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button>Logout</button>
+                            </form>
+                            </li>
                         </ul>
                     </div>
                 </div>
