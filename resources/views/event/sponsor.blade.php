@@ -3,7 +3,7 @@
     <div class="m-3 mt-20">
         <div class="flex flex-col items-center mb-14">
             <h1 class="font-bold text-[30px] text-neutral">Pencarian sponsor</h1>
-            <h1 class="text-neutral">Temukan sponsor impianmu disini!</h1>
+            <h1 class="font-semibold text-[#7f7f7f]">Temukan sponsor impianmu disini!</h1>
         </div>
         <div>
             <form action="/sponsor/search" method="POST">
@@ -12,7 +12,7 @@
 
                     <label class="input input-bordered flex items-center gap-2 w-1/2">
 
-                        <input type="text" class="grow" name="str" placeholder="Search" />
+                        <input type="text" class="grow" name="str" placeholder="Cari ..." />
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
                             class="w-4 h-4 opacity-70">
                             <path fill-rule="evenodd"
@@ -62,6 +62,7 @@
 
 
         </div>
+
 
 
     </div>

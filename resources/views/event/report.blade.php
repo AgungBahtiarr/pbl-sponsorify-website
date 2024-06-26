@@ -2,8 +2,8 @@
 @section('content')
     <div class="my-11">
         <div class="ml-12">
-            <h1 class="font-semibold text-[40px]">Laporan</h1>
-            <h1 class="font-semibold text-[20px] text-[#7f7f7f]">Laporan yang akan anda ajukan</h1>
+            <h1 class="font-semibold text-[30px]">Laporan</h1>
+            <h1 class="font-semibold text-[#7f7f7f]">Laporan yang akan anda ajukan</h1>
         </div>
 
         <div class="mt-10">

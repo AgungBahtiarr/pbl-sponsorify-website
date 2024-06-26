@@ -32,7 +32,7 @@
                         <!-- Sidebar content here -->
                         <li><a href="/event/dashboard">Dashboard</a></li>
                         <li><a href="/event/sponsors">Sponsor</a></li>
-                        <li><a href="/event/my_event">Event</a></li>
+                        <li><a href="/event/my_event">Acara</a></li>
                         <li><a href="/event/status">Status</a></li>
                         <li><a href="/event/report">Laporan</a></li>
                         <li><a href="/event/withdraw">Pencairan</a></li>
@@ -45,7 +45,7 @@
             <ul class="menu menu-horizontal px-1">
                 <li><a href="/event/dashboard">Dashboard</a></li>
                 <li><a href="/event/sponsors">Sponsor</a></li>
-                <li><a href="/event/my_event">Event</a></li>
+                <li><a href="/event/my_event">Acara</a></li>
                 <li><a href="/event/status">Status</a></li>
                 <li><a href="/event/report">Laporan</a></li>
                 <li><a href="/event/withdraw">Pencairan</a></li>

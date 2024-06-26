@@ -2,8 +2,8 @@
 @section('content')
 <div class="my-11">
     <div class="ml-12">
-        <h1 class="font-semibold text-[40px]">Pencairan</h1>
-        <h1 class="font-semibold text-[20px] text-[#7f7f7f]">Segera cairkan dana event yang menunggu</h1>
+        <h1 class="font-semibold text-[30px]">Pencairan</h1>
+        <h1 class="font-semibold text-[#7f7f7f]">Segera cairkan dana event yang menunggu</h1>
     </div>
     <div class="mt-10">
         <div class="border-b border-black mx-12 pb-3">
