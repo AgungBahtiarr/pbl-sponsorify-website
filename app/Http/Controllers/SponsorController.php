@@ -13,9 +13,46 @@ class SponsorController extends Controller
 {
 
 
-    public function index()
-    {
-        return view('sponsor.dashboard');
+    public function index(){
+        $idUser = Cookie::get('authUser');
+        $currentSponsor = Http::post('http://localhost:8080/api/sponsor/currentSponsor',['id'=>$idUser]);
+        $currentSponsor = json_decode($currentSponsor);
+
+        $transactions = Http::post('http://localhost:8080/api/transactions/sponsor',['id'=>$currentSponsor->id]);
+        $transactions = json_decode($transactions);
+
+        $reports = Http::get('http://localhost:8080/api/reports');
+        $reports = json_decode($reports);
+
+        $reportDone = [];
+        foreach($reports as $report){
+            if($report->transaction->id_sponsor == $currentSponsor->id){
+                array_push($reportDone, $report);
+            }
+        }
+
+
+        $proposalIn = [];
+
+        foreach($transactions as $transaction){
+            if ($transaction->id_status == 1) {
+                array_push($proposalIn,$transaction);
+            }
+        }
+
+        $history = [];
+
+        foreach($transactions as $transaction){
+            if($transaction->id_user == $currentSponsor->id && ($transaction->id_status == 2 || $transaction->id_status == 3)){
+                array_push($history,$transaction);
+            }
+        }
+
+        return view('sponsor.dashboard',[
+            'report' => $reportDone,
+            'proposalIn' => $proposalIn,
+            'history' => $history,
+        ]);
     }
 
 
