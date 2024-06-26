@@ -16,6 +16,7 @@ class SponsorController extends Controller
     public function index()
     {
         $sponsors = Sponsor::with('category')->get();
+        // $sponsors = Sponsor::with('category')->paginate(1);
 
         return response()->json($sponsors);
     }

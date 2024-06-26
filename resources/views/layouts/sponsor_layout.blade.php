@@ -31,7 +31,7 @@
                         <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
                             <!-- Sidebar content here -->
                             <li><a href="/sponsor/dashboard">Dashboard</a></li>
-                            <li><a href="/sponsor/detail">My event</a></li>
+                            <li><a href="/sponsor/event">Acara masuk</a></li>
                             <li><a href="/sponsor/history">Laporan</a></li>
                             <li><a href="/sponsor/payment">Pembayaran</a></li>
 
@@ -43,7 +43,7 @@
             <div class="navbar-center hidden lg:flex">
                 <ul class="menu menu-horizontal px-1">
                     <li><a href="/sponsor/dashboard">Dashboard</a></li>
-                    <li><a href="/sponsor/event">My event</a></li>
+                    <li><a href="/sponsor/event">Acara  masuk</a></li>
                     <li><a href="/sponsor/history">Laporan</a></li>
                     <li><a href="/sponsor/payment">Pembayaran</a></li>
                 </ul>
@@ -79,7 +79,7 @@
         </div>
     </nav>
 
-    <div class="shadow-lg border border-black my-4 mx-4 rounded-lg">
+    <div class="shadow-lg border border-black my-4 mx-4 rounded-lg overflow-x-hidden">
         @yield('content')
     </div>
 </body>

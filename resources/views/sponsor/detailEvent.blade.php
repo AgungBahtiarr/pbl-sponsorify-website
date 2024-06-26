@@ -16,6 +16,7 @@
                         <h1 class="font-semibold text-[20px]">
                             {{ date('d/m/Y', strtotime($transaction->event->start_date)) }} -
                             {{ date('d/m/Y', strtotime($transaction->event->end_date)) }}</h1>
+                            <h1 class="text-[#8f8f8f]">Tanggal mulai - Tanggal berakhir</h1>
                     </div>
                 </div>
                 <div class="flex items-center gap-6 mt-3">
@@ -24,7 +25,7 @@
                     </div>
                     <div class="">
                         <h1 class="font-semibold text-[20px]">{{ $transaction->event->location }}</h1>
-                        <h1 class="text-[#8f8f8f]">Kabat Banyuwangi</h1>
+                        <h1 class="text-[#8f8f8f]">alamat acara</h1>
                     </div>
                 </div>
                 <div class="flex items-center gap-5 mt-3">

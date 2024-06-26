@@ -2,8 +2,8 @@
 @section('content')
     <div class="my-11">
         <div class="ml-12">
-            <h1 class="font-semibold text-[40px]">Pencairan</h1>
-            <h1 class="font-semibold text-[20px] text-[#7f7f7f]">Segera terima dana sponsormu!</h1>
+            <h1 class="font-semibold text-[30px]">Pencairan</h1>
+            <h1 class="font-semibold text-[#7f7f7f]">Segera terima dana sponsormu!</h1>
         </div>
         <div class="mt-10">
             <div class="border-b border-black mx-12 pb-3">
@@ -54,7 +54,7 @@
 
                 <div class="flex justify-center">
                     <button class="flex font-semibold gap-2 bg-neutral text-white px-5 py-2 rounded-xl items-center"
-                        onclick="my_modalwd_{{$item->id}}.showModal()"><i class="fa-solid fa-hand-holding-dollar"></i></button>
+                        onclick="my_modalwd_{{$item->id}}.showModal()"><i class="fa-solid fa-hand-holding-dollar"></i><span>Kirim</span></button>
                     <dialog id="my_modalwd_{{$item->id}}" class="modal">
                         <div class="modal-box">
                             <form method="dialog">

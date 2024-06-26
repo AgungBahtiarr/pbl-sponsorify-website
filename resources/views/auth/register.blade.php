@@ -3,8 +3,8 @@
     <div class="flex items-center justify-center min-h-screen bg-gray-100">
         <div class="w-full max-w-md bg-white shadow-md rounded-xl px-8 pt-6 pb-8 mb-4">
             <div class="mb-8 text-center">
-                <p class="text-xl font-bold">Create Your Account</p>
-                <p class="text-sm text-gray-400">Welcome! Please fill in the details to get started</p>
+                <p class="text-xl font-bold">Buat akunmu</p>
+                <p class="text-sm text-gray-400">Selamat datang! silahkan masuk untuk melanjutkan ke aplikasi</p>
             </div>
 
             @if (session('warning'))
@@ -18,7 +18,7 @@
                 @csrf
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                        Username
+                        Nama lengkap
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full h-10 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -34,7 +34,7 @@
                         id="email" type="text" name="email" required>
                 </div>
                 <div>
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="role">choose your role</label>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="role">pilih peranmu</label>
                     <select id="id_role" name="id_role"
                         class="shadow appearance-none border rounded w-full h-10 py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline bg-white">
                         @foreach ($data as $item)
@@ -51,7 +51,7 @@
                         <input
                             class="shadow appearance-none border rounded w-full h-10 py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                             id="password" type="password" name="password" required>
-                        <!-- Tambahkan gaya CSS untuk mengubah font menjadi teks -->
+
                         <style>
                             #password[type="password"] {
                                 font-family: "Arial", sans-serif;
@@ -62,15 +62,15 @@
 
                 <div class="flex items-center justify-between">
                     <button
-                        class="w-full h-10 py-2 px-3 bg-gradient-to-r from-gray-700 to-black hover:from-gray-800 hover:to-gray-900 text-white font-600 rounded focus:outline-none focus:shadow-outline"
+                        class="w-full h-10 py-2 px-3 bg-neutral from-gray-700 to-black hover:from-gray-800 hover:to-gray-900 text-white font-600 rounded focus:outline-none focus:shadow-outline"
                         type="submit">
-                        Continue
+                        Daftar
                     </button>
                 </div>
 
-                <div class="text-center mt-4">
-                    <p class="text-gray-600 text-sm">Already have an account? <a href="/auth/login"
-                            class="text-blue-500 hover:underline">Sign In</a></p>
+                <div class="text-center mt-4 gap-2">
+                    <p class="text-gray-600 text-sm">Sudah memiliki akun? <a href="/auth/login"
+                            class="text-blue-500 hover:underline">Masuk</a></p>
                 </div>
             </form>
         </div>

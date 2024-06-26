@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sponsor;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\PaginatedResourceResponse;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Http;
 

@@ -20,20 +20,24 @@ class HistoryController extends Controller
         $data = [];
         $transactions = Http::post('http://localhost:8080/api/transactions/sponsor',['id'=>$currentSponsor->id]);
         $transactions = json_decode($transactions);
+
         foreach($response as $item){
-            if ($item->transaction->id_user == $currentSponsor->id) {
+            if ($item->transaction->id_sponsor == $currentSponsor->id) {
                 array_push($reports, $item);
             }
         }
 
+
             foreach($reports as $report){
-            foreach($transactions as $tran){
-                if($report->id_transaction == $tran->id && $tran->id_status != 3){
-                    //array_push($trans,$tran);
-                    array_push($data,[$report,$tran]);
+                foreach($transactions as $tran){
+                        if($report->id_transaction == $tran->id && $tran->id_status != 3){
+                            //array_push($trans,$tran);
+                            array_push($data,[$report,$tran]);
+                        }
                 }
-                }
-        }
+            }
+
+
         return view('sponsor.history',[
             'data' => $data,
         ]);

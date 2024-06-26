@@ -25,7 +25,7 @@ class PaymentController extends Controller
         return view('sponsor.payment',[
             'data' => $data,
         ]);
-    }
+    }   
 
     public function indexWithdraw(){
         $token =  Cookie::get('token');

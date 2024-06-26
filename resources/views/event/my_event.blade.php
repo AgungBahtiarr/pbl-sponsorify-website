@@ -91,8 +91,8 @@
     @else
         <div>
             <div class="flex flex-col items-center justify-center my-14">
-                <h1 class="text-2xl font-bold">Daftar Event</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <h1 class="text-[30px] font-bold">Daftar Acara</h1>
+                <p class="font-semibold text-[#7f7f7f]">Buat acara terbaikmu disini!</p>
             </div>
             <div class="border-b border-black mx-12 pb-3">
                 <ul class="grid grid-cols-8 text-center font-semibold items-center">
@@ -119,42 +119,42 @@
                                             <div class="label">
                                                 <span class="label-text">Nama event</span>
                                             </div>
-                                            <input type="text" placeholder="Type here"
+                                            <input type="text" placeholder="..."
                                                 class="input input-bordered w-full max-w-xs" name="name" />
                                         </label>
                                         <label class="form-control w-full max-w-xs">
                                             <div class="label">
                                                 <span class="label-text">Email penanggung jawab</span>
                                             </div>
-                                            <input type="email" placeholder="email"
+                                            <input type="email" placeholder="..."
                                                 class="input input-bordered w-full max-w-xs" name="email" />
                                         </label>
                                         <label class="form-control w-full max-w-xs">
                                             <div class="label">
                                                 <span class="label-text">Deskripsi event</span>
                                             </div>
-                                            <input type="text" placeholder="Type here"
+                                            <input type="text" placeholder="..."
                                                 class="input input-bordered w-full max-w-xs" name="description" />
                                         </label>
                                         <label class="form-control w-full max-w-xs">
                                             <div class="label">
                                                 <span class="label-text">Desa</span>
                                             </div>
-                                            <input type="text" placeholder="desa"
+                                            <input type="text" placeholder="..."
                                                 class="input input-bordered w-full max-w-xs" name="desa" />
                                         </label>
                                         <label class="form-control w-full max-w-xs">
                                             <div class="label">
                                                 <span class="label-text">Kecamatan</span>
                                             </div>
-                                            <input type="text" placeholder="kecamatan"
+                                            <input type="text" placeholder="..."
                                                 class="input input-bordered w-full max-w-xs" name="kecamatan" />
                                         </label>
                                         <label class="form-control w-full max-w-xs">
                                             <div class="label">
                                                 <span class="label-text">Kabupaten</span>
                                             </div>
-                                            <input type="text" placeholder="Kabupaten"
+                                            <input type="text" placeholder="..."
                                                 class="input input-bordered w-full max-w-xs" name="kabupaten" />
                                         </label>
 
@@ -162,14 +162,14 @@
                                             <div class="label">
                                                 <span class="label-text">tanggal event mulai</span>
                                             </div>
-                                            <input type="date" placeholder="Type here"
+                                            <input type="date" placeholder="..."
                                                 class="input input-bordered w-full max-w-xs" name="start_date" />
                                         </label>
                                         <label class="form-control w-full max-w-xs">
                                             <div class="label">
                                                 <span class="label-text">Tanggal event berakhir</span>
                                             </div>
-                                            <input type="date" placeholder="Type here"
+                                            <input type="date" placeholder="..."
                                                 class="input input-bordered w-full max-w-xs" name="end_date" />
                                         </label>
 
@@ -177,10 +177,10 @@
                                             <div class="label">
                                                 <span class="label-text">Proposal</span>
                                             </div>
-                                            <input type="file" placeholder="Type here"
+                                            <input type="file" placeholder="..."
                                                 class="file-input file-input-bordered w-full max-w-xs" name="proposal" />
                                         </label>
-                                        <div class="flex justify-end">
+                                        <div class="flex justify-start mt-4">
                                             <button class="btn btn-primary">Kirim</button>
                                         </div>
                                     </form>
