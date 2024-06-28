@@ -40,11 +40,15 @@ Route::middleware([isLogin::class])->group(function (){
         Route::get('/event/sponsor/detail/{id}',[TransactionController::class, 'indexDetail']);
         Route::post('/event/sponsor/detail',[TransactionController::class, 'store']);
         Route::get('/event/status',[StatusController::class, 'index']);
-        Route::get('/event/report',[ReportController::class, 'index']);
+        Route::get('/event/report',[ReportController::class, 'indexEvent']);
         Route::get('/event/withdraw',[PaymentController::class,'indexWithdraw']);
         Route::post('event/withdraw',[PaymentController::class,'storeWd']);
         // Report
-        Route::post('/event/report',[ReportController::class,'store']);
+        Route::post('/event/report',[ReportController::class,'storeEvent']);
+
+        // Search
+        Route::post('/sponsor/categories',[SponsorController::class,'indexSearchSponsor']);
+        Route::post('/sponsor/search',[SponsorController::class,'indexSearchSponsor']);
     });
 
     Route::middleware([isSponsor::class])->group(function(){
@@ -52,14 +56,13 @@ Route::middleware([isLogin::class])->group(function (){
         Route::get('/auth/sponsor',[SponsorController::class,'indexAddSponsor']);
         Route::post('/auth/sponsor',[SponsorController::class,'store']);
         Route::get('/sponsor/dashboard',[SponsorController::class,'index']);
-        Route::post('/sponsor/categories',[SponsorController::class,'indexSearchSponsor']);
-        Route::post('/sponsor/search',[SponsorController::class,'indexSearchSponsor']);
         Route::get('/sponsor/detail/{id}',[SponsorEventController::class,'show']);
         Route::get('/sponsor/event',[SponsorEventController::class,'index']);
-        Route::get('/sponsor/history',[HistoryController::class,'index']);
+        Route::get('/sponsor/report',[ReportController::class,'indexSponsor']);
         Route::patch('/sponsor/review', [TransactionController::class,'update']);
         Route::get('/sponsor/payment',[PaymentController::class,'index']);
         Route::post('/sponsor/payNow',[PaymentController::class,'payNow']);
+        Route::get('/sponsor/history',[HistoryController::class,'indexSponsor']);
     });
 
 

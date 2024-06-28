@@ -32,7 +32,8 @@
                             <!-- Sidebar content here -->
                             <li><a href="/sponsor/dashboard">Dashboard</a></li>
                             <li><a href="/sponsor/event">Acara masuk</a></li>
-                            <li><a href="/sponsor/history">Laporan</a></li>
+                            <li><a href="/sponsor/history">Riwayat</a></li>
+                            <li><a href="/sponsor/report">Laporan</a></li>
                             <li><a href="/sponsor/payment">Pembayaran</a></li>
 
                         </ul>
@@ -44,7 +45,8 @@
                 <ul class="menu menu-horizontal px-1">
                     <li><a href="/sponsor/dashboard">Dashboard</a></li>
                     <li><a href="/sponsor/event">Acara  masuk</a></li>
-                    <li><a href="/sponsor/history">Laporan</a></li>
+                    <li><a href="/sponsor/history">Riwayat</a></li>
+                    <li><a href="/sponsor/report">Laporan</a></li>
                     <li><a href="/sponsor/payment">Pembayaran</a></li>
                 </ul>
             </div>
@@ -58,7 +60,7 @@
                             </div>
                         </div>
                         <ul tabindex="0"
-                            class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                            class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 text-black">
                             <li>
                                 <a class="justify-between">
                                     Profile
@@ -79,7 +81,7 @@
         </div>
     </nav>
 
-    <div class="shadow-lg border border-black my-4 mx-4 rounded-lg overflow-x-hidden">
+    <div class="shadow-lg border border-black my-4 mx-4 rounded-lg overflow-x-auto">
         @yield('content')
     </div>
 </body>

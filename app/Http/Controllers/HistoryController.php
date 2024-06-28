@@ -8,38 +8,24 @@ use Illuminate\Support\Facades\Http;
 
 class HistoryController extends Controller
 {
-    public function index(){
-        $token = Cookie::get('token');
+    public function indexSponsor(){
         $idUser = Cookie::get('authUser');
-        $response = Http::withToken($token)->get('http://localhost:8080/api/reports');
-        $response = json_decode($response);
         $currentSponsor = Http::post('http://localhost:8080/api/sponsor/currentSponsor',['id'=>$idUser]);
         $currentSponsor = json_decode($currentSponsor);
-        $reports = [];
-        $trans = [];
-        $data = [];
+
         $transactions = Http::post('http://localhost:8080/api/transactions/sponsor',['id'=>$currentSponsor->id]);
         $transactions = json_decode($transactions);
+        $history = [];
 
-        foreach($response as $item){
-            if ($item->transaction->id_sponsor == $currentSponsor->id) {
-                array_push($reports, $item);
+        foreach($transactions as $transaction){
+            if($transaction->id_user == $currentSponsor->id && ($transaction->id_status == 2 || $transaction->id_status == 3)){
+                array_push($history,$transaction);
             }
         }
 
-
-            foreach($reports as $report){
-                foreach($transactions as $tran){
-                        if($report->id_transaction == $tran->id && $tran->id_status != 3){
-                            //array_push($trans,$tran);
-                            array_push($data,[$report,$tran]);
-                        }
-                }
-            }
-
-
+        // return $history;
         return view('sponsor.history',[
-            'data' => $data,
+            'histories' => $history,
         ]);
     }
 }

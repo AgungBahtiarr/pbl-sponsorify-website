@@ -78,6 +78,7 @@ class DatabaseSeeder extends Seeder
             'start_date' => '2024-06-18',
             'end_date' => '2024-06-29',
             'id_user' => 1,
+            'image' => 'image/2.1718535444.png'
         ]);
 
         Event::create([
@@ -89,6 +90,7 @@ class DatabaseSeeder extends Seeder
             'start_date' => '2024-06-18',
             'end_date' => '2024-06-29',
             'id_user' => '1',
+            'image' => 'image/2.1718535444.png'
         ]);
 
         //Category
