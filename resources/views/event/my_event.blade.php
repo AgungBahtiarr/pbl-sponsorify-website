@@ -79,6 +79,13 @@
                                     <input type="file" placeholder="Type here"
                                         class="file-input file-input-bordered w-full max-w-xs" name="proposal" />
                                 </label>
+                                <label class="form-control w-full max-w-xs">
+                                    <div class="label">
+                                        <span class="label-text">Foto event</span>
+                                    </div>
+                                    <input type="file" placeholder="..."
+                                        class="file-input file-input-bordered w-full max-w-xs" name="image" />
+                                </label>
                                 <div class="flex justify-end">
                                     <button class="btn btn-primary">Kirim</button>
                                 </div>
@@ -179,6 +186,13 @@
                                             </div>
                                             <input type="file" placeholder="..."
                                                 class="file-input file-input-bordered w-full max-w-xs" name="proposal" />
+                                        </label>
+                                        <label class="form-control w-full max-w-xs">
+                                            <div class="label">
+                                                <span class="label-text">Foto event</span>
+                                            </div>
+                                            <input type="file" placeholder="..."
+                                                class="file-input file-input-bordered w-full max-w-xs" name="image" />
                                         </label>
                                         <div class="flex justify-start mt-4">
                                             <button class="btn btn-primary">Kirim</button>

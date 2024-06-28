@@ -46,8 +46,12 @@ class SponsorController extends Controller
             if($transaction->id_user == $currentSponsor->id && ($transaction->id_status == 2 || $transaction->id_status == 3)){
                 array_push($history,$transaction);
             }
-        }
 
+            if (count($history) >= 4) {
+                break;
+            }
+        }
+ // return $history;
         return view('sponsor.dashboard',[
             'report' => $reportDone,
             'proposalIn' => $proposalIn,
