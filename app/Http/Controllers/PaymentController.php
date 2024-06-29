@@ -25,19 +25,22 @@ class PaymentController extends Controller
         return view('sponsor.payment',[
             'data' => $data,
         ]);
-    }   
+    }
 
     public function indexWithdraw(){
         $token =  Cookie::get('token');
+        $authUser = Cookie::get('authUser');
         $response =  Http::withToken($token)->get('http://localhost:8080/api/withdraws');
         $response = json_decode($response);
         $transactions = [];
 
         foreach($response as $item){
-            if($item->id_status == 2 && $item->id_payment_status == 3 && ($item->id_withdraw_status == 1 || $item->id)){
+            if($item->id_status == 2 && $item->id_payment_status == 3  && $item->event->id_user == $authUser){
+
                 array_push($transactions, $item);
             }
         }
+
 
         return view('event.Withdraw',[
             'data' => $transactions,

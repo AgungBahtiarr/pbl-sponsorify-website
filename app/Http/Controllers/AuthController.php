@@ -49,7 +49,7 @@ class AuthController extends Controller
             }elseif ($res->user->id_role == 2) {
                 return redirect('/auth/sponsor');
             }elseif ($res->user->id_role == 3) {
-                return redirect('/admin/dashboard');
+                return redirect('/admin/payment');
             }
         } else {
             return redirect('/auth/login')->with('error','Email atau password salah, silahkan login kembali');

@@ -53,77 +53,77 @@ class DatabaseSeeder extends Seeder
             'email' => 'j@gmail.com',
             'password' => bcrypt('1'),
             'id_role' => 2
-        ]);        
+        ]);
 
         User::create([
             'name' => 'Butterfly cafe',
             'email' => 'b@gmail.com',
             'password' => bcrypt('1'),
             'id_role' => 2
-        ]);  
+        ]);
 
         User::create([
             'name' => 'Ria Busana',
             'email' => 'r@gmail.com',
             'password' => bcrypt('1'),
             'id_role' => 2
-        ]);  
+        ]);
 
         User::create([
             'name' => 'Honda',
             'email' => 'h@gmail.com',
             'password' => bcrypt('1'),
             'id_role' => 2
-        ]);  
+        ]);
 
         User::create([
             'name' => 'Eiger',
             'email' => 'e@gmail.com',
             'password' => bcrypt('1'),
             'id_role' => 2
-        ]);  
+        ]);
 
         User::create([
             'name' => 'JCO',
             'email' => 'jc@gmail.com',
             'password' => bcrypt('1'),
             'id_role' => 2
-        ]);  
+        ]);
 
         User::create([
             'name' => 'Roxy',
             'email' => 'rx@gmail.com',
             'password' => bcrypt('1'),
             'id_role' => 2
-        ]);  
+        ]);
 
         User::create([
             'name' => 'Toko Elektronik',
             'email' => 'te@gmail.com',
             'password' => bcrypt('1'),
             'id_role' => 2
-        ]);  
+        ]);
 
         User::create([
             'name' => 'Sicepat',
             'email' => 's@gmail.com',
             'password' => bcrypt('1'),
             'id_role' => 2
-        ]);  
+        ]);
 
         User::create([
             'name' => 'Hachi cafe',
             'email' => 'hc@gmail.com',
             'password' => bcrypt('1'),
             'id_role' => 2
-        ]);  
+        ]);
 
         User::create([
             'name' => 'Wong osing',
             'email' => 'wo@gmail.com',
             'password' => bcrypt('1'),
             'id_role' => 2
-        ]);  
+        ]);
 
         User::create([
             'name' => 'Admin Baik',
@@ -305,7 +305,7 @@ class DatabaseSeeder extends Seeder
             'address' => 'Kabat',
             'image' => 'image/2.1718535444.png',
             'id_category' => '5',
-            'id_user' => '1',
+            'id_user' => '3',
             'max_submission_date' => '30 Hari'
         ]);
 
@@ -316,7 +316,7 @@ class DatabaseSeeder extends Seeder
             'address' => 'Banyuwangi',
             'image' => 'image/sp1.jpg',
             'id_category' => '1',
-            'id_user' => '2',
+            'id_user' => '4',
             'max_submission_date' => '30 Hari'
         ]);
 
@@ -327,7 +327,7 @@ class DatabaseSeeder extends Seeder
             'address' => 'R92G+736, Jl. Basuki Rahmat, Lateng, Kec. Banyuwangi, Kabupaten Banyuwangi, Jawa Timur',
             'image' => 'image/sp2.jpg',
             'id_category' => '3',
-            'id_user' => '3',
+            'id_user' => '5',
             'max_submission_date' => '60 Hari'
         ]);
 
@@ -338,7 +338,7 @@ class DatabaseSeeder extends Seeder
             'address' => 'Jalan Raya Banyuwangi Jember KM 7 No. 88 Sumberrejo, Dusun Krajan, Dadapan, Kec. Kabat, Kabupaten Banyuwangi, Jawa Timur 68419',
             'image' => 'image/sp3.jpg',
             'id_category' => '4',
-            'id_user' => '4',
+            'id_user' => '6',
             'max_submission_date' => '60 Hari'
         ]);
 
@@ -349,7 +349,7 @@ class DatabaseSeeder extends Seeder
             'address' => 'Jl. Jend. A. Yani No.11, Perliman, Penganjuran, Kec. Banyuwangi, Kabupaten Banyuwangi, Jawa Timur 68416',
             'image' => 'image/sp4.jpg',
             'id_category' => '1',
-            'id_user' => '5',
+            'id_user' => '7',
             'max_submission_date' => '60 Hari'
         ]);
 
@@ -360,7 +360,7 @@ class DatabaseSeeder extends Seeder
             'address' => 'Jl. Adi Sucipto No.99, Tukangkayu, Kec. Banyuwangi, Kabupaten Banyuwangi, Jawa Timur 68418',
             'image' => 'image/sp6.jpg',
             'id_category' => '1',
-            'id_user' => '6',
+            'id_user' => '8',
             'max_submission_date' => '60 Hari'
         ]);
 
@@ -371,7 +371,7 @@ class DatabaseSeeder extends Seeder
             'address' => 'Jl. Jenderal Ahmad Yani No.21 - 23, Penganjuran, Kec. Banyuwangi, Kabupaten Banyuwangi, Jawa Timur 68416',
             'image' => 'image/sp7.jpg',
             'id_category' => '1',
-            'id_user' => '7',
+            'id_user' => '9',
             'max_submission_date' => '90 Hari'
         ]);
 
@@ -382,7 +382,7 @@ class DatabaseSeeder extends Seeder
             'address' => 'Jl. Jenderal Ahmad Yani No.21 - 23, Penganjuran, Kec. Banyuwangi, Kabupaten Banyuwangi, Jawa Timur 68416',
             'image' => 'image/sp8.jpg',
             'id_category' => '1',
-            'id_user' => '8',
+            'id_user' => '10',
             'max_submission_date' => '90 Hari'
         ]);
 
@@ -393,7 +393,7 @@ class DatabaseSeeder extends Seeder
             'address' => 'Jl. Jenderal Ahmad Yani No.21 - 23, Penganjuran, Kec. Banyuwangi, Kabupaten Banyuwangi, Jawa Timur 68416',
             'image' => 'image/sp8.jpg',
             'id_category' => '1',
-            'id_user' => '9',
+            'id_user' => '11',
             'max_submission_date' => '90 Hari'
         ]);
 
@@ -404,11 +404,11 @@ class DatabaseSeeder extends Seeder
             'address' => 'Gitik, Rogojampi',
             'image' => 'image/sp8.jpg',
             'id_category' => '1',
-            'id_user' => '10',
+            'id_user' => '12',
             'max_submission_date' => '90 Hari'
         ]);
 
-       
+
         //PaymentStatus
         PaymentStatus::create([
             'status' => 'Belum Dibayar',

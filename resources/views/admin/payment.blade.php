@@ -29,7 +29,7 @@
             </div>
 
             <div class="flex justify-center">
-            <button class="btn btn-primary" onclick="my_modal_{{$item->id}}.showModal()"><i class="fa-regular fa-circle-check"></i></button>
+            <button class="btn btn-primary" onclick="my_modal_{{$item->id}}.showModal()"><i class="fa-regular fa-circle-check"></i>Konfirmasi</button>
             <dialog id="my_modal_{{$item->id}}" class="modal">
                 <div class="modal-box">
                     <form method="dialog">

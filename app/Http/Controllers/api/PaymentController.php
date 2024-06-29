@@ -26,9 +26,9 @@ class PaymentController extends Controller
     public function indexWithdraw(){
         $user = Auth::user();
 
-        $event = Event::where('id_user', $user->id)->first();
+        // $event = Event::where('id_user', $user->id)->first();
 
-        $transactions = Transaction::with('event','sponsor','status')->where('id_event',$event->id)->get();
+        $transactions = Transaction::with('event','sponsor','status')->get();
 
         return response()->json($transactions);
     }
