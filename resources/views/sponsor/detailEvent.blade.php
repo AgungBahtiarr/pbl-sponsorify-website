@@ -1,11 +1,17 @@
 @extends('layouts.sponsor_layout')
 @section('content')
     <div class="m-11">
-        <div class="flex justify-center gap-14">
-            <div class="">
-                <img class="w-[352px] h-[352px] rounded-xl drop-shadow-2xl"
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt="">
-            </div>
+        <div class="mx-40 flex justify-center gap-14">
+            <div class="avatar">
+                <div class="w-[400px] rounded-xl">
+                    <img class=" rounded-xl drop-shadow-2xl"
+                    src="http://localhost:8080/{{$transaction->event->image}}" alt="">
+                </div>
+              </div>
+            {{-- <div class="h-[552px] flex justify-center items-center">
+                <img class=" rounded-xl drop-shadow-2xl"
+                    src="http://localhost:8080/{{$transaction->event->image}}" alt="">
+            </div> --}}
             <div>
                 <h1 class="font-semibold text-[50px]">{{ $transaction->event->name }}</h1>
                 <div class="flex items-center gap-5">

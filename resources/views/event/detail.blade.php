@@ -21,7 +21,7 @@
             <label for="" class="btn btn-neutral">
                 <div class="flex items-center gap-2">
                     <i class="fa-solid fa-share-nodes"></i>
-                    <h1>share</h1>
+                    <h1>bagikan</h1>
                 </div>
             </label>
         </div>
@@ -46,13 +46,13 @@
                 </form>
                 <label class="form-control w-full max-w-xs">
                     <div class="label">
-                        <span class="label-text">Pilih event terbaikmu !</span>
+                        <span class="label-text">Pilih acara terbaikmu !</span>
 
                     </div>
                     <form action="/event/sponsor/detail" method="POST">
                         @csrf
                         <select name="id_event" class="select select-bordered">
-                            <option disabled selected>Pick one</option>
+                            <option disabled selected>Pilih salah satu</option>
                             @foreach ($events as $event)
                                 <option value={{$event->id}}>{{ $event->name }}</option>
                             @endforeach

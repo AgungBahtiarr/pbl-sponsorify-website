@@ -30,7 +30,7 @@
                     <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
                     <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
                         <!-- Sidebar content here -->
-                        <li><a href="/event/dashboard">Dashboard</a></li>
+                        <li><a href="/event/dashboard">Dasbor</a></li>
                         <li><a href="/event/sponsors">Sponsor</a></li>
                         <li><a href="/event/my_event">Acara</a></li>
                         <li><a href="/event/status">Status</a></li>
@@ -43,7 +43,7 @@
         </div>
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1">
-                <li><a href="/event/dashboard">Dashboard</a></li>
+                <li><a href="/event/dashboard">Dasbor</a></li>
                 <li><a href="/event/sponsors">Sponsor</a></li>
                 <li><a href="/event/my_event">Acara</a></li>
                 <li><a href="/event/status">Status</a></li>
@@ -62,13 +62,13 @@
                         </div>
                     </div>
                     <ul tabindex="0"
-                        class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                        class="text-black mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                         <li>
                             <a class="justify-between">
-                                Profile
+                                Profil
                             </a>
                         </li>
-                        <li><a>Settings</a></li>
+                        <li><a>Pengaturan</a></li>
                         <li>
                             <form action="/auth/logout" method="POST">
                                 @csrf

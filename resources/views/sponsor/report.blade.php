@@ -9,7 +9,7 @@
             <div class="mt-10">
                 <div class="border-b border-black mx-12 pb-3 overflow-x-scroll">
                     <ul class="grid grid-cols-5 text-center font-semibold w-[600px] md:w-full items-center">
-                        <li>Nama Event</li>
+                        <li>Nama Acara</li>
                         <li>Dana sponsorship</li>
                         <li>Tanggal di terima</li>
                         <li>email penanggung jawab</li>

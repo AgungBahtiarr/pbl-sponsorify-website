@@ -8,7 +8,7 @@
         <div class="mt-10">
             <div class="border-b border-black mx-12 pb-3">
                 <ul class="grid grid-cols-4 text-center font-semibold">
-                    <li>Nama Event</li>
+                    <li>Nama Acara</li>
                     <li>Nama Sponsor</li>
                     <li>Dana sponsor</li>
                     <li>Pencairan</li>
@@ -24,25 +24,25 @@
                 <h1 class="text-center ">{{$item->sponsor->name}}</h1>
 
                 <div class="flex justify-center">
-                    @if ($item->id_payment_status==1)
+                    @if ($item->id_withdraw_status==1)
             <div class="flex justify-center">
                 <button href="" class="px-7 py-1 bg-white border rounded-2xl border-neutral font-semibold text-neutral">
                     Belum di cairkan
                 </button>
             </div>
-            @elseif ($item->id_payment_status==2)
+            @elseif ($item->id_withdraw_status==2)
             <div class="flex justify-center">
                 <button href="" class="px-7 py-1 bg-white border rounded-2xl border-[#21be32] font-semibold text-[#21be32]">
                     Sedang di proses
                 </button>
             </div>
-            @elseif ($item->id_payment_status==3)
+            @elseif ($item->id_withdraw_status==3)
             <div class="flex justify-center">
                 <button href="" class="px-7 py-1 bg-white border rounded-2xl border-[#2a9c49] font-semibold text-[#2a9c49]">
                     Selesai
                 </button>
             </div>
-            @elseif ($item->id_payment_status==4)
+            @elseif ($item->id_withdraw_status==4)
             <div class="flex justify-center">
                 <button href="" class="px-7 py-1 bg-white border rounded-2xl border-[#db3227] font-semibold text-[#db3227]">
                     Gagal
@@ -67,21 +67,21 @@
                                     <div class="label">
                                         <span class="label-text font-semibold text-lg">Nama bank</span>
                                     </div>
-                                    <input type="text" placeholder="Type here"
+                                    <input type="text" placeholder="..."
                                         class="input input-bordered w-full max-w-xs" name="bank_name" />
                                 </label>
                                 <label class="form-control w-full max-w-xs">
                                     <div class="label">
                                         <span class="label-text font-semibold text-lg">Nama pemilik bank</span>
                                     </div>
-                                    <input type="text" placeholder="Type here"
+                                    <input type="text" placeholder="..."
                                         class="input input-bordered w-full max-w-xs" name="account_name" />
                                 </label>
                                 <label class="form-control w-full max-w-xs">
                                     <div class="label">
                                         <span class="label-text font-semibold text-lg">Nomer rekening</span>
                                     </div>
-                                    <input type="text" placeholder="Type here"
+                                    <input type="text" placeholder="..."
                                         class="input input-bordered w-full max-w-xs" name="no_rek" />
                                 </label>
                                 <button

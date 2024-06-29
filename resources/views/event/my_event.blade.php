@@ -3,20 +3,20 @@
     @if (count($events) == 0)
         <div class="flex justify-center items-center h-[89vh]">
             <div class="flex flex-col items-center gap-3">
-                <h1 class="text-xl font-semibold">Silahkan tambahkan event terlebih dahulu</h1>
+                <h1 class="text-xl font-semibold">Silahkan tambahkan acara terlebih dahulu</h1>
                 <div>
-                    <button class="btn btn-primary font-semibold" onclick="noEvent.showModal()">Tambah Event</button>
+                    <button class="btn btn-primary font-semibold" onclick="noEvent.showModal()">Tambah acara</button>
                     <dialog id="noEvent" class="modal">
                         <div class="modal-box">
                             <form method="dialog">
                                 <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                             </form>
-                            <h3 class="font-bold text-lg">Tambah Event</h3>
+                            <h3 class="font-bold text-lg">Tambah acara</h3>
                             <form method="post" enctype="multipart/form-data">
                                 @csrf
                                 <label class="form-control w-full max-w-xs">
                                     <div class="label">
-                                        <span class="label-text">Nama event</span>
+                                        <span class="label-text">Nama acara</span>
                                     </div>
                                     <input type="text" placeholder="Type here"
                                         class="input input-bordered w-full max-w-xs" name="name" />
@@ -30,7 +30,7 @@
                                 </label>
                                 <label class="form-control w-full max-w-xs">
                                     <div class="label">
-                                        <span class="label-text">Deskripsi event</span>
+                                        <span class="label-text">Deskripsi acara</span>
                                     </div>
                                     <input type="text" placeholder="Type here"
                                         class="input input-bordered w-full max-w-xs" name="description" />
@@ -59,14 +59,14 @@
 
                                 <label class="form-control w-full max-w-xs">
                                     <div class="label">
-                                        <span class="label-text">tanggal event mulai</span>
+                                        <span class="label-text">tanggal acara mulai</span>
                                     </div>
                                     <input type="date" placeholder="Type here"
                                         class="input input-bordered w-full max-w-xs" name="start_date" />
                                 </label>
                                 <label class="form-control w-full max-w-xs">
                                     <div class="label">
-                                        <span class="label-text">Tanggal event berakhir</span>
+                                        <span class="label-text">Tanggal acara berakhir</span>
                                     </div>
                                     <input type="date" placeholder="Type here"
                                         class="input input-bordered w-full max-w-xs" name="end_date" />
@@ -81,7 +81,7 @@
                                 </label>
                                 <label class="form-control w-full max-w-xs">
                                     <div class="label">
-                                        <span class="label-text">Foto event</span>
+                                        <span class="label-text">Foto acara</span>
                                     </div>
                                     <input type="file" placeholder="..."
                                         class="file-input file-input-bordered w-full max-w-xs" name="image" />
@@ -103,9 +103,9 @@
             </div>
             <div class="border-b border-black mx-12 pb-3">
                 <ul class="grid grid-cols-8 text-center font-semibold items-center">
-                    <li>Nama Event</li>
+                    <li>Nama acara</li>
                     <li>Email PIC</li>
-                    <li>Deskripsi Event</li>
+                    <li>Deskripsi acara</li>
                     <li>Lokasi</li>
                     <li>proposal</li>
                     <li>Tanggal Mulai</li>
@@ -113,18 +113,18 @@
                     <li>
                         <div>
                             <button class="btn btn-primary font-semibold" onclick="noEvent.showModal()">Tambah
-                                Event</button>
+                                acara</button>
                             <dialog id="noEvent" class="modal">
                                 <div class="modal-box">
                                     <form method="dialog">
                                         <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                     </form>
-                                    <h3 class="font-bold text-lg">Tambah Event</h3>
+                                    <h3 class="font-bold text-lg">Tambah acara</h3>
                                     <form method="post" enctype="multipart/form-data">
                                         @csrf
                                         <label class="form-control w-full max-w-xs">
                                             <div class="label">
-                                                <span class="label-text">Nama event</span>
+                                                <span class="label-text">Nama acara</span>
                                             </div>
                                             <input type="text" placeholder="..."
                                                 class="input input-bordered w-full max-w-xs" name="name" />
@@ -138,7 +138,7 @@
                                         </label>
                                         <label class="form-control w-full max-w-xs">
                                             <div class="label">
-                                                <span class="label-text">Deskripsi event</span>
+                                                <span class="label-text">Deskripsi acara</span>
                                             </div>
                                             <input type="text" placeholder="..."
                                                 class="input input-bordered w-full max-w-xs" name="description" />
@@ -167,14 +167,14 @@
 
                                         <label class="form-control w-full max-w-xs">
                                             <div class="label">
-                                                <span class="label-text">tanggal event mulai</span>
+                                                <span class="label-text">tanggal acara mulai</span>
                                             </div>
                                             <input type="date" placeholder="..."
                                                 class="input input-bordered w-full max-w-xs" name="start_date" />
                                         </label>
                                         <label class="form-control w-full max-w-xs">
                                             <div class="label">
-                                                <span class="label-text">Tanggal event berakhir</span>
+                                                <span class="label-text">Tanggal acara berakhir</span>
                                             </div>
                                             <input type="date" placeholder="..."
                                                 class="input input-bordered w-full max-w-xs" name="end_date" />
@@ -189,7 +189,7 @@
                                         </label>
                                         <label class="form-control w-full max-w-xs">
                                             <div class="label">
-                                                <span class="label-text">Foto event</span>
+                                                <span class="label-text">Foto acara</span>
                                             </div>
                                             <input type="file" placeholder="..."
                                                 class="file-input file-input-bordered w-full max-w-xs" name="image" />
@@ -209,9 +209,9 @@
                     <div class="grid grid-cols-8 items-center mx-12 border border-black rounded-lg my-4 py-3">
                         <h1 class="text-center">{{ $item->name }}</h1>
                         <h1 class="text-center"> {{ $item->email }}</h1>
-                        <p class="truncate">{{ $item->description }}</p>
-                        <h1 class="text-center">{{ $item->location }}</h1>
-                        <div class="text-center"><a href={{ 'http://localhost:8000/' . $item->proposal }}>Download</a></div>
+                        <p class="truncate text-center mx-3">{{ $item->description }}</p>
+                        <h1 class="truncate text-center mc-3">{{ $item->location }}</h1>
+                        <div class="text-center text-blue-600 underline hover:font-semibold"><a href={{ 'http://localhost:8000/' . $item->proposal }}>Unduh</a></div>
                         <h1 class="text-center">{{ $item->start_date }}</h1>
                         <h1 class="text-center">{{ $item->end_date }}</h1>
                         <div class="text-center">

@@ -2,7 +2,7 @@
 @section('content')
 <div class="m-5 lg:mx-">
     <div class="mb-7">
-        <h1 class="text-[30px] font-semibold text-center">Assalamualaikum</h1>
+        <h1 class="text-[30px] font-semibold text-center">Hallo!</h1>
         <h1 class="text-[#9f9f9f] text-center">Yuk cek berapa proposal yang sudah masuk di perusahaanmu</h1>
     </div>
     <div class="flex flex-col gap-2 lg:gap-36 justify-center mb-7 lg:flex-row lg:justify-center">

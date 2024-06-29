@@ -8,7 +8,7 @@
     <div class="mt-10">
         <div class="border-b border-black mx-12 pb-3">
             <ul class="grid grid-cols-4 text-center font-semibold">
-                <li>Nama Event</li>
+                <li>Nama Acara</li>
                 <li>Dana sponsorship</li>
                 <li>Status</li>
                 <li>Tindakan</li>

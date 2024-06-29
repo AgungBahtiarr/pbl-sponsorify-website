@@ -3,13 +3,13 @@
     <div class="my-11">
         <div class="ml-12">
             <h1 class="font-semibold text-[30px]">Status</h1>
-            <h1 class="font-semibold text-[#7f7f7f]">Status Pengajuan Proposal yang telah anda ajukan</h1>
+            <h1 class="font-semibold text-[#7f7f7f]">Status pengajuan proposal yang telah anda ajukan</h1>
         </div>
 
         <div class="mt-10">
             <div class="border-b border-black mx-12 pb-3">
                 <ul class="grid grid-cols-4 text-center font-semibold">
-                    <li>Nama Event</li>
+                    <li>Nama Acara</li>
                     <li>Tanggal Pengajuan</li>
                     <li>Nama Sponsor</li>
                     <li>Status</li>
@@ -45,7 +45,7 @@
                                                 <span class="font-semibold">Pesan :</span>
                                             </div>
                                             <div class="border-2 rounded-2xl w-full h-32">
-                                                <p>Proposal kamu sedang dalam review pihak sponsor</p>
+                                                <p>Proposal kamu sedang dalam pengecekan oleh pihak sponsor</p>
                                             </div>
 
                                         </div>
@@ -76,21 +76,28 @@
                                 </dialog>
                             </div>
                             @elseif ($transaction->id_status == 3)
-                            <div class="modal-box">
-                                <form method="dialog">
-                                    <button
-                                        class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                                </form>
-                                <h3 class="font-bold text-lg mb-4">Status</h3>
-                                <button
-                                    class="px-7 py-2 rounded-lg bg-[#de362a] font-semibold text-black">{{ $transaction->status->status }}</button>
-                                <div class="flex justify-start mb-2 ml-1">
-                                    <span class="font-semibold">Pesan :</span>
-                                </div>
-                                <div class="border-2 rounded-2xl w-full h-32">
-                                    <p>{{ $transaction->comment }}</p>
-                                </div>
+                            <div>
+                                <button onclick="my_modal_proses_{{ $transaction->id }}.showModal()"
+                                    class="px-7 py-1 rounded-2xl bg-neutral font-semibold text-white">cek
+                                    status</button>
+                                <dialog id="my_modal_proses_{{ $transaction->id }}" class="modal">
+                                    <div class="modal-box">
+                                        <form method="dialog">
+                                            <button
+                                                class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                                        </form>
+                                        <h3 class="font-bold text-lg mb-4">Status</h3>
+                                        <span
+                                            class="px-7 py-2 rounded-lg bg-[#dd3428] font-semibold text-white">{{ $transaction->status->status }}</span>
+                                        <div class="flex justify-start mb-2 ml-1">
+                                            <span class="font-semibold">Pesan :</span>
+                                        </div>
+                                        <div class="border-2 rounded-2xl w-full h-32">
+                                            <p>{{ $transaction->comment }}</p>
+                                        </div>
 
+                                    </div>
+                                </dialog>
                             </div>
                             @endif
                         </div>

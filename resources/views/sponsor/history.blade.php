@@ -3,13 +3,13 @@
     <div class="my-11">
         <div class="ml-12">
             <h1 class="font-semibold text-[30px]">Riwayat</h1>
-            <h1 class="font-semibold text-[#7f7f7f]">Lihat event event yang telah kamu terima!</h1>
+            <h1 class="font-semibold text-[#7f7f7f]">Lihat acara yang telah kamu terima!</h1>
         </div>
         <div class="">
             <div class="mt-10">
                 <div class="border-b border-black mx-12 pb-3 overflow-x-scroll">
                     <ul class="grid grid-cols-5 text-center font-semibold w-[600px] md:w-full items-center">
-                        <li>Nama Event</li>
+                        <li>Nama Acara</li>
                         <li>Dana sponsorship</li>
                         <li>Tanggal acara</li>
                         <li>Email penanggung jawab</li>

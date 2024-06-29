@@ -34,12 +34,17 @@
             @endforeach
 
         </div>
-        <div class="flex justify-center items-center gap-2 overflow-scroll flex-col md:flex-row">
+        <div class="grid grid-cols-3 items-center overflow-scroll">
             @foreach ($data as $sponsor)
-                <div class="card w-72 bg-cover bg-base-100 shadow-xl md:w-96 ">
-                    {{-- <div class="bg-cover h-72 bg-[url('http://127.0.0.1:8080/{{ $sponsor->image }}')]"></div> --}}
-                    <figure><img class="w-72 h-72 rounded-lg" src="http://127.0.0.1:8080/{{ $sponsor->image }}"
-                            alt="{{ $sponsor->name }}" /></figure>
+                <div class="card w-72 bg-base-100 shadow-xl my-6 md:w-96 ">
+                    <div class="flex justify-center">
+                        <div class="avatar">
+                            <div class="w-72 rounded-xl">
+                                <img src="http://127.0.0.1:8080/{{ $sponsor->image }}" />
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="card-body">
                         <div class="flex flex-col gap-2 md:flex-row">
                             <h2 class="card-title">
