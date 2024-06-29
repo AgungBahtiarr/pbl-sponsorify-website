@@ -66,10 +66,10 @@ class SponsorController extends Controller
         $responseCat = json_decode($categories);
 
         // Ini masih pake eloquent harusnya dari api
-        $authUser = User::where('id', Cookie::get('authUser'))->first();
+        $authUser = Cookie::get('authUser');
 
 
-        $isFirst = Sponsor::where('id_user', $authUser->id)->get();
+        $isFirst = Sponsor::where('id_user', $authUser)->get();
 
         if (count($isFirst) != 0) {
             return redirect("/sponsor/dashboard");

@@ -20,8 +20,6 @@
                                 clip-rule="evenodd" />
                         </svg>
                     </label>
-
-
                 </div>
             </form>
         </div>
