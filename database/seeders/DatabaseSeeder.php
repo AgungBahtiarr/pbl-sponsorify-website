@@ -303,7 +303,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'r@gmail.com',
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus urna duis convallis convallis. Id cursus metus aliquam eleifend mi in nulla. Mi in nulla posuere sollicitudin aliquam. Egestas fringilla phasellus faucibus scelerisque eleifend donec pretium. Facilisis volutpat est velit egestas dui. Nunc vel risus commodo viverra maecenas accumsan lacus vel facilisis. Viverra maecenas accumsan lacus vel. Enim praesent elementum facilisis leo vel. Nibh praesent tristique magna sit amet. Mauris commodo quis imperdiet massa tincidunt nunc. Erat pellentesque adipiscing commodo elit at imperdiet dui accumsan. Magna eget est lorem ipsum. Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque. Nisl condimentum id venenatis a condimentum vitae sapien pellentesque habitant. Lorem ipsum dolor sit amet consectetur.',
             'address' => 'Kabat',
-            'image' => 'image/2.1718535444.png',
+            'image' => 'image/s1.png',
             'id_category' => '5',
             'id_user' => '3',
             'max_submission_date' => '30 Hari'
@@ -314,7 +314,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'r@gmail.com',
             'description' => 'Butterfly Cafe adalah sebuah kafe yang menawarkan pengalaman kuliner yang unik dan nyaman di kota Banyuwangi. Terletak di lokasi yang strategis, kafe ini tidak hanya menjadi tempat untuk menikmati hidangan dan minuman yang lezat, tetapi juga menyajikan atmosfer yang menyenangkan dan ramah bagi pengunjung dari berbagai kalangan.',
             'address' => 'Banyuwangi',
-            'image' => 'image/sp1.jpg',
+            'image' => 'image/s2.png',
             'id_category' => '1',
             'id_user' => '4',
             'max_submission_date' => '30 Hari'
@@ -325,7 +325,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'n@gmail.com',
             'description' => 'Merupakan toko pakaian yang menjual baju-baju mulai dari baju anak kecil, remaja hingga dewasa dengan harga yang terjangkau',
             'address' => 'R92G+736, Jl. Basuki Rahmat, Lateng, Kec. Banyuwangi, Kabupaten Banyuwangi, Jawa Timur',
-            'image' => 'image/sp2.jpg',
+            'image' => 'image/s3.jpeg',
             'id_category' => '3',
             'id_user' => '5',
             'max_submission_date' => '60 Hari'
@@ -336,7 +336,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'n@gmail.com',
             'description' => 'Honda Corporation adalah perusahaan multinasional asal Jepang yang terkenal di seluruh dunia sebagai produsen kendaraan bermotor, mesin, dan peralatan kelistrikan. Didirikan pada tahun 1946 oleh Soichiro Honda, perusahaan ini telah tumbuh menjadi salah satu pemimpin utama dalam industri otomotif global.',
             'address' => 'Jalan Raya Banyuwangi Jember KM 7 No. 88 Sumberrejo, Dusun Krajan, Dadapan, Kec. Kabat, Kabupaten Banyuwangi, Jawa Timur 68419',
-            'image' => 'image/sp3.jpg',
+            'image' => 'image/sp4.png',
             'id_category' => '4',
             'id_user' => '6',
             'max_submission_date' => '60 Hari'
@@ -347,7 +347,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'r@gmail.com',
             'description' => 'Eiger adalah merek terkemuka yang berasal dari Indonesia, dikenal dengan produk-produk perlengkapan dan peralatan outdoor. Didirikan pada tahun 1989, Eiger telah menjadi ikon dalam industri outdoor di Indonesia dan kini telah merambah ke pasar internasional.',
             'address' => 'Jl. Jend. A. Yani No.11, Perliman, Penganjuran, Kec. Banyuwangi, Kabupaten Banyuwangi, Jawa Timur 68416',
-            'image' => 'image/sp4.jpg',
+            'image' => 'image/s5.png',
             'id_category' => '1',
             'id_user' => '7',
             'max_submission_date' => '60 Hari'
@@ -358,7 +358,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'r@gmail.com',
             'description' => 'J.CO Donuts & Coffee adalah sebuah jaringan waralaba internasional yang terkenal dengan produk donat premium dan kopi berkualitas. Didirikan pertama kali di Indonesia pada tahun 2005 oleh Johnny Andrean Group, J.CO telah berkembang pesat menjadi merek yang dikenal luas di Asia Tenggara dan Timur Tengah.',
             'address' => 'Jl. Adi Sucipto No.99, Tukangkayu, Kec. Banyuwangi, Kabupaten Banyuwangi, Jawa Timur 68418',
-            'image' => 'image/sp6.jpg',
+            'image' => 'image/s6.png',
             'id_category' => '1',
             'id_user' => '8',
             'max_submission_date' => '60 Hari'
@@ -369,7 +369,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'r@gmail.com',
             'description' => 'Roxy Banyuwangi merupakan salah satu toko atau outlet yang terletak di Banyuwangi, Jawa Timur. Roxy dikenal sebagai merek yang menyediakan berbagai produk pakaian, terutama dalam kategori surfwear dan urban fashion.',
             'address' => 'Jl. Jenderal Ahmad Yani No.21 - 23, Penganjuran, Kec. Banyuwangi, Kabupaten Banyuwangi, Jawa Timur 68416',
-            'image' => 'image/sp7.jpg',
+            'image' => 'image/s7.jpeg',
             'id_category' => '1',
             'id_user' => '9',
             'max_submission_date' => '90 Hari'
@@ -380,7 +380,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'n@gmail.com',
             'description' => 'Philips adalah sebuah perusahaan multinasional yang berbasis di Belanda dan dikenal secara luas sebagai salah satu pemimpin global di berbagai industri, terutama dalam teknologi kesehatan, pencahayaan, dan elektronik konsumen.  ',
             'address' => 'Jl. Jenderal Ahmad Yani No.21 - 23, Penganjuran, Kec. Banyuwangi, Kabupaten Banyuwangi, Jawa Timur 68416',
-            'image' => 'image/sp8.jpg',
+            'image' => 'image/sp8.jpeg',
             'id_category' => '1',
             'id_user' => '10',
             'max_submission_date' => '90 Hari'
@@ -391,7 +391,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'n@gmail.com',
             'description' => 'Jasa kirim dan antar paket di daerah banyuwangi  ',
             'address' => 'Jl. Jenderal Ahmad Yani No.21 - 23, Penganjuran, Kec. Banyuwangi, Kabupaten Banyuwangi, Jawa Timur 68416',
-            'image' => 'image/sp8.jpg',
+            'image' => 'image/s9.png',
             'id_category' => '1',
             'id_user' => '11',
             'max_submission_date' => '90 Hari'
@@ -402,7 +402,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'n@gmail.com',
             'description' => 'Tempat nongkrong para muda mudi yang menyediakan makanan dan minuman cofee maupun non cofee yang harganya ramah di kantong pelajar',
             'address' => 'Gitik, Rogojampi',
-            'image' => 'image/sp8.jpg',
+            'image' => 'image/s10.png',
             'id_category' => '1',
             'id_user' => '12',
             'max_submission_date' => '90 Hari'
