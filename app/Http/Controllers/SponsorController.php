@@ -125,9 +125,11 @@ class SponsorController extends Controller
 
         if ($id_category == null && $str == null) {
             $response = Http::get('http://localhost:8080/api/sponsors');
-        } else if ($str != null) {
+        }
+        if ($str != null) {
             $response = Http::post('http://localhost:8080/api/sponsor/search', ['str' => $str]);
-        } else {
+        }
+        if ($id_category != null) {
             $response = Http::post(
                 'http://localhost:8080/api/sponsor/categories',
                 [

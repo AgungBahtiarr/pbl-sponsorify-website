@@ -380,7 +380,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'n@gmail.com',
             'description' => 'Philips adalah sebuah perusahaan multinasional yang berbasis di Belanda dan dikenal secara luas sebagai salah satu pemimpin global di berbagai industri, terutama dalam teknologi kesehatan, pencahayaan, dan elektronik konsumen.  ',
             'address' => 'Jl. Jenderal Ahmad Yani No.21 - 23, Penganjuran, Kec. Banyuwangi, Kabupaten Banyuwangi, Jawa Timur 68416',
-            'image' => 'image/sp8.jpeg',
+            'image' => 'image/s8.jpeg',
             'id_category' => '1',
             'id_user' => '10',
             'max_submission_date' => '90 Hari'
