@@ -67,8 +67,6 @@ class SponsorController extends Controller
 
         // Ini masih pake eloquent harusnya dari api
         $authUser = Cookie::get('authUser');
-
-
         $isFirst = Sponsor::where('id_user', $authUser)->get();
 
         if (count($isFirst) != 0) {

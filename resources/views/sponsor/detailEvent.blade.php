@@ -73,7 +73,7 @@
                                 <input type="number" name="total_fund" class="grow" placeholder="Jumlah Dana Sponsor Yang Akan Diberikan" />
                             </label>
                             <label class="input input-bordered flex items-center gap-2 mt-2">
-                                <input type="text" class="grow" name="comment" placeholder="komentar" />
+                                <input type="text" class="grow" name="comment" placeholder="Masukan pesan untuk event organizer" />
                             </label>
                             <input type="hidden" name="id_status" value="2">
                             <input type="hidden" name="id" value={{$transaction->id}}>
@@ -98,7 +98,7 @@
                             @csrf
                             @method('patch')
                             <label class="input input-bordered flex items-center gap-2">
-                                <input type="text" name="comment" class="grow" placeholder="komentar" />
+                                <input type="text" name="comment" class="grow" placeholder="Masukan umpan balik untuk event organizer" />
                             </label>
                             <input type="hidden" name="id_status" value="3">
                             <input type="hidden" name="id" value={{$transaction->id}}>

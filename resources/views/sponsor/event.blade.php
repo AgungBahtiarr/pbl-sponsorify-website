@@ -13,7 +13,7 @@
                         <div class="flex items-center gap-4">
                             <div class="avatar">
                                 <div class="w-10 md:w-14 rounded-full">
-                                    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                    <img src="http://localhost:8080/{{$item->event->image}}" />
                                 </div>
                             </div>
                             <div>

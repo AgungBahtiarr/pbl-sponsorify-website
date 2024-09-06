@@ -71,7 +71,7 @@
                     <input type="file" placeholder="Type here" name="image" class="file-input file-input-bordered" required />
                 </label>
 
-                <input type="hidden" name="idUser" value={{$authUser->id}}>
+                <input type="hidden" name="idUser" value={{$authUser}}>
 
                 <div class="form-control flex items-center justify-between">
                     <button class="btn bg-gray-600 text-white w-80">Submit</button>
