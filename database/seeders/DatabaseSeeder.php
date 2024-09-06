@@ -336,7 +336,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'n@gmail.com',
             'description' => 'Honda Corporation adalah perusahaan multinasional asal Jepang yang terkenal di seluruh dunia sebagai produsen kendaraan bermotor, mesin, dan peralatan kelistrikan. Didirikan pada tahun 1946 oleh Soichiro Honda, perusahaan ini telah tumbuh menjadi salah satu pemimpin utama dalam industri otomotif global.',
             'address' => 'Jalan Raya Banyuwangi Jember KM 7 No. 88 Sumberrejo, Dusun Krajan, Dadapan, Kec. Kabat, Kabupaten Banyuwangi, Jawa Timur 68419',
-            'image' => 'image/sp4.png',
+            'image' => 'image/s4.png',
             'id_category' => '4',
             'id_user' => '6',
             'max_submission_date' => '60 Hari'

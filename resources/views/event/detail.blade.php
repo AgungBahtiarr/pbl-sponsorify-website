@@ -51,7 +51,7 @@
             </form>
             <label class="form-control w-full max-w-xs">
                 <div class="label">
-                    <span class="label-text">Pilih acara terbaikmu !</span>
+                    <span class="label-text">Pilih proposal acara yang akan kamu ajukan!</span>
 
                 </div>
                 <form action="/event/sponsor/detail" method="POST">
@@ -64,7 +64,7 @@
                     </select>
             </label>
             <input type="hidden" name="id_sponsor" value={{$sponsor->id}}>
-            <button class="btn btn-active btn-neutral mt-4">Kirim</button>
+            <button class="btn btn-active btn-neutral mt-4 mx-3">Kirim</button>
             </form>
         </div>
     </dialog>

@@ -24,6 +24,7 @@ class SponsorEventController extends Controller
                 array_push($transactionfix,$item);
             }
         };
+
         return view('sponsor.event',[
             'transactions' =>$transactionfix,
         ]);
@@ -32,7 +33,13 @@ class SponsorEventController extends Controller
     public function show($id){
         $transaction = Http::get('http://localhost:8080/api/transaction/'.$id);
         $transaction = json_decode($transaction);
-        $event = Http::get('http://localhost:8080/api/event/'.$transaction->event->id_user);
+
+        // return $transaction;
+
+        // return $transaction;
+        $event = Http::get('http://localhost:8080/api/event/'.$transaction->event->id);
+
+        // return $event;
         return view('sponsor.detailEvent',[
             'transaction' => $transaction,
             'event' => json_decode($event),
