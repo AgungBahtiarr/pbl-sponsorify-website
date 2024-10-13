@@ -56,6 +56,62 @@
                                     <input type="text" placeholder="Kabupaten"
                                         class="input input-bordered w-full max-w-xs" name="kabupaten" />
                                 </label>
+                                <label class="form-control w-full max-w-xs">
+                                    <div class="label">
+                                        <span class="label-text">Nominal sponsorship bronze</span>
+                                    </div>
+                                    <input type="text" placeholder="..."
+                                        class="input input-bordered w-full max-w-xs" name="#" />
+                                </label>
+                                <label class="form-control w-full max-w-xs">
+                                    <div class="label">
+                                        <span class="label-text">Maksimal sponsor bronze</span>
+                                    </div>
+                                    <input type="text" placeholder="..."
+                                        class="input input-bordered w-full max-w-xs" name="#" />
+                                </label>
+                                <label class="form-control w-full max-w-xs">
+                                    <div class="label">
+                                        <span class="label-text">Nominal sponsorship silver</span>
+                                    </div>
+                                    <input type="text" placeholder="..."
+                                        class="input input-bordered w-full max-w-xs" name="#" />
+                                </label>
+                                <label class="form-control w-full max-w-xs">
+                                    <div class="label">
+                                        <span class="label-text">Maksimal sponsor silver</span>
+                                    </div>
+                                    <input type="text" placeholder="..."
+                                        class="input input-bordered w-full max-w-xs" name="#" />
+                                </label>
+                                <label class="form-control w-full max-w-xs">
+                                    <div class="label">
+                                        <span class="label-text">Nominal sponsorship gold</span>
+                                    </div>
+                                    <input type="text" placeholder="..."
+                                        class="input input-bordered w-full max-w-xs" name="#" />
+                                </label>
+                                <label class="form-control w-full max-w-xs">
+                                    <div class="label">
+                                        <span class="label-text">Maksimal sponsor gold</span>
+                                    </div>
+                                    <input type="text" placeholder="..."
+                                        class="input input-bordered w-full max-w-xs" name="#" />
+                                </label>
+                                <label class="form-control w-full max-w-xs">
+                                    <div class="label">
+                                        <span class="label-text">Nominal sponsorship platinum</span>
+                                    </div>
+                                    <input type="text" placeholder="..."
+                                        class="input input-bordered w-full max-w-xs" name="#" />
+                                </label>
+                                <label class="form-control w-full max-w-xs">
+                                    <div class="label">
+                                        <span class="label-text">Maksimal sponsor platinum</span>
+                                    </div>
+                                    <input type="text" placeholder="..."
+                                        class="input input-bordered w-full max-w-xs" name="#" />
+                                </label>
 
                                 <label class="form-control w-full max-w-xs">
                                     <div class="label">
@@ -163,6 +219,63 @@
                                             </div>
                                             <input type="text" placeholder="..."
                                                 class="input input-bordered w-full max-w-xs" name="kabupaten" />
+                                        </label>
+
+                                        <label class="form-control w-full max-w-xs">
+                                            <div class="label">
+                                                <span class="label-text">Nominal sponsorship bronze</span>
+                                            </div>
+                                            <input type="text" placeholder="..."
+                                                class="input input-bordered w-full max-w-xs" name="#" />
+                                        </label>
+                                        <label class="form-control w-full max-w-xs">
+                                            <div class="label">
+                                                <span class="label-text">Maksimal sponsor bronze</span>
+                                            </div>
+                                            <input type="text" placeholder="..."
+                                                class="input input-bordered w-full max-w-xs" name="#" />
+                                        </label>
+                                        <label class="form-control w-full max-w-xs">
+                                            <div class="label">
+                                                <span class="label-text">Nominal sponsorship silver</span>
+                                            </div>
+                                            <input type="text" placeholder="..."
+                                                class="input input-bordered w-full max-w-xs" name="#" />
+                                        </label>
+                                        <label class="form-control w-full max-w-xs">
+                                            <div class="label">
+                                                <span class="label-text">Maksimal sponsor silver</span>
+                                            </div>
+                                            <input type="text" placeholder="..."
+                                                class="input input-bordered w-full max-w-xs" name="#" />
+                                        </label>
+                                        <label class="form-control w-full max-w-xs">
+                                            <div class="label">
+                                                <span class="label-text">Nominal sponsorship gold</span>
+                                            </div>
+                                            <input type="text" placeholder="..."
+                                                class="input input-bordered w-full max-w-xs" name="#" />
+                                        </label>
+                                        <label class="form-control w-full max-w-xs">
+                                            <div class="label">
+                                                <span class="label-text">Maksimal sponsor gold</span>
+                                            </div>
+                                            <input type="text" placeholder="..."
+                                                class="input input-bordered w-full max-w-xs" name="#" />
+                                        </label>
+                                        <label class="form-control w-full max-w-xs">
+                                            <div class="label">
+                                                <span class="label-text">Nominal sponsorship platinum</span>
+                                            </div>
+                                            <input type="text" placeholder="..."
+                                                class="input input-bordered w-full max-w-xs" name="#" />
+                                        </label>
+                                        <label class="form-control w-full max-w-xs">
+                                            <div class="label">
+                                                <span class="label-text">Maksimal sponsor platinum</span>
+                                            </div>
+                                            <input type="text" placeholder="..."
+                                                class="input input-bordered w-full max-w-xs" name="#" />
                                         </label>
 
                                         <label class="form-control w-full max-w-xs">
