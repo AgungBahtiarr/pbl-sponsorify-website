@@ -9,11 +9,16 @@ class Event extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','description','email','location','proposal','image','start_date','end_date','id_user','end_date'];
+    protected $fillable = ['name', 'description', 'email', 'location', 'proposal', 'image', 'start_date', 'end_date', 'id_user', 'end_date'];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class, 'id_user');
     }
+
+
+    public function benefitLevel()
+    {
+        return $this->hasMany(BenefitLevel::class);
+    }
 }
-
-

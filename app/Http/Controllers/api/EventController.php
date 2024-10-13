@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\BenefitLevel;
 use App\Models\Event;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -11,16 +12,18 @@ use Illuminate\Support\Facades\Cookie;
 
 class EventController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $user = Auth::user();
 
-        $events = Event::where('id_user',$user->id)->get();
+        $events = Event::where('id_user', $user->id)->get();
 
-        return response()->json($events,200);
+        return response()->json($events, 200);
     }
 
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $data = [
             'name' => $request->name,
             'email' => $request->email,
@@ -36,17 +39,17 @@ class EventController extends Controller
         try {
             $event = Event::create($data);
         } catch (QueryException $e) {
-            return response()->json($e,400);
+            return response()->json($e, 400);
         }
 
-        return response()->json($event,201);
+        return response()->json($event, 201);
     }
 
 
-    public function show($id){
+    public function show($id)
+    {
         $event = Event::with('user')->findOrFail($id);
 
         return response()->json($event);
     }
-
 }
