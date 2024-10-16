@@ -13,6 +13,7 @@ class Transaction extends Model
         'id_sponsor',
         'id_status',
         'id_event',
+        'id_level',
         'total_fund',
         'comment',
         'no_rek',
@@ -22,27 +23,32 @@ class Transaction extends Model
         'id_withdraw_status'
     ];
 
-     public function sponsor()
-     {
-         return $this->belongsTo(Sponsor::class, 'id_sponsor');
-     }
-
-     public function event()
-     {
-         return $this->belongsTo(Event::class, 'id_event');
-     }
-     public function status()
-     {
-         return $this->belongsTo(Status::class, 'id_status');
+    public function sponsor()
+    {
+        return $this->belongsTo(Sponsor::class, 'id_sponsor');
     }
 
-     public function withdraw()
-     {
-         return $this->belongsTo(WithdrawStatus::class, 'id_withdraw_status');
+    public function event()
+    {
+        return $this->belongsTo(Event::class, 'id_event');
+    }
+    public function status()
+    {
+        return $this->belongsTo(Status::class, 'id_status');
     }
 
-     public function payment()
-     {
-         return $this->belongsTo(PaymentStatus::class, 'id_payment_status');
-     }
+    public function withdraw()
+    {
+        return $this->belongsTo(WithdrawStatus::class, 'id_withdraw_status');
+    }
+
+    public function payment()
+    {
+        return $this->belongsTo(PaymentStatus::class, 'id_payment_status');
+    }
+
+    public function level()
+    {
+        return $this->belongsTo(BenefitLevel::class, 'id_level');
+    }
 }

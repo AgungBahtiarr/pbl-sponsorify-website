@@ -20,44 +20,7 @@ class BenefitLevelController extends Controller
      */
     public function create(Request $request)
     {
-        $benefitPlatinum = [
-            'id_event' => $request->id_event,
-            'level' => $request->level1,
-            'slot' => $request->slot1,
-            'fund' => $request->fund1,
-        ];
-
-        $benefitGold = [
-            'id_event' => $request->id_event,
-            'level' => $request->level2,
-            'slot' => $request->slot2,
-            'fund' => $request->fund2,
-        ];
-
-        $benefitSliver = [
-            'id_event' => $request->id_event,
-            'level' => $request->level3,
-            'slot' => $request->slot3,
-            'fund' => $request->fund3,
-        ];
-
-        $benefitBronze = [
-            'id_event' => $request->id_event,
-            'level' => $request->level4,
-            'slot' => $request->slot4,
-            'fund' => $request->fund4,
-        ];
-
-
-        $levels = [$benefitPlatinum, $benefitGold, $benefitSliver, $benefitBronze];
-
-        foreach ($levels as $level) {
-            try {
-                BenefitLevel::create($level);
-            } catch (QueryException $e) {
-                return response()->json($e, 400);
-            }
-        }
+        
 
         return response()->json([
             'success' => true

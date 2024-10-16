@@ -43,9 +43,10 @@ Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/event/{id}', [EventController::class, 'show']);
 Route::get('/events', [EventController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/event', [EventController::class, 'store']);
+Route::delete('/event/{id}', [EventController::class, 'destroy']);
 
 // BenefitLevel
-Route::post('/benefit-level', [BenefitLevelController::class,'store']);
+Route::post('/benefit-level', [BenefitLevelController::class, 'store']);
 
 // Transaction
 Route::get('/transactions', [TransactionController::class, 'index'])->middleware('auth:sanctum');

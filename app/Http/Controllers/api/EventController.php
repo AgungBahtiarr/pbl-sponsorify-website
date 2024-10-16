@@ -42,6 +42,47 @@ class EventController extends Controller
             return response()->json($e, 400);
         }
 
+
+        $benefitPlatinum = [
+            'id_event' => $event->id,
+            'level' => 'platinum',
+            'slot' => $request->slot1,
+            'fund' => $request->fund1,
+        ];
+
+        $benefitGold = [
+            'id_event' => $event->id,
+            'level' => "gold",
+            'slot' => $request->slot2,
+            'fund' => $request->fund2,
+        ];
+
+        $benefitSliver = [
+            'id_event' => $event->id,
+            'level' => 'silver',
+            'slot' => $request->slot3,
+            'fund' => $request->fund3,
+        ];
+
+        $benefitBronze = [
+            'id_event' => $event->id,
+            'level' => 'bronze',
+            'slot' => $request->slot4,
+            'fund' => $request->fund4,
+        ];
+
+
+        $levels = [$benefitPlatinum, $benefitGold, $benefitSliver, $benefitBronze];
+
+        foreach ($levels as $level) {
+            try {
+                BenefitLevel::create($level);
+            } catch (QueryException $e) {
+                return response()->json($e, 400);
+            }
+        }
+
+
         return response()->json($event, 201);
     }
 
@@ -49,6 +90,26 @@ class EventController extends Controller
     public function show($id)
     {
         $event = Event::with('user')->findOrFail($id);
+
+        return response()->json($event);
+    }
+
+
+    public function destroy($id)
+    {
+        $event = Event::findOrFail($id);
+
+        if ($event) {
+            $benefits = BenefitLevel::where('id_event', $event->id)->get();
+            if ($benefits) {
+                foreach ($benefits as $benefit) {
+                    $benefit->delete();
+                }
+            }
+        }
+
+        $event->delete();
+
 
         return response()->json($event);
     }

@@ -11,35 +11,38 @@ use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $user = Auth::user();
 
-        $sponsors = Sponsor::with('category')->where('id_user',$user->id)->first();
+        $sponsors = Sponsor::with('category')->where('id_user', $user->id)->first();
 
         $sponsors = json_decode($sponsors);
 
-        $transactions = Transaction::with('event','sponsor','status')->where('id_sponsor',$sponsors->id)->get();
+        $transactions = Transaction::with('event', 'sponsor', 'status', 'level')->where('id_sponsor', $sponsors->id)->get();
 
         return response()->json($transactions);
     }
 
-    public function indexWithdraw(){
+    public function indexWithdraw()
+    {
         $user = Auth::user();
 
         // $event = Event::where('id_user', $user->id)->first();
 
-        $transactions = Transaction::with('event','sponsor','status')->get();
+        $transactions = Transaction::with('event', 'sponsor', 'status', 'level')->get();
 
         return response()->json($transactions);
     }
 
 
-    public function storeWd(Request $request){
+    public function storeWd(Request $request)
+    {
         $id = $request->id;
         $data = [
             'no_rek' => $request->no_rek,
             'bank_name' => $request->bank_name,
-            'account_name'=> $request->account_name,
+            'account_name' => $request->account_name,
             'id_withdraw_status' => $request->id_withdraw_status
         ];
 
@@ -49,7 +52,8 @@ class PaymentController extends Controller
         return response()->json($data);
     }
 
-    public function payNow(Request $request){
+    public function payNow(Request $request)
+    {
         $trans = Transaction::findOrFail($request->id);
         $trans->update([
             'id_payment_status' => $request->id_payment_status,
@@ -58,18 +62,21 @@ class PaymentController extends Controller
         return response()->json($trans);
     }
 
-    public function indexPaymentAdmin(){
-        $trans = Transaction::with('event','sponsor','status','payment')->where('id_payment_status','2')->get();
+    public function indexPaymentAdmin()
+    {
+        $trans = Transaction::with('event', 'sponsor', 'status', 'payment', 'level')->where('id_payment_status', '2')->get();
 
         return response()->json($trans);
     }
 
-    public function indexWithdrawAdmin(){
-        $trans = Transaction::with('event','sponsor','status','withdraw')->where('id_withdraw_status','2')->get();
+    public function indexWithdrawAdmin()
+    {
+        $trans = Transaction::with('event', 'sponsor', 'status', 'withdraw', 'level')->where('id_withdraw_status', '2')->get();
         return response()->json($trans);
     }
 
-    public function confirmPaymentAdmin(Request $request){
+    public function confirmPaymentAdmin(Request $request)
+    {
         $data = [
             'id_payment_status' => $request->id_payment_status,
         ];
@@ -80,7 +87,8 @@ class PaymentController extends Controller
     }
 
 
-    public function confirmWithdrawAdmin(Request $request){
+    public function confirmWithdrawAdmin(Request $request)
+    {
         $data = [
             'id_withdraw_status' => $request->id_withdraw_status,
         ];

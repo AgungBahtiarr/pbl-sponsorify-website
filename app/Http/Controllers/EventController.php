@@ -23,25 +23,25 @@ class EventController extends Controller
 
         $myreports = [];
 
-        foreach($reports as $report){
+        foreach ($reports as $report) {
             if ($report->transaction->id_user == $authUser) {
-                array_push($myreports,$report);
+                array_push($myreports, $report);
             }
         }
 
 
         $fixreports = [];
 
-        foreach($myreports as $report){
-            foreach($events as $event){
+        foreach ($myreports as $report) {
+            foreach ($events as $event) {
                 if ($report->transaction->id_event == $event->id) {
-                    array_push($fixreports,[$report,$event]);
+                    array_push($fixreports, [$report, $event]);
                 }
             }
         }
 
-//return $fixreports;
-        return view('event.dashboard',[
+        //return $fixreports;
+        return view('event.dashboard', [
             'transactions' => $transactions,
             'reports' => $fixreports,
         ]);
@@ -64,7 +64,8 @@ class EventController extends Controller
         ]);
     }
 
-    public function storeEvent(Request $request)
+
+    public function storeFormSatu(Request $request)
     {
         $idUser = Cookie::get('authUser');
 
@@ -78,13 +79,16 @@ class EventController extends Controller
         $image->move(public_path('image'), $imageName);
         $imagePath = 'image/' . $imageName;
 
-        $location = $request->desa . ' ' . $request->kecamatan . ' ' . $request->kabupaten;
+        // if (preg_match('/@([0-9\.\,\-a-zA-Z]*)/', $request->alamat, $coords)) {
+        //     $coordsArray = explode(',', $coords[1]);
+        //     $location = "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d20000!2d" . $coordsArray[1] . "!3d" . $coordsArray[0] . "!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2suk!4v1486486434098";
+        // }
 
         $data = [
             'name' => $request->name,
             'email' => $request->email,
             'description' => $request->description,
-            'location' => $location,
+            'location' => $request->alamat,
             'proposal' => $filePath,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
@@ -92,18 +96,50 @@ class EventController extends Controller
             'image' => $imagePath,
         ];
 
-        $response = Http::post('http://localhost:8080/api/event', $data);
+        $request->session()->put('formSatu', $data);
 
         return redirect('/event/formDua');
     }
 
-    public function indexFormSatu(){
+
+    public function storeEvent(Request $request)
+    {
+        $idUser = Cookie::get('authUser');
+
+        $formSatu = $request->session()->get('formSatu');
+
+        $formDua = [
+            'fund1' => $request->fund1,
+            'slot1' => $request->slot1,
+            'fund2' => $request->fund2,
+            'slot2' => $request->slot2,
+            'fund3' => $request->fund3,
+            'slot3' => $request->slot3,
+            'fund4' => $request->fund4,
+            'slot4' => $request->slot4
+        ];
+
+        $data = array_merge($formSatu, $formDua);
+        $response = Http::post('http://localhost:8080/api/event', $data);
+
+        return redirect('/event/my_event');
+    }
+
+    public function indexFormSatu()
+    {
         return view('event.form.form1');
     }
 
-    public function indexFormDua(){
+    public function indexFormDua()
+    {
         return view('event.form.form2');
     }
+
+    public function destroy($id)
+    {
+        $response = Http::delete('http://localhost:8080/api/event/' . $id);
+
+        // return $response;
+        return redirect('/event/my_event');
+    }
 }
-
-

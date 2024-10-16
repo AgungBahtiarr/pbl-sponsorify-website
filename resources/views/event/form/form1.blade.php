@@ -1,7 +1,7 @@
 @extends('layouts.event_layout')
 @section('content')
     <div class="flex justify-center mb-5">
-        <h1 class="font-semibold text-[30px]">Tambah event</h1>
+        <h1 class="font-semibold text-[30px] mt-8">Tambah event</h1>
     </div>
     <div class="flex justify-center mb-8">
         <form method="post" enctype="multipart/form-data">
@@ -28,22 +28,11 @@
                 </label>
                 <label class="form-control w-full max-w-xs">
                     <div class="label">
-                        <span class="label-text">Desa</span>
+                        <span class="label-text">Alamat (Link Google Map)</span>
                     </div>
-                    <input type="text" placeholder="..." class="input input-bordered w-full max-w-xs" name="desa" />
+                    <input type="text" placeholder="..." class="input input-bordered w-full max-w-xs" name="alamat" />
                 </label>
-                <label class="form-control w-full max-w-xs">
-                    <div class="label">
-                        <span class="label-text">Kecamatan</span>
-                    </div>
-                    <input type="text" placeholder="..." class="input input-bordered w-full max-w-xs" name="kecamatan" />
-                </label>
-                <label class="form-control w-full max-w-xs">
-                    <div class="label">
-                        <span class="label-text">Kabupaten</span>
-                    </div>
-                    <input type="text" placeholder="..." class="input input-bordered w-full max-w-xs" name="kabupaten" />
-                </label>
+
                 <label class="form-control w-full max-w-xs">
                     <div class="label">
                         <span class="label-text">tanggal acara mulai</span>
@@ -67,14 +56,15 @@
                 </label>
                 <label class="form-control w-full max-w-xs">
                     <div class="label">
-                        <span class="label-text">Foto acara</span>
+                        <span class="label-text">Poster acara</span>
                     </div>
                     <input type="file" placeholder="..." class="file-input file-input-bordered w-full max-w-xs"
                         name="image" />
                 </label>
             </div>
 
-            <div class="flex justify-start mt-4">
+            <div class="flex justify-end mt-4 gap-3">
+                <a href="/event/my_event" class="btn btn-secondary">Kembali</a>
                 <button class="btn btn-primary">Kirim</button>
             </div>
         </form>

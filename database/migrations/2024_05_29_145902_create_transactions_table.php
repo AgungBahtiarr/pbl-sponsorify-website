@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_sponsor');
             $table->unsignedBigInteger('id_status');
             $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('id_level')->nullable(true);
             $table->integer('total_fund')->nullable(true);
             $table->text('comment')->nullable(true);
             $table->string('no_rek')->nullable(true);

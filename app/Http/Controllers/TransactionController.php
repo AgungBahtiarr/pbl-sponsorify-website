@@ -35,15 +35,21 @@ class TransactionController extends Controller
         return redirect('/event/sponsors/');
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $data = [
             'id' => $request->id,
             'id_status' => $request->id_status,
             'total_fund' => $request->total_fund,
             'comment' => $request->comment,
+            'id_level' => $request->id_level
         ];
 
+        // return $data;
+
         $response = Http::patch('http://localhost:8080/api/transaction', $data);
+
+        // return $response;
 
         return redirect('/sponsor/payment');
     }
