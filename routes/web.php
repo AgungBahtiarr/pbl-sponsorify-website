@@ -36,6 +36,8 @@ Route::middleware([isLogin::class])->group(function (){
         Route::get('/event/dashboard',[EventController::class, 'index']);
         Route::get('/event/my_event',[EventController::class, 'indexMyEvent']);
         Route::post('/event/my_event',[EventController::class, 'storeEvent']);
+        Route::get('/event/formSatu',[EventController::class, 'indexFormSatu']);
+        Route::get('/event/formDua',[EventController::class, 'indexFormDua']);
         Route::get('/event/sponsors',[SponsorController::class, 'indexSearchSponsor']);
         Route::get('/event/sponsor/detail/{id}',[TransactionController::class, 'indexDetail']);
         Route::post('/event/sponsor/detail',[TransactionController::class, 'store']);

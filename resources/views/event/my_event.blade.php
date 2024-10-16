@@ -5,7 +5,8 @@
             <div class="flex flex-col items-center gap-3">
                 <h1 class="text-xl font-semibold">Silahkan tambahkan acara terlebih dahulu</h1>
                 <div>
-                    <button class="btn btn-primary font-semibold" onclick="noEvent.showModal()">Tambah acara</button>
+                    <a href="/event/formSatu"><h1 class="p-2 bg-yellow-400 font-semibold rounded-xl">Tambah</h1></a>
+                    {{-- <button class="btn btn-primary font-semibold" onclick="noEvent.showModal()">Tambah acara</button>
                     <dialog id="noEvent" class="modal">
                         <div class="modal-box">
                             <form method="dialog">
@@ -56,62 +57,7 @@
                                     <input type="text" placeholder="Kabupaten"
                                         class="input input-bordered w-full max-w-xs" name="kabupaten" />
                                 </label>
-                                <label class="form-control w-full max-w-xs">
-                                    <div class="label">
-                                        <span class="label-text">Nominal sponsorship bronze</span>
-                                    </div>
-                                    <input type="text" placeholder="..."
-                                        class="input input-bordered w-full max-w-xs" name="#" />
-                                </label>
-                                <label class="form-control w-full max-w-xs">
-                                    <div class="label">
-                                        <span class="label-text">Maksimal sponsor bronze</span>
-                                    </div>
-                                    <input type="text" placeholder="..."
-                                        class="input input-bordered w-full max-w-xs" name="#" />
-                                </label>
-                                <label class="form-control w-full max-w-xs">
-                                    <div class="label">
-                                        <span class="label-text">Nominal sponsorship silver</span>
-                                    </div>
-                                    <input type="text" placeholder="..."
-                                        class="input input-bordered w-full max-w-xs" name="#" />
-                                </label>
-                                <label class="form-control w-full max-w-xs">
-                                    <div class="label">
-                                        <span class="label-text">Maksimal sponsor silver</span>
-                                    </div>
-                                    <input type="text" placeholder="..."
-                                        class="input input-bordered w-full max-w-xs" name="#" />
-                                </label>
-                                <label class="form-control w-full max-w-xs">
-                                    <div class="label">
-                                        <span class="label-text">Nominal sponsorship gold</span>
-                                    </div>
-                                    <input type="text" placeholder="..."
-                                        class="input input-bordered w-full max-w-xs" name="#" />
-                                </label>
-                                <label class="form-control w-full max-w-xs">
-                                    <div class="label">
-                                        <span class="label-text">Maksimal sponsor gold</span>
-                                    </div>
-                                    <input type="text" placeholder="..."
-                                        class="input input-bordered w-full max-w-xs" name="#" />
-                                </label>
-                                <label class="form-control w-full max-w-xs">
-                                    <div class="label">
-                                        <span class="label-text">Nominal sponsorship platinum</span>
-                                    </div>
-                                    <input type="text" placeholder="..."
-                                        class="input input-bordered w-full max-w-xs" name="#" />
-                                </label>
-                                <label class="form-control w-full max-w-xs">
-                                    <div class="label">
-                                        <span class="label-text">Maksimal sponsor platinum</span>
-                                    </div>
-                                    <input type="text" placeholder="..."
-                                        class="input input-bordered w-full max-w-xs" name="#" />
-                                </label>
+
 
                                 <label class="form-control w-full max-w-xs">
                                     <div class="label">
@@ -147,7 +93,7 @@
                                 </div>
                             </form>
                         </div>
-                    </dialog>
+                    </dialog> --}}
                 </div>
             </div>
         </div>

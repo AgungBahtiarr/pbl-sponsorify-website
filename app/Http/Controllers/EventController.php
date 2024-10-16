@@ -94,6 +94,16 @@ class EventController extends Controller
 
         $response = Http::post('http://localhost:8080/api/event', $data);
 
-        return redirect('/event/my_event');
+        return redirect('/event/formDua');
+    }
+
+    public function indexFormSatu(){
+        return view('event.form.form1');
+    }
+
+    public function indexFormDua(){
+        return view('event.form.form2');
     }
 }
+
+
