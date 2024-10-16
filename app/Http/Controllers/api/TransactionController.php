@@ -26,6 +26,13 @@ class TransactionController extends Controller
         return response()->json($transactions);
     }
 
+    public function indexAdmin(Request $request)
+    {
+        $transactions = Transaction::with('event', 'sponsor', 'status', 'level')->get();
+
+        return response()->json($transactions);
+    }
+
 
     public function show($id)
     {

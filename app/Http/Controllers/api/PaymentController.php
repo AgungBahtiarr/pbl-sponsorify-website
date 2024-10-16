@@ -79,6 +79,7 @@ class PaymentController extends Controller
     {
         $data = [
             'id_payment_status' => $request->id_payment_status,
+            'payment_date' => now()
         ];
         $tran = Transaction::findOrFail($request->id);
         $tran->update($data);
@@ -91,6 +92,7 @@ class PaymentController extends Controller
     {
         $data = [
             'id_withdraw_status' => $request->id_withdraw_status,
+            'withdraw_date' => now()
         ];
 
         $tran = Transaction::findOrFail($request->id);

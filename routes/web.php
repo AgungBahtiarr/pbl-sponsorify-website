@@ -78,5 +78,7 @@ Route::middleware([isLogin::class])->group(function () {
         Route::post('/admin/payment', [AdminPaymentController::class, 'confirmPayment']);
         Route::get('/admin/withdraw', [WithdrawController::class, 'index']);
         Route::post('/admin/withdraw', [WithdrawController::class, 'confirmWithdraw']);
+        Route::get('/admin/report', [PaymentController::class, 'adminReport']);
+        Route::get('/admin/report/print', [PaymentController::class, 'report']);
     });
 });

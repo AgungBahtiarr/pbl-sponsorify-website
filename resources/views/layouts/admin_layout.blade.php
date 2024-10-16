@@ -32,6 +32,7 @@
                             <!-- Sidebar content here -->
                             <li><a href="/admin/withdraw">Pencairan</a></li>
                             <li><a href="/admin/payment">Pembayaran</a></li>
+                            <li><a href="/admin/report">Laporan</a></li>
                         </ul>
                     </div>
                 </div>
@@ -41,6 +42,7 @@
                 <ul class="menu menu-horizontal px-1">
                     <li><a href="/admin/withdraw">Pencairan</a></li>
                     <li><a href="/admin/payment">Pembayaran</a></li>
+                    <li><a href="/admin/report">Laporan</a></li>
                 </ul>
             </div>
             <div class="navbar-end">
@@ -61,11 +63,11 @@
                             </li>
                             <li><a>Settings</a></li>
                             <li>
-                            <form action="/auth/logout" method="POST">
-                                @csrf
-                                @method('delete')
-                                <button>Logout</button>
-                            </form>
+                                <form action="/auth/logout" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <button>Logout</button>
+                                </form>
                             </li>
                         </ul>
                     </div>

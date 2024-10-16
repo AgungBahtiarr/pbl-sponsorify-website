@@ -50,6 +50,7 @@ Route::post('/benefit-level', [BenefitLevelController::class, 'store']);
 
 // Transaction
 Route::get('/transactions', [TransactionController::class, 'index'])->middleware('auth:sanctum');
+Route::get('/transactions/admin', [TransactionController::class, 'indexAdmin'])->middleware('auth:sanctum');
 Route::post('/transaction', [TransactionController::class, 'store'])->middleware('auth:sanctum');
 Route::post('/transactions/sponsor', [TransactionController::class, 'indexSponsor']);
 Route::get('/transaction/{id}', [TransactionController::class, 'show']);

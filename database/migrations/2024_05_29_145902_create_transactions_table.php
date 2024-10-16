@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('account_name')->nullable(true);
             $table->unsignedBigInteger('id_payment_status')->default(1);
             $table->unsignedBigInteger('id_withdraw_status')->default(1);
+            $table->dateTime('payment_date')->nullable(true);
+            $table->dateTime('withdraw_date')->nullable(true);
             $table->timestamps();
         });
     }
