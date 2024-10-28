@@ -95,19 +95,6 @@ class PaymentController extends Controller
     }
 
 
-    // public function report()
-    // {
-    //     $token = Cookie::get('token');
-
-    //     $response = Http::withToken($token)->get('http://localhost:8080/api/transactions/admin');
-    //     $data = json_decode($response);
-    //     $pdf = Pdf::loadView('admin.report.index', $data);
-    //     $pdf->setPaper('A4', 'potrait');
-    //     $pdf->render();
-
-    //     return $pdf->stream('report.pdf');
-    // }
-
     public function report()
     {
         $token = Cookie::get('token');

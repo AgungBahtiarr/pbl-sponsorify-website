@@ -18,7 +18,7 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required',
+            'password' => 'required|min:8|max:20',
             'id_role' => 'required',
         ]);
 
@@ -41,7 +41,7 @@ class AuthController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => $user,
+            // 'data' => $user,
         ], 201);
     }
 
