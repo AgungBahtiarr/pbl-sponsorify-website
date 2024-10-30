@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 
 class RegisterSponsorTest extends TestCase
@@ -34,6 +35,10 @@ class RegisterSponsorTest extends TestCase
             'email' => 'johndoe@sponsor.com',
             'name' => 'John Doe'
         ]);
+
+        $result = Artisan::output();
+
+        return $result;
     }
 
     #[Test]
@@ -77,7 +82,69 @@ class RegisterSponsorTest extends TestCase
     }
 
     #[Test]
-    public function test_password_length_validation()
+    public function test_invalid_email_formats_tld()
+    {
+        $response = $this->post('/api/register', [
+            'name' => 'Alice Brown',
+            'email' => 'alice@test',
+            'password' => 'Sponsor789!',
+            'id_role' => 2
+        ]);
+
+        $response->assertStatus(401)
+            ->assertJsonFragment([
+                'success' => false,
+                // 'message' => 'Registrasi gagal periksa kembali data anda',
+                'data' => [
+                    'email' => ["The email field must be a valid email address."]
+                ]
+            ]);
+    }
+
+    #[Test]
+    public function test_invalid_email_formats_without_tag()
+    {
+        $response = $this->post('/api/register', [
+            'name' => 'Alice Brown',
+            'email' => 'alice.test',
+            'password' => 'Sponsor789!',
+            'id_role' => 2
+        ]);
+
+        $response->assertStatus(401)
+            ->assertJsonFragment([
+                'success' => false,
+                // 'message' => 'Registrasi gagal periksa kembali data anda',
+                'data' => [
+                    'email' => ["The email field must be a valid email address."]
+                ]
+            ]);
+    }
+
+    #[Test]
+    public function test_invalid_email_formats_without_username()
+    {
+        $response = $this->post('/api/register', [
+            'name' => 'Alice Brown',
+            'email' => '@test.com',
+            'password' => 'Sponsor789!',
+            'id_role' => 2
+        ]);
+
+        $response->assertStatus(401)
+            ->assertJsonFragment([
+                'success' => false,
+                // 'message' => 'Registrasi gagal periksa kembali data anda',
+                'data' => [
+                    'email' => ["The email field must be a valid email address."]
+                ]
+            ]);
+    }
+
+
+
+    #[Test]
+    public function test_password_length_validation_min_1()
     {
         $response = $this->post('/api/register', [
             'name' => 'Test User',
@@ -92,6 +159,107 @@ class RegisterSponsorTest extends TestCase
                 // 'message' => 'Registrasi gagal periksa kembali data anda',
                 'data' => [
                     'password' => ['The password field must be at least 8 characters.']
+                ]
+            ]);
+    }
+
+    #[Test]
+    public function test_password_length_validation_min()
+    {
+        $response = $this->post('/api/register', [
+            'name' => 'Test User',
+            'email' => 'testmin@sponsor.com',
+            'password' => 'Short123', // kurang dari 8 karakter
+            'id_role' => 2
+        ]);
+
+        $response->assertStatus(201)
+            ->assertJsonFragment([
+                'success' => true,
+                // 'message' => 'Registrasi gagal periksa kembali data anda',
+                // 'data' => [
+                //     'password' => ['The password field must be at least 8 characters.']
+                // ]
+            ]);
+    }
+
+    #[Test]
+    public function test_password_length_validation_min_plus_1()
+    {
+        $response = $this->post('/api/register', [
+            'name' => 'Test User',
+            'email' => 'test@sponsor.com',
+            'password' => 'Short1234', // kurang dari 8 karakter
+            'id_role' => 2
+        ]);
+
+        $response->assertStatus(201)
+            ->assertJsonFragment([
+                'success' => true,
+                // 'message' => 'Registrasi gagal periksa kembali data anda',
+                // 'data' => [
+                //     'password' => ['The password field must be at least 8 characters.']
+                // ]
+            ]);
+    }
+
+
+    #[Test]
+    public function test_password_length_validation_max_min_1()
+    {
+        $response = $this->post('/api/register', [
+            'name' => 'Test User',
+            'email' => 'test2@sponsor.com',
+            'password' => '1234567891Agungtok1', // kurang dari 8 karakter
+            'id_role' => 2
+        ]);
+
+        $response->assertStatus(201)
+            ->assertJsonFragment([
+                'success' => true,
+                // 'message' => 'Registrasi gagal periksa kembali data anda',
+                // 'data' => [
+                //     'password' => ['The password field must be at least 8 characters.']
+                // ]
+            ]);
+    }
+
+    #[Test]
+    public function test_password_length_validation_max()
+    {
+        $response = $this->post('/api/register', [
+            'name' => 'Test User',
+            'email' => 'testmax@sponsor.com',
+            'password' => '1234567891Agungtok12', // kurang dari 8 karakter
+            'id_role' => 2
+        ]);
+
+        $response->assertStatus(201)
+            ->assertJsonFragment([
+                'success' => true,
+                // 'message' => 'Registrasi gagal periksa kembali data anda',
+                // 'data' => [
+                //     'password' => ['The password field must be at least 8 characters.']
+                // ]
+            ]);
+    }
+
+    #[Test]
+    public function test_password_length_validation_max_plus_1()
+    {
+        $response = $this->post('/api/register', [
+            'name' => 'Test User',
+            'email' => 'test3@sponsor.com',
+            'password' => '0123456789Agungtok12.', // kurang dari 8 karakter
+            'id_role' => 2
+        ]);
+
+        $response->assertStatus(401)
+            ->assertJsonFragment([
+                'success' => false,
+                // 'message' => 'Registrasi gagal periksa kembali data anda',
+                'data' => [
+                    'password' => ['The password field must not be greater than 20 characters.']
                 ]
             ]);
     }
