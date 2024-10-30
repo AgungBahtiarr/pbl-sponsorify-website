@@ -46,13 +46,13 @@ class AuthController extends Controller
 
             if ($res->user->id_role == 1) {
                 return redirect('/event/dashboard');
-            }elseif ($res->user->id_role == 2) {
+            } elseif ($res->user->id_role == 2) {
                 return redirect('/auth/sponsor');
-            }elseif ($res->user->id_role == 3) {
+            } elseif ($res->user->id_role == 3) {
                 return redirect('/admin/payment');
             }
         } else {
-            return redirect('/auth/login')->with('error','Email atau password salah, silahkan login kembali');
+            return redirect('/auth/login')->withErrors(['message' => 'Email atau password salah, silahkan login kembali']);
         }
     }
 
@@ -76,15 +76,27 @@ class AuthController extends Controller
         $res = json_decode($response);
 
         if ($res->success == false) {
-            if ($res->data->email) {
-                return redirect('/auth/register')->with('warning', 'Email telah terdaftar');
+            // return $res->data;
+            // if ($res->data->email) {
+            // }
+            $errMessage = "";
+
+            foreach ($res->data as $e) {
+                $errMessage = $errMessage . $e[0] . ' ';
             }
+
+            // return $errMessage;
+
+
+
+            return redirect('/auth/register')->withErrors(['message' => $errMessage]);
         }
 
         return redirect('/auth/login');
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         $token = Cookie::get('token');
 
         $response = Http::withToken($token)->delete('http://localhost:8080/api/logout');
