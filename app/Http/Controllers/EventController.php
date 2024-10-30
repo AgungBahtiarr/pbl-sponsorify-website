@@ -86,7 +86,7 @@ class EventController extends Controller
             'location' => $request->alamat,
             'proposal' => $filePath,
             'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
+            // 'end_date' => $request->end_date,
             'id_user' => $idUser,
             'image' => $imagePath,
         ];

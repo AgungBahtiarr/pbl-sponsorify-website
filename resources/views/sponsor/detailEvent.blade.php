@@ -9,8 +9,8 @@
                 </div>
             </div>
             <!-- <div class="h-[552px] flex justify-center items-center">
-                                                                                                                                                                                        <img class=" rounded-xl drop-shadow-2xl" src="http://localhost:8080/{{ $transaction->event->image }}" alt="">
-                                                                                                                                                                                    </div> -->
+                                                                                                                                                                                                <img class=" rounded-xl drop-shadow-2xl" src="http://localhost:8080/{{ $transaction->event->image }}" alt="">
+                                                                                                                                                                                            </div> -->
             <div>
                 <h1 class="font-semibold text-[50px]">{{ $transaction->event->name }}</h1>
                 <div class="flex items-center gap-5">
@@ -20,9 +20,9 @@
                     <div class="">
                         <h1 class="font-semibold text-[20px]">
                             {{ date('d/m/Y', strtotime($transaction->event->start_date)) }} -
-                            {{ date('d/m/Y', strtotime($transaction->event->end_date)) }}
+                            {{-- {{ date('d/m/Y', strtotime($transaction->event->end_date)) }} --}}
                         </h1>
-                        <h1 class="text-[#8f8f8f]">Tanggal mulai - Tanggal berakhir</h1>
+                        <h1 class="text-[#8f8f8f]">Tanggal Mulai</h1>
                     </div>
                 </div>
                 <div class="flex items-center gap-6 mt-3">

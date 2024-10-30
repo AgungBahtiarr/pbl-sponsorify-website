@@ -35,17 +35,17 @@
 
                 <label class="form-control w-full max-w-xs">
                     <div class="label">
-                        <span class="label-text">tanggal acara mulai</span>
+                        <span class="label-text">Tanggal mulai acara</span>
                     </div>
                     <input type="date" placeholder="..." class="input input-bordered w-full max-w-xs"
                         name="start_date" />
                 </label>
-                <label class="form-control w-full max-w-xs">
+                {{-- <label class="form-control w-full max-w-xs">
                     <div class="label">
                         <span class="label-text">Tanggal acara berakhir</span>
                     </div>
                     <input type="date" placeholder="..." class="input input-bordered w-full max-w-xs" name="end_date" />
-                </label>
+                </label> --}}
 
                 <label class="form-control w-full max-w-xs">
                     <div class="label">
