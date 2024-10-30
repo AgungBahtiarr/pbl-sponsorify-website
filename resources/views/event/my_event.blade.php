@@ -18,14 +18,13 @@
                 <p class="font-semibold text-[#7f7f7f]">Buat acara terbaikmu disini!</p>
             </div>
             <div class="border-b border-black mx-12 pb-3">
-                <ul class="grid grid-cols-8 text-center font-semibold items-center">
+                <ul class="grid grid-cols-7 text-center font-semibold items-center">
                     <li>Nama acara</li>
                     <li>Email PIC</li>
                     <li>Deskripsi acara</li>
                     <li>Lokasi</li>
                     <li>proposal</li>
                     <li>Tanggal Mulai</li>
-                    <li>Tanggal Berakhir</li>
                     <li>
                         <div>
                             <a href="/event/formSatu" class="btn btn-primary font-semibold">Tambah acara</a>
@@ -35,7 +34,7 @@
             </div>
             @foreach ($events as $item)
                 <div class="flex flex-col">
-                    <div class="grid grid-cols-8 items-center mx-12 border border-black rounded-lg my-4 py-3">
+                    <div class="grid grid-cols-7 items-center mx-12 border border-black rounded-lg my-4 py-3">
                         <h1 class="text-center">{{ $item->name }}</h1>
                         <h1 class="text-center"> {{ $item->email }}</h1>
                         <p class="truncate text-center mx-3">{{ $item->description }}</p>
@@ -43,7 +42,6 @@
                         <div class="text-center text-blue-600 underline hover:font-semibold"><a
                                 href={{ 'http://localhost:8000/' . $item->proposal }}>Unduh</a></div>
                         <h1 class="text-center">{{ $item->start_date }}</h1>
-                        <h1 class="text-center">{{ $item->end_date }}</h1>
                         <div class="text-center">
                             <form action="/event/{{ $item->id }}" method="POST">
                                 @csrf
