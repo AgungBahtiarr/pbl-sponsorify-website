@@ -35,7 +35,7 @@ class AuthController extends Controller
         } catch (Exception $e) {
             echo $e;
         }
-
+        // return $response;
         if ($response->getStatusCode() == 200) {
             $token = $response["token"];
             Cookie::queue(Cookie::make('token', $token));
@@ -52,7 +52,13 @@ class AuthController extends Controller
                 return redirect('/admin/payment');
             }
         } else {
-            return redirect('/auth/login')->withErrors(['message' => 'Email atau password salah, silahkan login kembali']);
+            $errMessage = "";
+            $res = json_decode($response);
+            foreach ($res->data as $e) {
+                $errMessage = $errMessage . $e[0] . ' ';
+            }
+
+            return redirect('/auth/login')->withErrors(['message' => $errMessage]);
         }
     }
 
@@ -76,18 +82,11 @@ class AuthController extends Controller
         $res = json_decode($response);
 
         if ($res->success == false) {
-            // return $res->data;
-            // if ($res->data->email) {
-            // }
             $errMessage = "";
 
             foreach ($res->data as $e) {
                 $errMessage = $errMessage . $e[0] . ' ';
             }
-
-            // return $errMessage;
-
-
 
             return redirect('/auth/register')->withErrors(['message' => $errMessage]);
         }

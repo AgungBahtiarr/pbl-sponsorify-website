@@ -34,10 +34,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         //User
+
         User::create([
             'name' => 'Agung Berkah',
-            'email' => 'a@gmail.com',
-            'password' => bcrypt('1'),
+            'email' => 'agung@gmail.com',
+            'password' => bcrypt('sandi123'),
             'id_role' => 1
         ]);
 
@@ -442,6 +443,5 @@ class DatabaseSeeder extends Seeder
         WithdrawStatus::create([
             'status' => 'Gagal',
         ]);
-
     }
 }

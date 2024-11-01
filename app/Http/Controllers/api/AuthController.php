@@ -49,11 +49,12 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
+            'email' => 'required|email:rfc,dns,regex:/(.+)@(.+)\.(.+)/i',
             'password' => 'required',
         ]);
 
         if ($validator->fails()) {
+
             return response()->json([
                 'success' => false,
                 'message' => 'Login gagal',
@@ -62,13 +63,28 @@ class AuthController extends Controller
         }
 
         if (!Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+
+            if (!User::where('email', $request->email)->first()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Login gagal, silahkan login kembali',
+                    'data' => [
+                        ['Email belum terdaftar.']
+                    ]
+                ], 401);
+            }
+
             return response()->json([
-                'message' => 'Login gagal periksa kembail data anda',
                 'success' => false,
+                'message' => 'Login gagal, silahkan login kembali',
+                'data' => [
+                    ['Email atau Password salah.']
+                ]
             ], 401);
         }
 
         $user = User::where('email', $request->email)->first();
+
 
         return response()->json([
             'success' => true,
