@@ -18,9 +18,9 @@ class isLogin
     {
         $token = Cookie::get('token');
 
-        if($token){
+        if ($token) {
             return $next($request);
-        }else{
+        } else {
             return redirect('/auth/login');
         }
     }

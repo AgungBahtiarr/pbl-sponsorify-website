@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
 {
@@ -65,35 +66,133 @@ class EventController extends Controller
     }
 
 
+    // public function storeFormSatu(Request $request)
+    // {
+    //     $idUser = Cookie::get('authUser');
+
+    //     $file = $request->file('proposal');
+    //     $fileName = $idUser . '.' . time() . '.' . $file->getClientOriginalExtension();
+    //     $file->move(public_path('proposal'), $fileName);
+    //     $filePath = 'proposal/' . $fileName;
+
+    //     $image = $request->file('image');
+    //     $imageName = $idUser . '.' . time() . '.' . $image->getClientOriginalExtension();
+    //     $image->move(public_path('image'), $imageName);
+    //     $imagePath = 'image/' . $imageName;
+
+    //     $data = [
+    //         'name' => $request->name,
+    //         'email' => $request->email,
+    //         'description' => $request->description,
+    //         'location' => $request->alamat,
+    //         'proposal' => $filePath,
+    //         'start_date' => $request->start_date,
+    //         'id_user' => $idUser,
+    //         'image' => $imagePath,
+    //     ];
+
+    //     $request->session()->put('formSatu', $data);
+
+    //     return redirect('/event/formDua');
+    // }
+
     public function storeFormSatu(Request $request)
     {
-        $idUser = Cookie::get('authUser');
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|min:3|max:255',
+            'email' => 'required|email',
+            'description' => 'required|string|min:10',
+            'location' => 'required|regex:/^https:\/\/maps\.app\.goo\.gl\/[a-zA-Z0-9]{12,}$/',
+            'start_date' => 'required|date|after:today',
+            'proposal' => 'required|file|mimes:pdf|max:20480',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ], [
+            'name.required' => 'Nama acara wajib diisi',
+            'name.min' => 'Nama event minimal 3 karakter',
+            'name.max' => 'Nama acara maksimal 255 karakter',
 
-        $file = $request->file('proposal');
-        $fileName = $idUser . '.' . time() . '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('proposal'), $fileName);
-        $filePath = 'proposal/' . $fileName;
+            'email.required' => 'Email wajib diisi',
+            'email.email' => 'Format email tidak valid',
 
-        $image = $request->file('image');
-        $imageName = $idUser . '.' . time() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('image'), $imageName);
-        $imagePath = 'image/' . $imageName;
+            'description.required' => 'Deskripsi acara wajib diisi',
+            'description.min' => 'Deskripsi minimal 10 karakter',
 
-        $data = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'description' => $request->description,
-            'location' => $request->alamat,
-            'proposal' => $filePath,
-            'start_date' => $request->start_date,
-            // 'end_date' => $request->end_date,
-            'id_user' => $idUser,
-            'image' => $imagePath,
-        ];
+            'location.required' => 'Alamat wajib diisi',
+            'location.regex' => 'Format link Google Maps tidak valid',
 
-        $request->session()->put('formSatu', $data);
+            'start_date.required' => 'Tanggal mulai wajib diisi',
+            'start_date.date' => 'Format tanggal tidak valid',
+            'start_date.after' => 'Tanggal event tidak boleh di masa lalu',
 
-        return redirect('/event/formDua');
+            'proposal.required' => 'Proposal wajib diunggah',
+            'proposal.mimes' => 'File proposal harus berformat PDF',
+            'proposal.max' => 'Ukuran file proposal maksimal 20MB',
+
+            'image.required' => 'Poster acara wajib diunggah',
+            'image.image' => 'File harus berupa gambar',
+            'image.mimes' => 'File poster harus berformat JPG atau PNG',
+            'image.max' => 'Ukuran file poster maksimal 2MB'
+        ]);
+
+        if ($validator->fails()) {
+            $errMessage = "";
+
+            $errors = $validator->errors();
+            foreach ($errors->all() as $error) {
+                $errMessage .= $error . ' ';
+            }
+
+            return redirect('/event/formSatu')
+                ->withErrors(['message' => $errMessage])
+                ->withInput();
+        }
+
+        try {
+            $idUser = Cookie::get('authUser');
+
+            if (!$idUser) {
+                return redirect('/event/formSatu')->withErrors(['message' => 'User tidak terautentikasi']);
+            }
+
+            // Proses file proposal
+            $file = $request->file('proposal');
+            $fileName = $idUser . '.' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('proposal'), $fileName);
+            $filePath = 'proposal/' . $fileName;
+
+            // Proses file gambar
+            $image = $request->file('image');
+            $imageName = $idUser . '.' . time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('image'), $imageName);
+            $imagePath = 'image/' . $imageName;
+
+            $data = [
+                'name' => $request->name,
+                'email' => $request->email,
+                'description' => $request->description,
+                'location' => $request->location,
+                'proposal' => $filePath,
+                'start_date' => $request->start_date,
+                'id_user' => $idUser,
+                'image' => $imagePath,
+            ];
+
+            $request->session()->put('formSatu', $data);
+
+            return redirect('/event/formDua');
+        } catch (\Exception $e) {
+            // Hapus file yang sudah diupload jika ada error
+            if (isset($filePath) && file_exists(public_path($filePath))) {
+                unlink(public_path($filePath));
+            }
+            if (isset($imagePath) && file_exists(public_path($imagePath))) {
+                unlink(public_path($imagePath));
+            }
+
+            return redirect('/event/formSatu')
+                ->withErrors(['message' => 'Terjadi kesalahan: ' . $e->getMessage()])
+                ->withInput();
+        }
     }
 
 

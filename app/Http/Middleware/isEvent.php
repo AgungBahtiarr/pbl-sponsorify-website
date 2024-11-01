@@ -18,9 +18,9 @@ class isEvent
     {
         $role = Cookie::get('roleUser');
 
-        if($role == 1){
+        if ($role == 1) {
             return $next($request);
-        }else {
+        } else {
             Cookie::queue(Cookie::make('token', null));
             Cookie::queue(Cookie::make('roleUser', null));
             return redirect('/auth/login');
