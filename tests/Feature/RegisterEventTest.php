@@ -18,12 +18,12 @@ class RegisterEventTest extends TestCase
         parent::setUp();
 
         // Insert role menggunakan DB facade untuk memastikan
-        DB::table('roles')->insert([
-            'id' => 1,
-            'role' => 'Event Organizer',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        // DB::table('roles')->insert([
+        //     'id' => 1,
+        //     'role' => 'Event Organizer',
+        //     'created_at' => now(),
+        //     'updated_at' => now()
+        // ]);
 
         $this->withHeaders([
             'Accept' => 'application/json'

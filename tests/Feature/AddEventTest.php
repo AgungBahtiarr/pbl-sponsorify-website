@@ -35,24 +35,10 @@ class AddEventTest extends TestCase
         $this->role = $response->json('user.id_role');
         $this->authUser = $response->json('user.id');
 
-        // Cookie::queue('token', $this->token);
-        // Cookie::queue('roleUser', $this->role);
-        Cookie::queue(Cookie::make('token', $this->token));
-        Cookie::queue(Cookie::make('authUser', $this->authUser));
-        Cookie::queue(Cookie::make('roleUser', $this->role));
-
-        // dd($this->role);
-
-        // $this->headers = ['Authorization' => 'Bearer ' . $this->token];
     }
 
     public function test_can_create_event_with_valid_data()
     {
-
-        // $token = Cookie::get('token');
-
-        // dd($token);
-
         $response = $this->withCookies(['token' => $this->token, 'roleUser' => $this->role, 'authUser' => $this->authUser])->post('/event/formSatu', [
             'name' => 'Semarak Kemerdekaan',
             'description' => 'Semarak kemerdekaan merupakan bisnis plan tahunan yang diadakan di poliwangi oleh UKM KWU',

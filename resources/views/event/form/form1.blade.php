@@ -5,7 +5,6 @@
             <h1 class="font-semibold text-[30px]">Tambah event</h1>
         </div>
 
-        {{-- {{ $errors->first() }} --}}
         @error('message')
             <div class="flex justify-center">
                 <div role="alert" class="alert alert-error mb-5 max-w-lg">
@@ -41,8 +40,7 @@
                         <div class="label">
                             <span class="label-text">Deskripsi acara</span>
                         </div>
-                        <input type="text" placeholder="Masukkan deskripsi acara"
-                            class="input input-bordered w-full max-w-xs" name="description" />
+                        <textarea placeholder="Masukkan deskripsi acara" class="textarea textarea-bordered w-full max-w-xs" name="description"></textarea>
                     </label>
                     <label class="form-control w-full max-w-xs">
                         <div class="label">

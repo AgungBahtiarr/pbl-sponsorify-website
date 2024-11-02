@@ -49,7 +49,7 @@ class RegisterSponsorTest extends TestCase
     {
         $response = $this->post('/api/register', [
             'name' => 'Jane Smith',
-            'email' => 'a@gmail.com',
+            'email' => 'agung@gmail.com',
             'password' => 'Sponsor456!',
             'id_role' => 2
         ]);
