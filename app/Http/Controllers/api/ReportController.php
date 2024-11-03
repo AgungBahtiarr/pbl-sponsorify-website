@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Report;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 
@@ -24,14 +25,59 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        $data = [
-            'report' => $request->report,
-            'id_transaction' => $request->id_transaction
-        ];
+        try {
+            // Validasi input
+            if (empty($request->report)) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Link laporan wajib diisi'
+                ], 422);
+            }
 
-        $report = Report::create($data);
+            // Validasi format link Google Drive
+            if (!str_contains($request->report, 'drive.google.com')) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Link harus dari Google Drive'
+                ], 422);
+            }
 
-        return response()->json($report);
+            // Cek status transaksi
+            $transaction = Transaction::findOrFail($request->id_transaction);
+            if ($transaction->id_status != 2) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Tidak dapat mengirim laporan karena event belum diterima'
+                ], 422);
+            }
+
+            // Cek apakah sudah ada laporan
+            $existingReport = Report::where('id_transaction', $request->id_transaction)->first();
+            if ($existingReport) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Laporan sudah pernah dikirim'
+                ], 422);
+            }
+
+            // Simpan laporan
+            $report = Report::create([
+                'report' => $request->report,
+                'id_transaction' => $request->id_transaction
+            ]);
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Laporan berhasil dikirim',
+                'data' => $report
+            ], 200);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Terjadi kesalahan: ' . $e->getMessage()
+            ], 500);
+        }
     }
 
     /**

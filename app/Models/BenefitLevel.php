@@ -12,5 +12,6 @@ class BenefitLevel extends Model
 
     protected $guarded = ['id'];
 
-    
+
+
 }
