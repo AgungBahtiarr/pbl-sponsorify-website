@@ -36,21 +36,39 @@ class TransactionController extends Controller
     }
 
     public function update(Request $request)
-    {
+{
+    try {
+        // Validasi panjang pesan
+        if (strlen($request->comment) < 15) {
+            return redirect('/event/detail')
+                ->with('error', 'Teks pesan kurang dari 15 karakter');
+        }
+
         $data = [
             'id' => $request->id,
             'id_status' => $request->id_status,
-            'total_fund' => $request->total_fund,
             'comment' => $request->comment,
             'id_level' => $request->id_level
         ];
 
-        // return $data;
-
         $response = Http::patch('http://localhost:8080/api/transaction', $data);
 
-        // return $response;
+        if ($response->successful()) {
+            if ($request->id_status == 2) { // Terima proposal
+                return redirect('/sponsor/payment')
+                    ->with('success', 'Respon telah terkirim');
+            } else { // Tolak proposal
+                return redirect('/event/detail')
+                    ->with('success', 'Respon telah terkirim');
+            }
+        }
 
-        return redirect('/sponsor/payment');
+        return redirect('/event/detail')
+            ->with('error', $response->json()['message'] ?? 'Terjadi kesalahan');
+
+    } catch (\Exception $e) {
+        return redirect('/event/detail')
+            ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
     }
+}
 }

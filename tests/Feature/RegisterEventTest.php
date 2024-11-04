@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\DB;
 
 class RegisterEventTest extends TestCase
 {
-    use RefreshDatabase;
-
     protected function setUp(): void
     {
         parent::setUp();

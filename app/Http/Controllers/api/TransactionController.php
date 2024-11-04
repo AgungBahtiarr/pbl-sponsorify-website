@@ -61,35 +61,77 @@ class TransactionController extends Controller
 
     public function update(Request $request)
     {
-        $id = $request->id;
-        $data = [];
-        if ($request->id_status == 2) {
-            $data = [
-                'id' => $id,
-                'id_status' => $request->id_status,
-                'id_level' => $request->id_level,
-                'total_fund' => $request->total_fund,
-                'comment' => $request->comment,
-            ];
+        try {
+            // Validasi panjang comment
+            if (strlen($request->comment) < 15) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Teks pesan kurang dari 15 karakter'
+                ], 422);
+            }
 
-            $level = BenefitLevel::where('id', $request->id)->first();
-            $slot = $level->slot;
-            $slot = (int)$slot;
-            $slot = $slot - 1;
-            $level->update([
-                'slot' =>  $slot,
-            ]);
-        } else if ($request->id_status == 3) {
-            $data = [
-                'id' => $id,
-                'id_status' => $request->id_status,
-                'comment' => $request->comment,
-            ];
+            if (strlen($request->comment) > 255) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Teks pesan lebih dari 255 karakter'
+                ], 422);
+            }
+
+            $id = $request->id;
+            $data = [];
+
+            // Handle Penerimaan Proposal (id_status = 2)
+            if ($request->id_status == 2) {
+                // Validasi benefit harus dipilih
+                if (!$request->id_level) {
+                    return response()->json([
+                        'status' => 'error',
+                        'message' => 'Benefit belum dipilih'
+                    ], 422);
+                }
+
+                $data = [
+                    'id' => $id,
+                    'id_status' => $request->id_status,
+                    'id_level' => $request->id_level,
+                    'comment' => $request->comment,
+                ];
+
+                // Update slot benefit
+                $level = BenefitLevel::where('id', $request->id_level)->first();
+                if ($level->slot <= 0) {
+                    return response()->json([
+                        'status' => 'error',
+                        'message' => 'Slot benefit tidak tersedia'
+                    ], 422);
+                }
+
+                $level->update([
+                    'slot' => $level->slot - 1,
+                ]);
+            }
+            // Handle Penolakan Proposal (id_status = 3)
+            else if ($request->id_status == 3) {
+                $data = [
+                    'id' => $id,
+                    'id_status' => $request->id_status,
+                    'comment' => $request->comment,
+                ];
+            }
+
+            // Update transaction
+            $trans = Transaction::findOrFail($id);
+            $trans->update($data);
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Respon telah terkirim'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Terjadi kesalahan: ' . $e->getMessage()
+            ], 500);
         }
-
-        $trans = Transaction::findOrFail($id);
-        $trans->update($data);
-
-        return response()->json($trans);
     }
 }

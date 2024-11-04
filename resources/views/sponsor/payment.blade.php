@@ -9,7 +9,6 @@
             <div class="border-b border-black mx-12 pb-3">
                 <ul class="grid grid-cols-4 text-center font-semibold">
                     <li>Nama Acara</li>
-                    <li>Dana sponsorship</li>
                     <li>Status</li>
                     <li>Tindakan</li>
                 </ul>
@@ -19,7 +18,6 @@
             <div class="flex flex-col">
                 <div class="grid grid-cols-4 items-center mx-12 border border-black rounded-lg my-4 py-3">
                     <h1 class="text-center ">{{ $item->event->name }}</h1>
-                    <h1 class="text-center ">{{ $item->total_fund }}</h1>
                     @if ($item->id_payment_status == 1)
                         <div class="flex justify-center">
                             <button href=""
