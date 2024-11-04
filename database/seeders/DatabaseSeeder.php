@@ -42,6 +42,14 @@ class DatabaseSeeder extends Seeder
             'id_role' => 1
         ]);
 
+
+        User::create([
+            'name' => 'Sponsor',
+            'email' => 'sponsor@gmail.com',
+            'password' => bcrypt('sponsor123'),
+            'id_role' => 2
+        ]);
+
         User::create([
             'name' => 'Adam Berkah',
             'email' => 'ab@gmail.com',

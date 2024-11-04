@@ -228,44 +228,4 @@ class AddEventBenefitTest extends TestCase
         ]);
     }
 
-    // Test API Integration
-    // public function test_api_integration_success()
-    // {
-    //     Http::fake([
-    //         'http://localhost:8080/api/event' => Http::response(['status' => 'success'], 200)
-    //     ]);
-
-    //     $response = $this->withCookies($this->cookieSet)->post('/event/formDua', [
-    //         'fund1' => '10000000',
-    //         'slot1' => '2',
-    //         'fund2' => '7500000',
-    //         'slot2' => '3',
-    //         'fund3' => '5000000',
-    //         'slot3' => '4',
-    //         'fund4' => '2500000',
-    //         'slot4' => '5'
-    //     ]);
-
-    //     $response->assertRedirect('/event/my_event');
-    // }
-
-    // public function test_api_integration_failure()
-    // {
-    //     Http::fake([
-    //         'http://localhost:8080/api/event' => Http::response(['error' => 'Server error'], 500)
-    //     ]);
-
-    //     $response = $this->withCookies($this->cookieSet)->post('/event/formDua', [
-    //         'fund1' => '10000000',
-    //         'slot1' => '2',
-    //         'fund2' => '7500000',
-    //         'slot2' => '3',
-    //         'fund3' => '5000000',
-    //         'slot3' => '4',
-    //         'fund4' => '2500000',
-    //         'slot4' => '5'
-    //     ]);
-
-    //     $response->assertRedirect()->assertSessionHas('error');
-    // }
 }
