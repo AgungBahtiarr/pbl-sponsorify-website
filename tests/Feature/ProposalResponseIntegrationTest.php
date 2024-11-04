@@ -2,11 +2,14 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Http;
 
 class ProposalResponseIntegrationTest extends TestCase
 {
+
+    use RefreshDatabase;
     protected function setUp(): void
     {
         parent::setUp();
@@ -38,10 +41,10 @@ class ProposalResponseIntegrationTest extends TestCase
 
         Http::assertSent(function ($request) {
             return $request->url() == 'http://localhost:8080/api/transaction' &&
-                   $request->method() == 'PATCH' &&
-                   $request['id_status'] == 2 &&
-                   $request['id_level'] == 1 &&
-                   strlen($request['comment']) >= 15;
+                $request->method() == 'PATCH' &&
+                $request['id_status'] == 2 &&
+                $request['id_level'] == 1 &&
+                strlen($request['comment']) >= 15;
         });
     }
 
@@ -99,9 +102,9 @@ class ProposalResponseIntegrationTest extends TestCase
 
         Http::assertSent(function ($request) {
             return $request->url() == 'http://localhost:8080/api/transaction' &&
-                   $request->method() == 'PATCH' &&
-                   $request['id_status'] == 3 &&
-                   strlen($request['comment']) >= 15;
+                $request->method() == 'PATCH' &&
+                $request['id_status'] == 3 &&
+                strlen($request['comment']) >= 15;
         });
     }
 }
