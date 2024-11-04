@@ -165,32 +165,10 @@ class EventController extends Controller
     }
 
 
-    // public function storeEvent(Request $request)
-    // {
-    //     $formSatu = $request->session()->get('formSatu');
-
-    //     $formDua = [
-    //         'fund1' => $request->fund1,
-    //         'slot1' => $request->slot1,
-    //         'fund2' => $request->fund2,
-    //         'slot2' => $request->slot2,
-    //         'fund3' => $request->fund3,
-    //         'slot3' => $request->slot3,
-    //         'fund4' => $request->fund4,
-    //         'slot4' => $request->slot4
-    //     ];
-
-    //     $data = array_merge($formSatu, $formDua);
-
-    //     return $data;
-    //     $response = Http::post('http://localhost:8080/api/event', $data);
-
-    //     return redirect('/event/my_event');
-    // }
-
-
     public function storeEvent(Request $request)
     {
+
+        $token = Cookie::get('token');
         $validator = Validator::make($request->all(), [
             'fund1' => 'required|numeric|min:100000',
             'fund2' => 'required|numeric|min:100000',
@@ -253,6 +231,7 @@ class EventController extends Controller
         }
 
         try {
+
             $formDua = [
                 'fund1' => $request->fund1,
                 'slot1' => $request->slot1,
@@ -266,7 +245,7 @@ class EventController extends Controller
 
             $data = array_merge($formSatu, $formDua);
 
-            $response = Http::post('http://localhost:8080/api/event', $data);
+            $response = Http::withToken($token)->post('http://localhost:8080/api/event', $data);
 
             if ($response->status() == 201) {
                 $request->session()->forget('formSatu');

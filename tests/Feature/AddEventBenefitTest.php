@@ -23,7 +23,6 @@ class AddEventBenefitTest extends TestCase
     {
         parent::setUp();
 
-        // Setup user dan authentication
         $response = $this->post('/api/login', [
             'email' => 'agung@gmail.com',
             'password' => 'sandi123'
@@ -35,16 +34,16 @@ class AddEventBenefitTest extends TestCase
 
         $this->cookieSet = ['token' => $this->token, 'roleUser' => $this->role, 'authUser' => $this->authUser];
 
-        // Set session formSatu sebagai mock data event sebelumnya
         $formSatu = [
             'name' => 'Test Event',
             'description' => 'Test Description',
-            'email' => 'test@email.com',
-            'location' => 'https://maps.app.goo.gl/test123',
-            'proposal' => 'proposal.pdf',
-            'start_date' => '2024-08-07',
-            'image' => 'poster.jpg',
+            'email' => 'agung@gmail.com',
+            'location' => 'https://maps.app.goo.gl/kroonKXRdun2SfWo7',
+            'proposal' => 'proposal/proposal.pdf',
+            'start_date' => '2024-12-07',
+            'image' => 'image/poster.jpg',
             'id_user' => $this->authUser
+
         ];
 
         Session::put('formSatu', $formSatu);
@@ -52,7 +51,7 @@ class AddEventBenefitTest extends TestCase
 
     public function test_can_add_benefit_with_valid_data()
     {
-        $response = $this->withCookies($this->cookieSet)->post('/event/formDua', [
+        $response = $this->withCookies(['token' => $this->token, 'roleUser' => $this->role])->post('/event/formDua', [
             'fund1' => '10000000',
             'slot1' => '2',
             'fund2' => '7500000',
@@ -62,8 +61,7 @@ class AddEventBenefitTest extends TestCase
             'fund4' => '2500000',
             'slot4' => '5'
         ]);
-
-        $response->assertRedirect('/event/my_event');
+        $response->assertRedirect('/event/my_event')->assertSessionHas('success', 'Event berhasil dibuat');
     }
 
     public function test_cannot_add_benefit_with_empty_fund()

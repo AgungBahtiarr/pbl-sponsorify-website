@@ -10,7 +10,6 @@ use App\Http\Controllers\api\SponsorController;
 use App\Http\Controllers\api\TransactionController;
 use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\BenefitLevelController;
-use App\Models\BenefitLevel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
