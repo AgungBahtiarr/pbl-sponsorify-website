@@ -3,11 +3,8 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
-use App\Models\User;
-use App\Models\Role;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
 
 class RegisterEventTest extends TestCase
 {
@@ -15,138 +12,199 @@ class RegisterEventTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
-        // Insert role menggunakan DB facade untuk memastikan
-        // DB::table('roles')->insert([
-        //     'id' => 1,
-        //     'role' => 'Event Organizer',
-        //     'created_at' => now(),
-        //     'updated_at' => now()
-        // ]);
-
         $this->withHeaders([
             'Accept' => 'application/json'
         ]);
     }
 
-    // TC-Reg-01
-    public function test_registrasi_dengan_input_valid()
+    #[Test]
+    public function test_successful_registration()
     {
-        $userData = [
-            'name' => 'user123',
-            'email' => 'user@example.com',
-            'password' => 'Password123!',
-            'id_role' => 1
-        ];
-
-        $response = $this->postJson('/api/register', $userData);
-
-        $response->assertStatus(201)
-            ->assertJson([
-                'success' => true
-            ]);
-    }
-
-    // TC-Reg-02
-    public function test_registrasi_dengan_format_email_tidak_valid()
-    {
-        $userData = [
-            'name' => 'user123',
-            'email' => 'userexample.com',
-            'password' => 'Password123!',
-            'id_role' => 1
-        ];
-
-        $response = $this->postJson('/api/register', $userData);
-
-        $response->assertStatus(401)
-            ->assertJson([
-                'success' => false,
-                'message' => 'Registrasi gagal periksa kembail data anda'
-            ]);
-    }
-
-    // TC-Reg-03
-    public function test_registrasi_dengan_password_kurang_dari_8_karakter()
-    {
-        $userData = [
-            'name' => 'user123',
-            'email' => 'user@example.com',
-            'password' => 'Pass1',
-            'id_role' => 1
-        ];
-
-        $response = $this->postJson('/api/register', $userData);
-
-        $response->assertStatus(401)
-            ->assertJson([
-                'success' => false,
-                'message' => 'Registrasi gagal periksa kembail data anda'
-            ]);
-    }
-
-    // TC-Reg-04
-    public function test_registrasi_dengan_email_yang_sudah_terdaftar()
-    {
-        // Buat user pertama
-        User::create([
-            'name' => 'Existing User',
-            'email' => 'user@example.com',
-            'password' => bcrypt('Password123!'),
+        $response = $this->post('/auth/register', [
+            'name' => 'John Doe',
+            'email' => 'johndoe@event.com',
+            'password' => 'Event123!',
             'id_role' => 1
         ]);
 
-        $userData = [
-            'name' => 'newuser123',
-            'email' => 'user@example.com',
-            'password' => 'Password123!',
-            'id_role' => 1
-        ];
-
-        $response = $this->postJson('/api/register', $userData);
-
-        $response->assertStatus(401)
-            ->assertJson([
-                'success' => false,
-                'message' => 'Registrasi gagal periksa kembail data anda'
-            ]);
+        $response->assertRedirect('/auth/login');
     }
 
-    // TC-Reg-05
-    public function test_registrasi_tanpa_nama()
+    #[Test]
+    public function test_registration_with_existing_email()
     {
-        $userData = [
+        $response = $this->post('/auth/register', [
+            'name' => 'Jane Smith',
+            'email' => 'agung@gmail.com',
+            'password' => 'Event456!',
+            'id_role' => 1
+        ]);
+
+        $response->assertRedirect('/auth/register')
+            ->assertSessionHasErrors(['message' => 'The email has already been taken. ']);
+    }
+
+    #[Test]
+    public function test_invalid_email_formats()
+    {
+        $response = $this->post('/auth/register', [
+            'name' => 'Alice Brown',
+            'email' => 'invalid-email',
+            'password' => 'Event789!',
+            'id_role' => 1
+        ]);
+
+        $response->assertRedirect('/auth/register')
+            ->assertSessionHasErrors(['message' => 'The email field must be a valid email address. ']);
+    }
+
+    #[Test]
+    public function test_invalid_email_formats_tld()
+    {
+        $response = $this->post('/auth/register', [
+            'name' => 'Alice Brown',
+            'email' => 'alice@test',
+            'password' => 'Event789!',
+            'id_role' => 1
+        ]);
+
+        $response->assertRedirect('/auth/register')
+            ->assertSessionHasErrors(['message' => 'The email field must be a valid email address. ']);
+    }
+
+    #[Test]
+    public function test_invalid_email_formats_without_tag()
+    {
+        $response = $this->post('/auth/register', [
+            'name' => 'Alice Brown',
+            'email' => 'alice.test',
+            'password' => 'Event789!',
+            'id_role' => 1
+        ]);
+
+        $response->assertRedirect('/auth/register')
+            ->assertSessionHasErrors(['message' => 'The email field must be a valid email address. ']);
+    }
+
+    #[Test]
+    public function test_invalid_email_formats_without_username()
+    {
+        $response = $this->post('/auth/register', [
+            'name' => 'Alice Brown',
+            'email' => '@test.com',
+            'password' => 'Event789!',
+            'id_role' => 1
+        ]);
+
+        $response->assertRedirect('/auth/register')
+            ->assertSessionHasErrors(['message' => 'The email field must be a valid email address. ']);
+    }
+
+    #[Test]
+    public function test_password_length_validation_min_1()
+    {
+        $response = $this->post('/auth/register', [
+            'name' => 'Test User',
+            'email' => 'test@event.com',
+            'password' => 'Short1',
+            'id_role' => 1
+        ]);
+
+        $response->assertRedirect('/auth/register')
+            ->assertSessionHasErrors(['message' => 'The password field must be at least 8 characters. ']);
+    }
+
+    #[Test]
+    public function test_password_length_validation_min()
+    {
+        $response = $this->post('/auth/register', [
+            'name' => 'Test User',
+            'email' => 'testmin@event.com',
+            'password' => 'Short123',
+            'id_role' => 1
+        ]);
+
+        $response->assertRedirect('/auth/login');
+    }
+
+    #[Test]
+    public function test_password_length_validation_min_plus_1()
+    {
+        $response = $this->post('/auth/register', [
+            'name' => 'Test User',
+            'email' => 'test@event.com',
+            'password' => 'Short1234',
+            'id_role' => 1
+        ]);
+
+        $response->assertRedirect('/auth/login');
+    }
+
+    #[Test]
+    public function test_password_length_validation_max_min_1()
+    {
+        $response = $this->post('/auth/register', [
+            'name' => 'Test User',
+            'email' => 'test2@event.com',
+            'password' => '1234567891Agungtok1',
+            'id_role' => 1
+        ]);
+
+        $response->assertRedirect('/auth/login');
+    }
+
+    #[Test]
+    public function test_password_length_validation_max()
+    {
+        $response = $this->post('/auth/register', [
+            'name' => 'Test User',
+            'email' => 'testmax@event.com',
+            'password' => '1234567891Agungtok12',
+            'id_role' => 1
+        ]);
+
+        $response->assertRedirect('/auth/login');
+    }
+
+    #[Test]
+    public function test_password_length_validation_max_plus_1()
+    {
+        $response = $this->post('/auth/register', [
+            'name' => 'Test User',
+            'email' => 'test3@event.com',
+            'password' => '0123456789Agungtok12.',
+            'id_role' => 1
+        ]);
+
+        $response->assertRedirect('/auth/register')
+            ->assertSessionHasErrors(['message' => 'The password field must not be greater than 20 characters. ']);
+    }
+
+    #[Test]
+    public function test_empty_name_field()
+    {
+        $response = $this->post('/auth/register', [
             'name' => '',
-            'email' => 'user@example.com',
-            'password' => 'Password123!',
+            'email' => 'empty@event.com',
+            'password' => 'Event000!',
             'id_role' => 1
-        ];
+        ]);
 
-        $response = $this->postJson('/api/register', $userData);
-
-        $response->assertStatus(401)
-            ->assertJson([
-                'success' => false,
-                'message' => 'Registrasi gagal periksa kembail data anda'
-            ]);
+        $response->assertRedirect('/auth/register')
+            ->assertSessionHasErrors(['message' => 'The name field is required. ']);
     }
 
-    // TC-Reg-06
-    public function test_registrasi_dengan_semua_field_kosong()
+    #[Test]
+    public function test_all_fields_empty()
     {
-        $userData = [
+        $response = $this->post('/auth/register', [
             'name' => '',
             'email' => '',
             'password' => '',
             'id_role' => ''
-        ];
+        ]);
 
-        $response = $this->postJson('/api/register', $userData);
-
-        $response->assertStatus(401)
-            ->assertJson([
-                'success' => false,
-                'message' => 'Registrasi gagal periksa kembail data anda'
-            ]);
+        $response->assertRedirect('/auth/register')
+            ->assertSessionHasErrors(['message' => 'The name field is required. The email field is required. The password field is required. The id role field is required. ']);
     }
 }
