@@ -13,20 +13,21 @@ class SponsorController extends Controller
 {
 
 
-    public function index(){
+    public function index()
+    {
         $idUser = Cookie::get('authUser');
-        $currentSponsor = Http::post('http://localhost:8080/api/sponsor/currentSponsor',['id'=>$idUser]);
+        $currentSponsor = Http::post('http://localhost:8080/api/sponsor/currentSponsor', ['id' => $idUser]);
         $currentSponsor = json_decode($currentSponsor);
 
-        $transactions = Http::post('http://localhost:8080/api/transactions/sponsor',['id'=>$currentSponsor->id]);
+        $transactions = Http::post('http://localhost:8080/api/transactions/sponsor', ['id' => $currentSponsor->id]);
         $transactions = json_decode($transactions);
 
         $reports = Http::get('http://localhost:8080/api/reports');
         $reports = json_decode($reports);
 
         $reportDone = [];
-        foreach($reports as $report){
-            if($report->transaction->id_sponsor == $currentSponsor->id){
+        foreach ($reports as $report) {
+            if ($report->transaction->id_sponsor == $currentSponsor->id) {
                 array_push($reportDone, $report);
             }
         }
@@ -34,25 +35,25 @@ class SponsorController extends Controller
 
         $proposalIn = [];
 
-        foreach($transactions as $transaction){
+        foreach ($transactions as $transaction) {
             if ($transaction->id_status == 1) {
-                array_push($proposalIn,$transaction);
+                array_push($proposalIn, $transaction);
             }
         }
 
         $history = [];
 
-        foreach($transactions as $transaction){
-            if($transaction->id_user == $currentSponsor->id && ($transaction->id_status == 2 || $transaction->id_status == 3)){
-                array_push($history,$transaction);
+        foreach ($transactions as $transaction) {
+            if ($transaction->id_user == $currentSponsor->id && ($transaction->id_status == 2 || $transaction->id_status == 3)) {
+                array_push($history, $transaction);
             }
 
             if (count($history) >= 4) {
                 break;
             }
         }
- // return $history;
-        return view('sponsor.dashboard',[
+        // return $history;
+        return view('sponsor.dashboard', [
             'report' => $reportDone,
             'proposalIn' => $proposalIn,
             'history' => $history,
@@ -103,10 +104,19 @@ class SponsorController extends Controller
 
         $response = Http::post("http://localhost:8080/api/sponsor", $data);
 
+        $res = json_decode($response);
+
         if ($response->getStatusCode() == 201) {
             return redirect('/sponsor/dashboard');
         } else {
-            return redirect('/auth/sponsor');
+
+            $errMessage = "";
+
+            foreach ($res->data as $e) {
+                $errMessage = $errMessage . $e[0] . ' ';
+            }
+
+            return redirect('/auth/sponsor', 302)->withErrors(['message' => $errMessage]);
         }
     }
 

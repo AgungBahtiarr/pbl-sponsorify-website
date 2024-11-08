@@ -3,8 +3,6 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -22,7 +20,6 @@ class AddEventUnitTest extends TestCase
         parent::setUp();
         Storage::fake('public');
 
-        // Login untuk mendapatkan token
         $response = $this->post('/api/login', [
             'email' => 'agung@gmail.com',
             'password' => 'sandi123'
@@ -32,10 +29,9 @@ class AddEventUnitTest extends TestCase
         $this->authUser = $response->json('user.id');
         $this->headers = [
             'Authorization' => 'Bearer ' . $this->token,
-            // 'Accept' => 'application/json'
         ];
 
-        // Setup valid data yang akan digunakan sebagai base untuk testing
+
         $this->validData = [
             'id_user' => $this->authUser,
             'name' => 'Semarak Kemerdekaan',
