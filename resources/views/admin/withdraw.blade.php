@@ -9,10 +9,10 @@
         <div class="border-b border-black mx-12 pb-3">
             <ul class="grid grid-cols-8 text-center font-semibold">
                 <li>Nama Event</li>
+                <li>Dana sponsorship</li>
                 <li>Nama Bank</li>
                 <li>Nama Account</li>
                 <li>No Rekening</li>
-                <li>Dana sponsorship</li>
                 <li>Tanggal penarikan</li>
                 <li>Status</li>
                 <li>Tindakan</li>
@@ -23,10 +23,10 @@
         @foreach ($datas as $item)
         <div class="grid grid-cols-8 items-center mx-12 border border-black rounded-lg my-4 py-3">
             <h1 class="text-center ">{{$item->event->name}}</h1>
+            <h1 class="text-center ">Rp. {{ $item->level->fund }}</h1>
             <h1 class="text-center ">{{$item->bank_name}}</h1>
             <h1 class="text-center ">{{$item->account_name}}</h1>
             <h1 class="text-center ">{{$item->no_rek}}</h1>
-            <h1 class="text-center ">{{$item->total_fund}}</h1>
             <h1 class="text-center">{{date('d/m/Y',strtotime($item->updated_at))}}</h1>
             <div class="flex justify-center">
                 <div class="badge badge-neutral">{{$item->withdraw->status}}</div>
