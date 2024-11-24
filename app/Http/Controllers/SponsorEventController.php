@@ -12,12 +12,12 @@ class SponsorEventController extends Controller
     {
         $token = Cookie::get('token');
         $idAuthUSer = Cookie::get('authUser');
-        $authUser = Http::withToken($token)->get('http://localhost:8080/api/authUser');
+        $authUser = Http::withToken($token)->get(env('API_URL').'/api/authUser');
         $authUser = json_decode($authUser);
 
-        $sponsor = Http::post('http://localhost:8080/api/sponsor/currentSponsor', ['id' => $idAuthUSer]);
+        $sponsor = Http::post(env('API_URL').'/api/sponsor/currentSponsor', ['id' => $idAuthUSer]);
         $sponsor = json_decode($sponsor);
-        $transaction = Http::post('http://localhost:8080/api/transactions/sponsor', ['id' => $sponsor->id]);
+        $transaction = Http::post(env('API_URL').'/api/transactions/sponsor', ['id' => $sponsor->id]);
         $transaction = json_decode($transaction);
 
         $transactionfix = [];
@@ -34,9 +34,9 @@ class SponsorEventController extends Controller
 
     public function show($id)
     {
-        $transaction = Http::get('http://localhost:8080/api/transaction/' . $id);
+        $transaction = Http::get(env('API_URL').'/api/transaction/' . $id);
         $transaction = json_decode($transaction);
-        $event = Http::get('http://localhost:8080/api/event/' . $transaction->event->id);
+        $event = Http::get(env('API_URL').'/api/event/' . $transaction->event->id);
 
 
 

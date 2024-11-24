@@ -12,10 +12,10 @@ class TransactionController extends Controller
     public function indexDetail($id)
     {
         $token =  Cookie::get('token');
-        $events = Http::withToken($token)->get('http://localhost:8080/api/events');
+        $events = Http::withToken($token)->get(env('API_URL').'/api/events');
         $idSponsor = $id;
 
-        $sponsor = Http::get('http://localhost:8080/api/sponsor/' . $id);
+        $sponsor = Http::get(env('API_URL').'/api/sponsor/' . $id);
 
         return view('event.detail', [
             'events' => json_decode($events),
@@ -30,7 +30,7 @@ class TransactionController extends Controller
             'id_sponsor' => $request->id_sponsor,
         ];
         $token =  Cookie::get('token');
-        $trans = Http::withToken($token)->post('http://localhost:8080/api/transaction', $data);
+        $trans = Http::withToken($token)->post(env('API_URL').'/api/transaction', $data);
 
         return redirect('/event/sponsors/');
     }
@@ -52,7 +52,7 @@ class TransactionController extends Controller
                 'id_level' => $request->id_level
             ];
 
-            $response = Http::patch('http://localhost:8080/api/transaction', $data);
+            $response = Http::patch(env('API_URL').'/api/transaction', $data);
 
             if ($response->successful()) {
                 if ($request->id_status == 2) { // Terima proposal
