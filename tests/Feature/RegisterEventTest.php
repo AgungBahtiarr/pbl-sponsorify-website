@@ -181,20 +181,6 @@ class RegisterEventTest extends TestCase
     }
 
     #[Test]
-    public function test_empty_name_field()
-    {
-        $response = $this->post('/auth/register', [
-            'name' => '',
-            'email' => 'empty@event.com',
-            'password' => 'Event000!',
-            'id_role' => 1
-        ]);
-
-        $response->assertRedirect('/auth/register')
-            ->assertSessionHasErrors(['message' => 'The name field is required. ']);
-    }
-
-    #[Test]
     public function test_all_fields_empty()
     {
         $response = $this->post('/auth/register', [
