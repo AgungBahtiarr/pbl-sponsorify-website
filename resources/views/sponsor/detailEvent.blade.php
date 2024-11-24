@@ -63,90 +63,79 @@
             <h1 class="font-semibold text-[21px]">Tentang Acara</h1>
             <p class="text-justify">{{ $transaction->event->description }}</p>
         </div>
-        <div class="flex justify-center gap-5 ">
+        <div class="flex justify-center gap-5">
             <div>
-                <button class="px-52 py-3 bg-green-500 font-semibold text-white rounded-2xl"
-                    onclick="my_modal_terima.showModal()">Terima</button>
+                <button class="px-52 py-3 bg-green-500 font-semibold text-white rounded-2xl" onclick="my_modal_terima.showModal()">Terima</button>
                 <dialog id="my_modal_terima" class="modal">
                     <div class="modal-box">
                         <form method="dialog">
-                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                            {{-- <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" type="button" onclick="resetTerimForm()">✕</button> --}}
                             <h3 class="font-bold text-lg mt-5 mb-4">Kirim pesan untuk Event organizer</h3>
                         </form>
                         <div>
-                            <form action="/sponsor/review" method="post">
+                            <form id="formTerima" action="/sponsor/review" method="post" onsubmit="return validateTerimForm(event)">
                                 @csrf
                                 @method('patch')
                                 <label class="flex items-center gap-2 mb-2">
-                                    <select name="id_level" id="levelSelect" class="grow select select-bordered"
-                                        placeholder="Jumlah Dana Sponsor Yang Akan Diberikan" required>
+                                    <select name="id_level" id="levelSelect" class="grow select select-bordered" required>
+                                        <option value="">Pilih Benefit</option>
                                         @foreach ($levels as $level)
                                             @if ($level->slot !== 0)
-                                                <option value="{{ $level->id }}"
-                                                    data-fund="{{ str_replace(',', '', $level->fund) }}">
+                                                <option value="{{ $level->id }}" data-fund="{{ str_replace(',', '', $level->fund) }}">
                                                     {{ $level->level }} - Rp. {{ $level->fund }}
                                                 </option>
                                             @endif
                                         @endforeach
                                     </select>
                                 </label>
+                                <div id="benefitError" class="text-red-500 text-sm mb-2 hidden">Benefit belum dipilih</div>
+
                                 <input type="hidden" name="total_fund" id="totalFund" class="grow" />
+
                                 <label class="input input-bordered flex items-center gap-2 mt-2">
-                                    <input type="text" class="grow" name="comment"
+                                    <input type="text" class="grow" name="comment" id="commentTerima"
                                         placeholder="Masukan pesan untuk event organizer" />
                                 </label>
+                                <div id="commentTerimError" class="text-red-500 text-sm mb-2 hidden"></div>
+
                                 <input type="hidden" name="id_status" value="2">
                                 <input type="hidden" name="id" value={{ $transaction->id }}>
-                                <button
-                                    class="px-10 py-2 rounded-2xl text-white bg-neutral mt-5 font-semibold">Kirim</button>
+
+                                <div class="flex gap-2 mt-5">
+                                    <button type="submit" class="px-10 py-2 rounded-2xl text-white bg-neutral font-semibold">Kirim</button>
+                                    <button type="button" onclick="cancelTerimForm()" class="px-10 py-2 rounded-2xl text-white bg-gray-500 font-semibold">Batal</button>
+                                </div>
                             </form>
-
-                            <script>
-                                document.addEventListener('DOMContentLoaded', function() {
-                                    const select = document.getElementById('levelSelect');
-                                    const totalFund = document.getElementById('totalFund');
-
-                                    // Set initial value
-                                    if (select && select.options.length > 0) {
-                                        totalFund.value = select.options[select.selectedIndex].getAttribute('data-fund');
-                                        console.log("Initial value set to:", totalFund.value); // Debug line
-                                    }
-
-                                    // Update value when selection changes
-                                    select.addEventListener('change', function() {
-                                        const selectedOption = this.options[this.selectedIndex];
-                                        totalFund.value = selectedOption.getAttribute('data-fund');
-                                        console.log("Value changed to:", totalFund.value); // Debug line
-                                    });
-                                });
-                            </script>
                         </div>
                     </div>
                 </dialog>
-
-
             </div>
+
             <div>
-                <button class="px-52 py-3 bg-red-600 font-semibold text-white rounded-2xl"
-                    onclick="my_modal_tolak.showModal()">Tolak</button>
+                <button class="px-52 py-3 bg-red-600 font-semibold text-white rounded-2xl" onclick="my_modal_tolak.showModal()">Tolak</button>
                 <dialog id="my_modal_tolak" class="modal">
                     <div class="modal-box">
                         <form method="dialog">
-                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                            {{-- <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" type="button" onclick="resetTolakForm()">✕</button> --}}
                             <h3 class="font-bold text-lg mt-5 mb-4">Kirim alasan untuk Event organizer</h3>
                         </form>
                         <div>
-                            <form action="/sponsor/review" method="post">
+                            <form id="formTolak" action="/sponsor/review" method="post" onsubmit="return validateTolakForm(event)">
                                 @csrf
                                 @method('patch')
                                 <label class="input input-bordered flex items-center gap-2">
-                                    <input type="text" name="comment" class="grow"
+                                    <input type="text" name="comment" id="commentTolak" class="grow"
                                         placeholder="Masukan umpan balik untuk event organizer" />
                                 </label>
+                                <div id="commentTolakError" class="text-red-500 text-sm mb-2 hidden"></div>
+
                                 <input type="hidden" name="id_status" value="3">
                                 <input type="hidden" name="id" value={{ $transaction->id }}>
-                                <button
-                                    class="px-10 py-2 rounded-2xl text-white bg-neutral mt-5 font-semibold">kirim</button>
+
+                                <div class="flex gap-2 mt-5">
+                                    <button type="submit" class="px-10 py-2 rounded-2xl text-white bg-neutral font-semibold">Kirim</button>
+                                    <button type="button" onclick="cancelTolakForm()" class="px-10 py-2 rounded-2xl text-white bg-gray-500 font-semibold">Batal</button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -154,4 +143,103 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const select = document.getElementById('levelSelect');
+            const totalFund = document.getElementById('totalFund');
+
+            if (select && select.options.length > 0) {
+                totalFund.value = select.options[select.selectedIndex].getAttribute('data-fund');
+            }
+
+            select.addEventListener('change', function() {
+                const selectedOption = this.options[this.selectedIndex];
+                totalFund.value = selectedOption.getAttribute('data-fund');
+            });
+        });
+
+        function validateTerimForm(event) {
+            event.preventDefault();
+            let isValid = true;
+
+            // Validate benefit
+            const benefit = document.getElementById('levelSelect').value;
+            const benefitError = document.getElementById('benefitError');
+            if (!benefit) {
+                benefitError.textContent = 'Benefit belum dipilih';
+                benefitError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                benefitError.classList.add('hidden');
+            }
+
+            // Validate comment
+            const comment = document.getElementById('commentTerima').value;
+            const commentError = document.getElementById('commentTerimError');
+
+            if (comment.length < 15) {
+                commentError.textContent = 'Teks pesan kurang dari 15 karakter';
+                commentError.classList.remove('hidden');
+                isValid = false;
+            } else if (comment.length > 255) {
+                commentError.textContent = 'Teks pesan lebih dari 255 karakter';
+                commentError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                commentError.classList.add('hidden');
+            }
+
+            if (isValid) {
+                document.getElementById('formTerima').submit();
+            }
+            return false;
+        }
+
+        function validateTolakForm(event) {
+            event.preventDefault();
+            let isValid = true;
+
+            const comment = document.getElementById('commentTolak').value;
+            const commentError = document.getElementById('commentTolakError');
+
+            if (comment.length < 15) {
+                commentError.textContent = 'Teks pesan kurang dari 15 karakter';
+                commentError.classList.remove('hidden');
+                isValid = false;
+            } else if (comment.length > 255) {
+                commentError.textContent = 'Teks pesan lebih dari 255 karakter';
+                commentError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                commentError.classList.add('hidden');
+            }
+
+            if (isValid) {
+                document.getElementById('formTolak').submit();
+            }
+            return false;
+        }
+
+        function resetTerimForm() {
+            document.getElementById('formTerima').reset();
+            document.getElementById('commentTerimError').classList.add('hidden');
+            document.getElementById('benefitError').classList.add('hidden');
+        }
+
+        function resetTolakForm() {
+            document.getElementById('formTolak').reset();
+            document.getElementById('commentTolakError').classList.add('hidden');
+        }
+
+        function cancelTerimForm() {
+            resetTerimForm();
+            my_modal_terima.close();
+        }
+
+        function cancelTolakForm() {
+            resetTolakForm();
+            my_modal_tolak.close();
+        }
+        </script>
 @endsection
