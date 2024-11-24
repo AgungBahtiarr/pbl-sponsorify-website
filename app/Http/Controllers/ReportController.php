@@ -11,7 +11,7 @@ class ReportController extends Controller
 {
     public function indexEvent(){
         $token =  Cookie::get('token');
-        $trans = Http::withToken($token)->get('http://localhost:8080/api/transactions');
+        $trans = Http::withToken($token)->get(env('API_URL').'/api/transactions');
         $trans = json_decode($trans);
 
         $data = [];
@@ -32,7 +32,7 @@ class ReportController extends Controller
             'id_transaction' => $request->id_transaction
         ];
 
-        $response = Http::post('http://localhost:8080/api/report',$data);
+        $response = Http::post(env('API_URL').'/api/report',$data);
 
         return redirect('/event/report');
     }
@@ -41,14 +41,14 @@ class ReportController extends Controller
     public function indexSponsor(){
         $token = Cookie::get('token');
         $idUser = Cookie::get('authUser');
-        $response = Http::withToken($token)->get('http://localhost:8080/api/reports');
+        $response = Http::withToken($token)->get(env('API_URL').'/api/reports');
         $response = json_decode($response);
-        $currentSponsor = Http::post('http://localhost:8080/api/sponsor/currentSponsor',['id'=>$idUser]);
+        $currentSponsor = Http::post(env('API_URL').'/api/sponsor/currentSponsor',['id'=>$idUser]);
         $currentSponsor = json_decode($currentSponsor);
         $reports = [];
         $trans = [];
         $data = [];
-        $transactions = Http::post('http://localhost:8080/api/transactions/sponsor',['id'=>$currentSponsor->id]);
+        $transactions = Http::post(env('API_URL').'/api/transactions/sponsor',['id'=>$currentSponsor->id]);
         $transactions = json_decode($transactions);
 
         foreach($response as $item){

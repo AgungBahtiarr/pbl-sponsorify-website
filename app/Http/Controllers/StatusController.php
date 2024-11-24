@@ -11,7 +11,7 @@ class StatusController extends Controller
     public function index(){
 
         $token =  Cookie::get('token');
-        $trans = Http::withToken($token)->get('http://localhost:8080/api/transactions');
+        $trans = Http::withToken($token)->get(env('API_URL').'/api/transactions');
 
         return view('event.status',[
             'transactions' => json_decode($trans)

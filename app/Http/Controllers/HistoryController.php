@@ -10,10 +10,10 @@ class HistoryController extends Controller
 {
     public function indexSponsor(){
         $idUser = Cookie::get('authUser');
-        $currentSponsor = Http::post('http://localhost:8080/api/sponsor/currentSponsor',['id'=>$idUser]);
+        $currentSponsor = Http::post(env('API_URL').'/api/sponsor/currentSponsor',['id'=>$idUser]);
         $currentSponsor = json_decode($currentSponsor);
 
-        $transactions = Http::post('http://localhost:8080/api/transactions/sponsor',['id'=>$currentSponsor->id]);
+        $transactions = Http::post(env('API_URL').'/api/transactions/sponsor',['id'=>$currentSponsor->id]);
         $transactions = json_decode($transactions);
         $history = [];
 

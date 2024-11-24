@@ -16,13 +16,13 @@ class SponsorController extends Controller
     public function index()
     {
         $idUser = Cookie::get('authUser');
-        $currentSponsor = Http::post('http://localhost:8080/api/sponsor/currentSponsor', ['id' => $idUser]);
+        $currentSponsor = Http::post(env('API_URL').'/api/sponsor/currentSponsor', ['id' => $idUser]);
         $currentSponsor = json_decode($currentSponsor);
 
-        $transactions = Http::post('http://localhost:8080/api/transactions/sponsor', ['id' => $currentSponsor->id]);
+        $transactions = Http::post(env('API_URL').'/api/transactions/sponsor', ['id' => $currentSponsor->id]);
         $transactions = json_decode($transactions);
 
-        $reports = Http::get('http://localhost:8080/api/reports');
+        $reports = Http::get(env('API_URL').'/api/reports');
         $reports = json_decode($reports);
 
         $reportDone = [];
@@ -63,7 +63,7 @@ class SponsorController extends Controller
 
     public function indexAddSponsor()
     {
-        $categories = Http::get('http://localhost:8080/api/categories');
+        $categories = Http::get(env('API_URL').'/api/categories');
         $responseCat = json_decode($categories);
 
         // Ini masih pake eloquent harusnya dari api
@@ -102,7 +102,7 @@ class SponsorController extends Controller
         ];
 
 
-        $response = Http::post("http://localhost:8080/api/sponsor", $data);
+        $response = Http::post(env('API_URL')."/api/sponsor", $data);
 
         $res = json_decode($response);
 
@@ -128,18 +128,18 @@ class SponsorController extends Controller
 
 
 
-        $categories = Http::get("http://localhost:8080/api/categories");
+        $categories = Http::get(env('API_URL')."/api/categories");
 
 
         if ($id_category == null && $str == null) {
-            $response = Http::get('http://localhost:8080/api/sponsors');
+            $response = Http::get(env('API_URL').'/api/sponsors');
         }
         if ($str != null) {
-            $response = Http::post('http://localhost:8080/api/sponsor/search', ['str' => $str]);
+            $response = Http::post(env('API_URL').'/api/sponsor/search', ['str' => $str]);
         }
         if ($id_category != null) {
             $response = Http::post(
-                'http://localhost:8080/api/sponsor/categories',
+                env('API_URL').'/api/sponsor/categories',
                 [
                     'id_category' => $id_category
                 ]

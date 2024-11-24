@@ -13,7 +13,7 @@ class PaymentController extends Controller
     {
         $token = Cookie::get('token');
 
-        $response = Http::withToken($token)->get('http://localhost:8080/api/payments');
+        $response = Http::withToken($token)->get(env('API_URL').'/api/payments');
 
         $response = json_decode($response);
         $data = [];
@@ -33,7 +33,7 @@ class PaymentController extends Controller
     {
         $token =  Cookie::get('token');
         $authUser = Cookie::get('authUser');
-        $response =  Http::withToken($token)->get('http://localhost:8080/api/withdraws');
+        $response =  Http::withToken($token)->get(env('API_URL').'/api/withdraws');
         $response = json_decode($response);
         $transactions = [];
 
@@ -63,7 +63,7 @@ class PaymentController extends Controller
             'id_withdraw_status' => 2,
         ];
 
-        $response = Http::post('http://localhost:8080/api/withdraw', $data);
+        $response = Http::post(env('API_URL').'/api/withdraw', $data);
 
         return redirect('/event/withdraw');
     }
@@ -75,7 +75,7 @@ class PaymentController extends Controller
             'id_payment_status' => 2,
         ];
 
-        $response = Http::post('http://localhost:8080/api/payment/payNow', $data);
+        $response = Http::post(env('API_URL').'/api/payment/payNow', $data);
 
         return redirect('https://sponsorify.lemonsqueezy.com/buy/65b8d897-5fe3-4242-94b0-3b133d354094');
     }
@@ -86,7 +86,7 @@ class PaymentController extends Controller
 
         $token = Cookie::get('token');
 
-        $response = Http::withToken($token)->get('http://localhost:8080/api/transactions/admin');
+        $response = Http::withToken($token)->get(env('API_URL').'/api/transactions/admin');
         // return $response;
 
         return view('admin.report', [
@@ -99,7 +99,7 @@ class PaymentController extends Controller
     {
         $token = Cookie::get('token');
 
-        $response = Http::withToken($token)->get('http://localhost:8080/api/transactions/admin');
+        $response = Http::withToken($token)->get(env('API_URL').'/api/transactions/admin');
         $transactions = json_decode($response->body());
 
         $pdf = Pdf::loadView('admin.report.index', ['transactions' => $transactions]);

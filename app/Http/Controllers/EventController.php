@@ -13,12 +13,12 @@ class EventController extends Controller
     {
         $token = Cookie::get('token');
         $authUser = Cookie::get('authUser');
-        $transactions = Http::withToken($token)->get('http://localhost:8080/api/transactions');
+        $transactions = Http::withToken($token)->get(env('API_URL')."/api/transactions");
         $transactions = json_decode($transactions);
 
-        $events = Http::withToken($token)->get('http://localhost:8080/api/events');
+        $events = Http::withToken($token)->get(env('API_URL')."/api/events");
         $events = json_decode($events);
-        $reports = Http::get('http://localhost:8080/api/reports');
+        $reports = Http::get(env('API_URL'). '/api/reports');
         $reports = json_decode($reports);
 
 
@@ -52,7 +52,7 @@ class EventController extends Controller
     {
 
         $token =  Cookie::get('token');
-        $events = Http::withToken($token)->get('http://localhost:8080/api/events');
+        $events = Http::withToken($token)->get(env('API_URL').'/api/events');
         if ($events === null) {
             $events = [];
         } else {
@@ -252,7 +252,7 @@ class EventController extends Controller
 
             $data = array_merge($formSatu, $formDua);
 
-            $response = Http::withToken($token)->post('http://localhost:8080/api/event', $data);
+            $response = Http::withToken($token)->post(env('API_URL').'/api/event', $data);
 
 
             if ($response->status() == 201) {
@@ -282,7 +282,7 @@ class EventController extends Controller
 
     public function destroy($id)
     {
-        $response = Http::delete('http://localhost:8080/api/event/' . $id);
+        $response = Http::delete(env('API_URL').'/api/event/' . $id);
 
         // return $response;
         return redirect('/event/my_event');
