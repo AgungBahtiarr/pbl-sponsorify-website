@@ -254,7 +254,6 @@ class EventController extends Controller
                 $request->session()->forget('formSatu');
                 return redirect('/event/my_event')->with('success', 'Event berhasil dibuat');
             } else {
-                return $response;
                 return redirect('/event/formSatu')
                     ->withErrors(['message' => 'Terjadi kesalahan saat membuat event'])
                     ->withInput();
