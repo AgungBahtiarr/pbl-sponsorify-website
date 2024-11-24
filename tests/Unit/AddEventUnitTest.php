@@ -57,7 +57,6 @@ class AddEventUnitTest extends TestCase
         $response = $this->withHeaders($this->headers)
             ->post('/api/event', $this->validData);
 
-        // dd($response);
         $response->assertStatus(
             201
         );

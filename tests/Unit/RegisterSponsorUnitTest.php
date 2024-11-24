@@ -142,6 +142,46 @@ class RegisterSponsorUnitTest extends TestCase
             ]);
     }
 
+    #[Test]
+    public function test_invalid_email_formats_with_double_tag()
+    {
+        $response = $this->post('/api/register', [
+            'name' => 'Alice Brown',
+            'email' => 'aaa@@test.com',
+            'password' => 'Sponsor789!',
+            'id_role' => 2
+        ]);
+
+        $response->assertStatus(401)
+            ->assertJsonFragment([
+                'success' => false,
+                // 'message' => 'Registrasi gagal periksa kembali data anda',
+                'data' => [
+                    'email' => ["The email field must be a valid email address."]
+                ]
+            ]);
+    }
+
+
+    #[Test]
+    public function test_password_length_validation_min()
+    {
+        $response = $this->post('/api/register', [
+            'name' => 'Test User',
+            'email' => 'testmin@sponsor.com',
+            'password' => 'Short123', // kurang dari 8 karakter
+            'id_role' => 2
+        ]);
+
+        $response->assertStatus(201)
+            ->assertJsonFragment([
+                'success' => true,
+                // 'message' => 'Registrasi gagal periksa kembali data anda',
+                // 'data' => [
+                //     'password' => ['The password field must be at least 8 characters.']
+                // ]
+            ]);
+    }
 
 
     #[Test]
@@ -164,25 +204,7 @@ class RegisterSponsorUnitTest extends TestCase
             ]);
     }
 
-    #[Test]
-    public function test_password_length_validation_min()
-    {
-        $response = $this->post('/api/register', [
-            'name' => 'Test User',
-            'email' => 'testmin@sponsor.com',
-            'password' => 'Short123', // kurang dari 8 karakter
-            'id_role' => 2
-        ]);
 
-        $response->assertStatus(201)
-            ->assertJsonFragment([
-                'success' => true,
-                // 'message' => 'Registrasi gagal periksa kembali data anda',
-                // 'data' => [
-                //     'password' => ['The password field must be at least 8 characters.']
-                // ]
-            ]);
-    }
 
     #[Test]
     public function test_password_length_validation_min_plus_1()
@@ -231,7 +253,7 @@ class RegisterSponsorUnitTest extends TestCase
         $response = $this->post('/api/register', [
             'name' => 'Test User',
             'email' => 'testmax@sponsor.com',
-            'password' => '1234567891Agungtok12', // kurang dari 8 karakter
+            'password' => '1234567891Agungtok12', 
             'id_role' => 2
         ]);
 

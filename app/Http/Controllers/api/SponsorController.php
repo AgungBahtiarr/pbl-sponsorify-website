@@ -58,7 +58,14 @@ class SponsorController extends Controller
     //         "address" => $request->address,
     //         "id_category" => $request->id_category,
     //         "max_submission_date" => $request->max_submission_date,
-    //         "image"=> $request->image,
+    //         "image"=> $reques            // 'name' => 'required|string|max:255',
+            // 'email' => 'required|email:rfc,dns,regex:/(.+)@(.+)\.(.+)/i',
+            // 'description' => 'required|string',
+            // 'address' => 'required|string',
+            // 'id_category' => 'required|exists:categories,id',
+            // 'max_submission_date' => 'required|integer|min:0|max:90',
+            // 'image' => 'required|string',
+            // 'id_user' => 'required|exists:users,id't->image,
     //         "id_user" => $request->id_user
     //     ];
 
