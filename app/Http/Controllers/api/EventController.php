@@ -35,6 +35,7 @@ class EventController extends Controller
             'email' => 'required|email',
             'description' => 'required|string|min:10',
             'location' => 'required|string|regex:/^https:\/\/maps\.app\.goo\.gl\/[a-zA-Z0-9]{12,}$/',
+            'venue_name' => 'required|string',
             'proposal' => 'required', // max 20MB
             'start_date' => 'required|date|after:today',
             'id_user' => 'required|exists:users,id',
@@ -124,6 +125,7 @@ class EventController extends Controller
             'email' => $request->email,
             'description' => $request->description,
             'location' => $request->location,
+            'venue_name' => $request->venue_name,
             'proposal' => $request->proposal,
             'start_date' => $request->start_date,
             'id_user' => $request->id_user,

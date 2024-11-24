@@ -52,6 +52,14 @@
 
                     <label class="form-control w-full max-w-xs">
                         <div class="label">
+                            <span class="label-text">Nama Venue</span>
+                        </div>
+                        <input type="text" placeholder="Masukkan nama venue" class="input input-bordered w-full max-w-xs"
+                            name="venue_name" />
+                    </label>
+
+                    <label class="form-control w-full max-w-xs">
+                        <div class="label">
                             <span class="label-text">Tanggal mulai acara</span>
                         </div>
                         <input type="date" placeholder="Pilih tanggal mulai" class="input input-bordered w-full max-w-xs"
@@ -72,6 +80,7 @@
                         <input type="file" placeholder="Upload poster (JPG/PNG)"
                             class="file-input file-input-bordered w-full max-w-xs" name="image" />
                     </label>
+                    <div></div>
                     <div class="flex mt-8 justify-center items-center gap-3">
                         <a href="/event/my_event" class="btn btn-secondary">Kembali</a>
                         <button class="btn btn-primary">Kirim</button>

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('location');
             $table->string('proposal');
             $table->date('start_date');
-            // $table->date('end_date');
+            $table->string('venue_name');
             $table->string('image');
             $table->unsignedBigInteger('id_user');
             $table->timestamps();

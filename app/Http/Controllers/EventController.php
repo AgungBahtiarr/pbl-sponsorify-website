@@ -72,6 +72,7 @@ class EventController extends Controller
             'email' => 'required|email',
             'description' => 'required|string|min:10',
             'location' => 'required|regex:/^https:\/\/maps\.app\.goo\.gl\/[a-zA-Z0-9]{12,}$/',
+            'venue_name' => 'required|string',
             'start_date' => 'required|date|after:today',
             'proposal' => 'required|file|mimes:pdf|max:20480',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
@@ -140,6 +141,7 @@ class EventController extends Controller
                 'email' => $request->email,
                 'description' => $request->description,
                 'location' => $request->location,
+                'venue_name' => $request->venue_name,
                 'proposal' => $filePath,
                 'start_date' => $request->start_date,
                 'id_user' => $idUser,
@@ -247,10 +249,12 @@ class EventController extends Controller
 
             $response = Http::withToken($token)->post('http://localhost:8080/api/event', $data);
 
+
             if ($response->status() == 201) {
                 $request->session()->forget('formSatu');
                 return redirect('/event/my_event')->with('success', 'Event berhasil dibuat');
             } else {
+                return $response;
                 return redirect('/event/formSatu')
                     ->withErrors(['message' => 'Terjadi kesalahan saat membuat event'])
                     ->withInput();
