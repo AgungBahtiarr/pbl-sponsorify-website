@@ -17,7 +17,7 @@ class AuthController extends Controller
     public function indexRegister()
     {
 
-        $response = Http::get("http://localhost:8080/api/roles");
+        $response = Http::get(env('API_URL') . "/api/roles");
         return view('auth.register', [
             'data' => json_decode($response),
         ]);
@@ -31,7 +31,7 @@ class AuthController extends Controller
         ];
 
         try {
-            $response = Http::post("http://localhost:8080/api/login", $data);
+            $response = Http::post(env('API_URL') . "/api/login", $data);
         } catch (Exception $e) {
             echo $e;
         }
@@ -77,7 +77,7 @@ class AuthController extends Controller
             'password' => $password,
         ];
 
-        $response = Http::post("http://localhost:8080/api/register", $parameter);
+        $response = Http::post(env('API_URL') . "/api/register", $parameter);
 
         $res = json_decode($response);
 
@@ -98,7 +98,7 @@ class AuthController extends Controller
     {
         $token = Cookie::get('token');
 
-        $response = Http::withToken($token)->delete('http://localhost:8080/api/logout');
+        $response = Http::withToken($token)->delete(env('API_URL') . '/api/logout');
 
         Cookie::queue(Cookie::make('token', null));
 
