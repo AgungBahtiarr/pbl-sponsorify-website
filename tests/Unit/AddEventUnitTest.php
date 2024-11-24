@@ -38,6 +38,7 @@ class AddEventUnitTest extends TestCase
             'description' => 'Semarak kemerdekaan merupakan bisnis plan tahunan yang diadakan di poliwangi oleh UKM KWU',
             'email' => 'anggotakwu@gmail.com',
             'location' => 'https://maps.app.goo.gl/kroonKXRdun2SfWo7',
+            'venue_name' => 'Gedung Serba Guna',
             'proposal' => "proposal/proposal.pdf",
             'start_date' => '2024-12-07',
             'image' => 'image/poster.jpg',
@@ -172,6 +173,7 @@ class AddEventUnitTest extends TestCase
             'description' => '',
             'email' => '',
             'location' => '',
+            'venue_name' => '',
             'proposal' => '',
             'start_date' => '',
             'image' => '',
@@ -199,6 +201,7 @@ class AddEventUnitTest extends TestCase
                 'id_user' => ['The id user field is required.'],
                 'image' => ['Poster event wajib diupload'],
                 'location' => ['Lokasi event wajib diisi'],
+                'venue_name' => ['Nama venue acara wajib diisi'],
                 'name' => ['Nama event wajib diisi'],
                 'proposal' => ['Proposal event wajib diupload'],
                 'slot1' => ['Jumlah slot Platinum wajib diisi'],
@@ -439,6 +442,84 @@ class AddEventUnitTest extends TestCase
                 'slot2' => ['Jumlah slot harus berupa angka bulat'],
                 'slot3' => ['Jumlah slot harus berupa angka bulat'],
                 'slot4' => ['Jumlah slot harus berupa angka bulat']
+            ],
+            'message' => 'Validation error',
+            'status' => 'error'
+        ]);
+    }
+
+    public function test_can_create_event_with_minimum_venue_name()
+    {
+        $data = array_merge($this->validData, [
+            'venue_name' => 'GSG'  // 3 karakter
+        ]);
+
+        $response = $this->withHeaders($this->headers)
+            ->post('/api/event', $data);
+
+        $response->assertStatus(201);
+    }
+
+    public function test_cannot_create_event_with_below_minimum_venue_name()
+    {
+        $data = array_merge($this->validData, [
+            'venue_name' => 'GS'  // 2 karakter
+        ]);
+
+        $response = $this->withHeaders($this->headers)
+            ->post('/api/event', $data);
+
+        $response->assertStatus(422)->assertJsonFragment([
+            'errors' => [
+                'venue_name' => ['Nama venue minimal 3 karakter']
+            ],
+            'message' => 'Validation error',
+            'status' => 'error'
+        ]);
+    }
+
+    public function test_can_create_event_with_maximum_venue_name()
+    {
+        $data = array_merge($this->validData, [
+            'venue_name' => 'Gedung Serba Guna Politeknik Negeri Banyuwangi ABC' // 50 karakter
+        ]);
+
+        $response = $this->withHeaders($this->headers)
+            ->post('/api/event', $data);
+
+        $response->assertStatus(201);
+    }
+
+    public function test_cannot_create_event_with_above_maximum_venue_name()
+    {
+        $data = array_merge($this->validData, [
+            'venue_name' => 'Gedung Serba Guna Politeknik Negeri Banyuwangi Lantai 2A' // 51 karakter
+        ]);
+
+        $response = $this->withHeaders($this->headers)
+            ->post('/api/event', $data);
+
+        $response->assertStatus(422)->assertJsonFragment([
+            'errors' => [
+                'venue_name' => ['Nama venue maksimal 50 karakter']
+            ],
+            'message' => 'Validation error',
+            'status' => 'error'
+        ]);
+    }
+
+    public function test_cannot_create_event_with_empty_venue_name()
+    {
+        $data = array_merge($this->validData, [
+            'venue_name' => ''
+        ]);
+
+        $response = $this->withHeaders($this->headers)
+            ->post('/api/event', $data);
+
+        $response->assertStatus(422)->assertJsonFragment([
+            'errors' => [
+                'venue_name' => ['Nama venue acara wajib diisi']
             ],
             'message' => 'Validation error',
             'status' => 'error'

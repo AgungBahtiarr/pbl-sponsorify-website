@@ -31,7 +31,6 @@ class AddEventTest extends TestCase
         $this->token = $response->json('token');
         $this->role = $response->json('user.id_role');
         $this->authUser = $response->json('user.id');
-
     }
 
     public function test_can_create_event_with_valid_data()
@@ -41,6 +40,7 @@ class AddEventTest extends TestCase
             'description' => 'Semarak kemerdekaan merupakan bisnis plan tahunan yang diadakan di poliwangi oleh UKM KWU',
             'email' => 'anggotakwu@gmail.com',
             'location' => 'https://maps.app.goo.gl/kroonKXRdun2SfWo7',
+            'venue_name' => 'Gedung Poliwangi',
             'proposal' => UploadedFile::fake()->create('proposal/proposal.pdf', 10000),
             'start_date' => '2024-12-07',
             'image' => UploadedFile::fake()->image('image/poster.jpg', 1000)
@@ -56,6 +56,7 @@ class AddEventTest extends TestCase
             'description' => 'valid description',
             'email' => 'valid@email.com',
             'location' => 'https://maps.app.goo.gl/kroonKXRdun2SfWo7',
+            'venue_name' => 'Gedung Poliwangi',
             'proposal' => UploadedFile::fake()->create('proposal.pdf', 1000),
             'start_date' => '2025-01-01',
             'image' => UploadedFile::fake()->image('poster.jpg', 1000)
