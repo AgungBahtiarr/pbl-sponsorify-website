@@ -35,7 +35,7 @@ class EventController extends Controller
             'email' => 'required|email',
             'description' => 'required|string|min:10',
             'location' => 'required|string|regex:/^https:\/\/maps\.app\.goo\.gl\/[a-zA-Z0-9]{12,}$/',
-            'venue_name' => 'required|string',
+            'venue_name' => 'required|string|min:5|max:100',
             'proposal' => 'required', // max 20MB
             'start_date' => 'required|date|after:today',
             'id_user' => 'required|exists:users,id',
@@ -64,6 +64,10 @@ class EventController extends Controller
 
             'location.required' => 'Lokasi event wajib diisi',
             'location.regex' => 'Lokasi harus berupa link Google Maps yang valid',
+
+            'venue_name.required' => 'Nama Venue acara wajib diisi',
+            'venue_name.min' => 'Nama Venue event minimal 5 karakter',
+            'venue_name.max' => 'Nama Venue acara maksimal 100 karakter',
 
             'proposal.required' => 'Proposal event wajib diupload',
             'proposal.mimes' => 'Proposal harus berformat PDF',

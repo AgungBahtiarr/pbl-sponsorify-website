@@ -72,7 +72,7 @@ class EventController extends Controller
             'email' => 'required|email',
             'description' => 'required|string|min:10',
             'location' => 'required|regex:/^https:\/\/maps\.app\.goo\.gl\/[a-zA-Z0-9]{12,}$/',
-            'venue_name' => 'required|string',
+            'venue_name' => 'required|string|min:5|max:100',
             'start_date' => 'required|date|after:today',
             'proposal' => 'required|file|mimes:pdf|max:20480',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
@@ -80,6 +80,7 @@ class EventController extends Controller
             'name.required' => 'Nama acara wajib diisi',
             'name.min' => 'Nama event minimal 3 karakter',
             'name.max' => 'Nama acara maksimal 255 karakter',
+
 
             'email.required' => 'Email wajib diisi',
             'email.email' => 'Format email tidak valid',
@@ -89,6 +90,10 @@ class EventController extends Controller
 
             'location.required' => 'Alamat wajib diisi',
             'location.regex' => 'Format link Google Maps tidak valid',
+
+            'venue_name.required' => 'Nama Venue acara wajib diisi',
+            'venue_name.min' => 'Nama Venue event minimal 5 karakter',
+            'venue_name.max' => 'Nama Venue acara maksimal 100 karakter',
 
             'start_date.required' => 'Tanggal mulai wajib diisi',
             'start_date.date' => 'Format tanggal tidak valid',

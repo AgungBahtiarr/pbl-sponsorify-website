@@ -9,8 +9,8 @@
                 </div>
             </div>
             <!-- <div class="h-[552px] flex justify-center items-center">
-                                                                                                                                                                                                <img class=" rounded-xl drop-shadow-2xl" src="http://localhost:8080/{{ $transaction->event->image }}" alt="">
-                                                                                                                                                                                            </div> -->
+                                                                                                                                                                                                                                <img class=" rounded-xl drop-shadow-2xl" src="http://localhost:8080/{{ $transaction->event->image }}" alt="">
+                                                                                                                                                                                                                            </div> -->
             <div>
                 <h1 class="font-semibold text-[50px]">{{ $transaction->event->name }}</h1>
                 <div class="flex items-center gap-5">
@@ -78,21 +78,19 @@
                                 @csrf
                                 @method('patch')
                                 <label class="flex items-center gap-2 mb-2">
-                                    <select name="id_level" class="grow select select-bordered"
+                                    <select name="id_level" id="levelSelect" class="grow select select-bordered"
                                         placeholder="Jumlah Dana Sponsor Yang Akan Diberikan" required>
                                         @foreach ($levels as $level)
                                             @if ($level->slot !== 0)
-                                                <option value="{{ $level->id }}">{{ $level->level }} - Rp.
-                                                    {{ $level->fund }}
+                                                <option value="{{ $level->id }}"
+                                                    data-fund="{{ str_replace(',', '', $level->fund) }}">
+                                                    {{ $level->level }} - Rp. {{ $level->fund }}
                                                 </option>
                                             @endif
                                         @endforeach
                                     </select>
                                 </label>
-                                <label class="input input-bordered flex items-center gap-2">
-                                    <input type="number" name="total_fund" class="grow"
-                                        placeholder="Jumlah Dana Sponsor Yang Akan Diberikan" />
-                                </label>
+                                <input type="hidden" name="total_fund" id="totalFund" class="grow" />
                                 <label class="input input-bordered flex items-center gap-2 mt-2">
                                     <input type="text" class="grow" name="comment"
                                         placeholder="Masukan pesan untuk event organizer" />
@@ -102,6 +100,26 @@
                                 <button
                                     class="px-10 py-2 rounded-2xl text-white bg-neutral mt-5 font-semibold">Kirim</button>
                             </form>
+
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    const select = document.getElementById('levelSelect');
+                                    const totalFund = document.getElementById('totalFund');
+
+                                    // Set initial value
+                                    if (select && select.options.length > 0) {
+                                        totalFund.value = select.options[select.selectedIndex].getAttribute('data-fund');
+                                        console.log("Initial value set to:", totalFund.value); // Debug line
+                                    }
+
+                                    // Update value when selection changes
+                                    select.addEventListener('change', function() {
+                                        const selectedOption = this.options[this.selectedIndex];
+                                        totalFund.value = selectedOption.getAttribute('data-fund');
+                                        console.log("Value changed to:", totalFund.value); // Debug line
+                                    });
+                                });
+                            </script>
                         </div>
                     </div>
                 </dialog>
