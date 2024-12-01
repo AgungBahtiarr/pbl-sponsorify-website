@@ -8,8 +8,8 @@
                 <!-- Image Section -->
                 <div class="w-full lg:w-1/2">
                     <div class="rounded-xl overflow-hidden shadow-2xl">
-                        <img src="http://localhost:8080/{{ $transaction->event->image }}"
-                            alt="{{ $transaction->event->name }}" class="w-full h-auto object-cover">
+                        <img src="/{{ $transaction->event->image }}" alt="{{ $transaction->event->name }}"
+                            class="w-full h-auto object-cover">
                     </div>
                 </div>
 
@@ -59,7 +59,7 @@
 
                     <!-- Proposal Button -->
                     <div class="pt-4">
-                        <a href="http://localhost:8080/{{ $transaction->event->proposal }}"
+                        <a href="/{{ $transaction->event->proposal }}"
                             class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 bg-neutral text-white rounded-xl hover:bg-neutral-700 transition-colors">
                             <i class="fa-solid fa-download"></i>
                             <span class="font-semibold">Review proposal</span>

@@ -34,14 +34,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         //User
-
-        User::create([
-            'name' => 'Agung Berkah',
-            'email' => 'agung@gmail.com',
-            'password' => bcrypt('sandi123'),
-            'id_role' => 1
-        ]);
-
         User::create([
             'name' => 'Adam Berkah',
             'email' => 'ab@gmail.com',
@@ -183,7 +175,7 @@ class DatabaseSeeder extends Seeder
             'start_date' => '2024-08-27',
             'venue_name' => 'Aula Poliwangi',
             'image' => 'image/event1.jpg',
-            'id_user' => 2
+            'id_user' => 1
         ]);
 
         Event::create([
@@ -195,7 +187,7 @@ class DatabaseSeeder extends Seeder
             'start_date' => '2023-03-15',
             'venue_name' => 'Panti Asuhan Banyuwangi',
             'image' => 'image/event2.jpg',
-            'id_user' => 2
+            'id_user' => 1
         ]);
 
         Event::create([
@@ -231,7 +223,7 @@ class DatabaseSeeder extends Seeder
             'start_date' => '2024-05-27',
             'venue_name' => 'Gedung Serba Guna Poliwangi',
             'image' => 'image/event5.jpg',
-            'id_user' => 2
+            'id_user' => 1
         ]);
 
         Event::create([
@@ -243,7 +235,7 @@ class DatabaseSeeder extends Seeder
             'start_date' => '2024-04-05',
             'venue_name' => 'Lab Komputer Poliwangi',
             'image' => 'image/event6.jpg',
-            'id_user' => 2
+            'id_user' => 1
         ]);
 
         Event::create([
@@ -267,7 +259,7 @@ class DatabaseSeeder extends Seeder
             'start_date' => '2024-06-29',
             'venue_name' => 'Aula Seni Poliwangi',
             'image' => 'image/event8.jpg',
-            'id_user' => 2
+            'id_user' => 1
         ]);
 
         Event::create([
