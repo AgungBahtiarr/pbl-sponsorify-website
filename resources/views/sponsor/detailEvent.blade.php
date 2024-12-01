@@ -1,146 +1,162 @@
 @extends('layouts.sponsor_layout')
 @section('content')
-    <div class="m-11">
-        <div class="mx-40 flex justify-center gap-14">
-            <div class="avatar">
-                <div class="w-[400px] rounded-xl">
-                    <img class=" rounded-xl drop-shadow-2xl" src="http://localhost:8080/{{ $transaction->event->image }}"
-                        alt="">
-                </div>
-            </div>
-            <!-- <div class="h-[552px] flex justify-center items-center">
-                                                                                                                                                                                                                                <img class=" rounded-xl drop-shadow-2xl" src="http://localhost:8080/{{ $transaction->event->image }}" alt="">
-                                                                                                                                                                                                                            </div> -->
-            <div>
-                <h1 class="font-semibold text-[50px]">{{ $transaction->event->name }}</h1>
-                <div class="flex items-center gap-5">
-                    <div class="px-2 py-2 rounded-xl">
-                        <i class="fa-regular text-4xl fa-calendar"></i>
-                    </div>
-                    <div class="">
-                        <h1 class="font-semibold text-[20px]">
-                            {{ date('d/m/Y', strtotime($transaction->event->start_date)) }} -
-                            {{-- {{ date('d/m/Y', strtotime($transaction->event->end_date)) }} --}}
-                        </h1>
-                        <h1 class="text-[#8f8f8f]">Tanggal Mulai</h1>
+    <div class="container mx-auto px-4 py-8">
+        <!-- Main Content -->
+        <div class="max-w-7xl mx-auto">
+            <!-- Event Details Section -->
+            <div class="flex flex-col lg:flex-row gap-8 lg:gap-14 mb-12">
+                <!-- Image Section -->
+                <div class="w-full lg:w-1/2">
+                    <div class="rounded-xl overflow-hidden shadow-2xl">
+                        <img src="http://localhost:8080/{{ $transaction->event->image }}"
+                            alt="{{ $transaction->event->name }}" class="w-full h-auto object-cover">
                     </div>
                 </div>
-                <div class="flex items-center gap-6 mt-3">
-                    <div class="px-2 py-2 rounded-xl">
-                        <i class="fa-solid text-4xl fa-location-dot"></i>
-                    </div>
-                    <div class="">
-                        <a href="{{ $transaction->event->location }}" target="_blank"
-                            class="text-blue-500 font-semibold underline">Lihat
-                            Alamat</a>
 
-                        <h1 class="text-[#8f8f8f]">Alamat
-                            Acara</h1>
-                    </div>
-                </div>
-                <div class="flex items-center gap-5 mt-3">
-                    <div class="px-2 py-2 rounded-xl">
-                        <i class="fa-regular text-4xl fa-user"></i>
-                    </div>
-                    <div class="">
-                        <h1 class="font-semibold text-[20px]">{{ $event->user->name }}</h1>
-                        <h1 class="text-[#8f8f8f]">Penanggung jawab</h1>
-                    </div>
-                </div>
-                <div class="flex justify-start mt-5">
-                    <a href="http://localhost:8080/{{ $transaction->event->proposal }}"
-                        class="flex gap-2 bg-neutral text-white px-40 py-3 rounded-xl">
-                        <i class="fa-solid fa-download"></i>
-                        <h1 class="font-semibold">Review proposal</h1>
-                    </a>
-                </div>
-            </div>
+                <!-- Event Info Section -->
+                <div class="w-full lg:w-1/2 space-y-6">
+                    <h1 class="text-3xl sm:text-4xl lg:text-[50px] font-semibold leading-tight">
+                        {{ $transaction->event->name }}
+                    </h1>
 
-
-        </div>
-
-        <div class="mx-40 my-5 flex flex-col items-start">
-            <h1 class="font-semibold text-[21px]">Tentang Acara</h1>
-            <p class="text-justify">{{ $transaction->event->description }}</p>
-        </div>
-        <div class="flex justify-center gap-5">
-            <div>
-                <button class="px-52 py-3 bg-green-500 font-semibold text-white rounded-2xl" onclick="my_modal_terima.showModal()">Terima</button>
-                <dialog id="my_modal_terima" class="modal">
-                    <div class="modal-box">
-                        <form method="dialog">
-                            {{-- <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" type="button" onclick="resetTerimForm()">✕</button> --}}
-                            <h3 class="font-bold text-lg mt-5 mb-4">Kirim pesan untuk Event organizer</h3>
-                        </form>
+                    <!-- Date Info -->
+                    <div class="flex items-center gap-4">
+                        <div class="text-3xl sm:text-4xl text-gray-600">
+                            <i class="fa-regular fa-calendar"></i>
+                        </div>
                         <div>
-                            <form id="formTerima" action="/sponsor/review" method="post" onsubmit="return validateTerimForm(event)">
-                                @csrf
-                                @method('patch')
-                                <label class="flex items-center gap-2 mb-2">
-                                    <select name="id_level" id="levelSelect" class="grow select select-bordered" required>
-                                        <option value="">Pilih Benefit</option>
-                                        @foreach ($levels as $level)
-                                            @if ($level->slot !== 0)
-                                                <option value="{{ $level->id }}" data-fund="{{ str_replace(',', '', $level->fund) }}">
-                                                    {{ $level->level }} - Rp. {{ $level->fund }}
-                                                </option>
-                                            @endif
-                                        @endforeach
-                                    </select>
-                                </label>
-                                <div id="benefitError" class="text-red-500 text-sm mb-2 hidden">Benefit belum dipilih</div>
-
-                                <input type="hidden" name="total_fund" id="totalFund" class="grow" />
-
-                                <label class="input input-bordered flex items-center gap-2 mt-2">
-                                    <input type="text" class="grow" name="comment" id="commentTerima"
-                                        placeholder="Masukan pesan untuk event organizer" />
-                                </label>
-                                <div id="commentTerimError" class="text-red-500 text-sm mb-2 hidden"></div>
-
-                                <input type="hidden" name="id_status" value="2">
-                                <input type="hidden" name="id" value={{ $transaction->id }}>
-
-                                <div class="flex gap-2 mt-5">
-                                    <button type="submit" class="px-10 py-2 rounded-2xl text-white bg-neutral font-semibold">Kirim</button>
-                                    <button type="button" onclick="cancelTerimForm()" class="px-10 py-2 rounded-2xl text-white bg-gray-500 font-semibold">Batal</button>
-                                </div>
-                            </form>
+                            <h2 class="font-semibold text-lg sm:text-xl">
+                                {{ date('d/m/Y', strtotime($transaction->event->start_date)) }}
+                            </h2>
+                            <p class="text-gray-500">Tanggal Mulai</p>
                         </div>
                     </div>
-                </dialog>
-            </div>
 
-            <div>
-                <button class="px-52 py-3 bg-red-600 font-semibold text-white rounded-2xl" onclick="my_modal_tolak.showModal()">Tolak</button>
-                <dialog id="my_modal_tolak" class="modal">
-                    <div class="modal-box">
-                        <form method="dialog">
-                            {{-- <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" type="button" onclick="resetTolakForm()">✕</button> --}}
-                            <h3 class="font-bold text-lg mt-5 mb-4">Kirim alasan untuk Event organizer</h3>
-                        </form>
+                    <!-- Location Info -->
+                    <div class="flex items-center gap-4">
+                        <div class="text-3xl sm:text-4xl text-gray-600">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
                         <div>
-                            <form id="formTolak" action="/sponsor/review" method="post" onsubmit="return validateTolakForm(event)">
-                                @csrf
-                                @method('patch')
-                                <label class="input input-bordered flex items-center gap-2">
-                                    <input type="text" name="comment" id="commentTolak" class="grow"
-                                        placeholder="Masukan umpan balik untuk event organizer" />
-                                </label>
-                                <div id="commentTolakError" class="text-red-500 text-sm mb-2 hidden"></div>
-
-                                <input type="hidden" name="id_status" value="3">
-                                <input type="hidden" name="id" value={{ $transaction->id }}>
-
-                                <div class="flex gap-2 mt-5">
-                                    <button type="submit" class="px-10 py-2 rounded-2xl text-white bg-neutral font-semibold">Kirim</button>
-                                    <button type="button" onclick="cancelTolakForm()" class="px-10 py-2 rounded-2xl text-white bg-gray-500 font-semibold">Batal</button>
-                                </div>
-                            </form>
+                            <a href="{{ $transaction->event->location }}" target="_blank"
+                                class="text-blue-500 font-semibold underline hover:text-blue-600">
+                                Lihat Alamat
+                            </a>
+                            <p class="text-gray-500">Alamat Acara</p>
                         </div>
                     </div>
-                </dialog>
+
+                    <!-- PIC Info -->
+                    <div class="flex items-center gap-4">
+                        <div class="text-3xl sm:text-4xl text-gray-600">
+                            <i class="fa-regular fa-user"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-semibold text-lg sm:text-xl">{{ $event->user->name }}</h2>
+                            <p class="text-gray-500">Penanggung jawab</p>
+                        </div>
+                    </div>
+
+                    <!-- Proposal Button -->
+                    <div class="pt-4">
+                        <a href="http://localhost:8080/{{ $transaction->event->proposal }}"
+                            class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 bg-neutral text-white rounded-xl hover:bg-neutral-700 transition-colors">
+                            <i class="fa-solid fa-download"></i>
+                            <span class="font-semibold">Review proposal</span>
+                        </a>
+                    </div>
+                </div>
             </div>
+
+            <!-- About Event Section -->
+            <div class="mb-12">
+                <h2 class="text-xl sm:text-2xl font-semibold mb-4">Tentang Acara</h2>
+                <p class="text-gray-700 text-justify">{{ $transaction->event->description }}</p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+                <button onclick="my_modal_terima.showModal()"
+                    class="w-full py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl transition-colors">
+                    Terima
+                </button>
+                <button onclick="my_modal_tolak.showModal()"
+                    class="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl transition-colors">
+                    Tolak
+                </button>
+            </div>
+
+            <!-- Accept Modal -->
+            <dialog id="my_modal_terima" class="modal">
+                <div class="modal-box w-11/12 max-w-md">
+                    <h3 class="font-bold text-lg mb-6">Kirim pesan untuk Event organizer</h3>
+
+                    <form id="formTerima" action="/sponsor/review" method="post" onsubmit="return validateTerimForm(event)"
+                        class="space-y-4">
+                        @csrf
+                        @method('patch')
+
+                        <div>
+                            <select name="id_level" id="levelSelect" class="select select-bordered w-full" required>
+                                <option value="">Pilih Benefit</option>
+                                @foreach ($levels as $level)
+                                    @if ($level->slot !== 0)
+                                        <option value="{{ $level->id }}"
+                                            data-fund="{{ str_replace(',', '', $level->fund) }}">
+                                            {{ $level->level }} - Rp. {{ $level->fund }}
+                                        </option>
+                                    @endif
+                                @endforeach
+                            </select>
+                            <div id="benefitError" class="text-red-500 text-sm mt-1 hidden"></div>
+                        </div>
+
+                        <input type="hidden" name="total_fund" id="totalFund">
+
+                        <div>
+                            <input type="text" name="comment" id="commentTerima" class="input input-bordered w-full"
+                                placeholder="Masukan pesan untuk event organizer">
+                            <div id="commentTerimError" class="text-red-500 text-sm mt-1 hidden"></div>
+                        </div>
+
+                        <input type="hidden" name="id_status" value="2">
+                        <input type="hidden" name="id" value="{{ $transaction->id }}">
+
+                        <div class="flex gap-2 pt-2">
+                            <button type="submit" class="flex-1 btn btn-neutral">Kirim</button>
+                            <button type="button" onclick="cancelTerimForm()" class="flex-1 btn btn-ghost">Batal</button>
+                        </div>
+                    </form>
+                </div>
+            </dialog>
+
+            <!-- Reject Modal -->
+            <dialog id="my_modal_tolak" class="modal">
+                <div class="modal-box w-11/12 max-w-md">
+                    <h3 class="font-bold text-lg mb-6">Kirim alasan untuk Event organizer</h3>
+
+                    <form id="formTolak" action="/sponsor/review" method="post" onsubmit="return validateTolakForm(event)"
+                        class="space-y-4">
+                        @csrf
+                        @method('patch')
+
+                        <div>
+                            <input type="text" name="comment" id="commentTolak" class="input input-bordered w-full"
+                                placeholder="Masukan umpan balik untuk event organizer">
+                            <div id="commentTolakError" class="text-red-500 text-sm mt-1 hidden"></div>
+                        </div>
+
+                        <input type="hidden" name="id_status" value="3">
+                        <input type="hidden" name="id" value="{{ $transaction->id }}">
+
+                        <div class="flex gap-2 pt-2">
+                            <button type="submit" class="flex-1 btn btn-neutral">Kirim</button>
+                            <button type="button" onclick="cancelTolakForm()"
+                                class="flex-1 btn btn-ghost">Batal</button>
+                        </div>
+                    </form>
+                </div>
+            </dialog>
         </div>
     </div>
 
@@ -241,5 +257,5 @@
             resetTolakForm();
             my_modal_tolak.close();
         }
-        </script>
+    </script>
 @endsection
