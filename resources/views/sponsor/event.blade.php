@@ -20,7 +20,7 @@
                         <div class="flex items-center gap-4 mb-6">
                             <div class="avatar flex-shrink-0">
                                 <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden">
-                                    <img src="/{{ $item->event->image }}" alt="{{ $item->event->name }}"
+                                    <img src="{{url( $item->event->image )}}" alt="{{ $item->event->name }}"
                                         class="w-full h-full object-cover" />
                                 </div>
                             </div>
@@ -45,8 +45,8 @@
                         <!-- Action Button -->
                         <div class="mt-auto">
                             <a href="/sponsor/detail/{{ $item->id }}"
-                                class="block w-full py-3 px-4 bg-yellow-400 hover:bg-yellow-500 
-                                  text-center font-semibold rounded-lg transition-colors 
+                                class="block w-full py-3 px-4 bg-yellow-400 hover:bg-yellow-500
+                                  text-center font-semibold rounded-lg transition-colors
                                   duration-200">
                                 Lihat detail
                             </a>
