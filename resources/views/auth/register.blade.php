@@ -46,9 +46,8 @@
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="role">pilih peranmu</label>
                     <select id="id_role" name="id_role"
                         class="shadow appearance-none border rounded w-full h-10 py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline bg-white">
-                        @foreach ($data as $item)
-                            <option value={{ $item->id }} name="id_role">{{ $item->role }}</option>
-                        @endforeach
+                        <option value="1" name="id_role">Event Organizer</option>
+                        <option value="2" name="id_role">Sponsor</option>
                     </select>
                 </div>
 
