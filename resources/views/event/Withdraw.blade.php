@@ -1,106 +1,149 @@
 @extends('layouts.event_layout')
 @section('content')
-    <div class="my-11">
-        <div class="ml-12">
-            <h1 class="font-semibold text-[30px]">Pencairan</h1>
-            <h1 class="font-semibold text-[#7f7f7f]">Segera terima dana sponsormu!</h1>
+    <div class="container mx-auto px-4 py-8 sm:py-11">
+        <div class="mb-8">
+            <h1 class="text-2xl sm:text-[30px] font-semibold mb-2">Pencairan</h1>
+            <p class="text-[#7f7f7f] font-semibold">Segera terima dana sponsormu!</p>
         </div>
-        <div class="mt-10">
-            <div class="border-b border-black mx-12 pb-3">
-                <ul class="grid grid-cols-5 text-center font-semibold">
-                    <li>Nama Acara</li>
-                    <li>Nama Sponsor</li>
-                    <li>Level Benefit</li>
-                    <li>Dana sponsor</li>
-                    <li>Pencairan</li>
-                </ul>
+
+        <!-- Table Header - Hidden on Mobile -->
+        <div class="hidden sm:block border-b border-black pb-3 mb-4">
+            <div class="grid grid-cols-5 text-center font-semibold">
+                <div>Nama Acara</div>
+                <div>Nama Sponsor</div>
+                <div>Level Benefit</div>
+                <div>Dana sponsor</div>
+                <div>Pencairan</div>
             </div>
         </div>
 
-        <div class="flex flex-col">
-
+        <!-- Transactions List -->
+        <div class="space-y-4">
             @foreach ($data as $item)
-                <div class="grid grid-cols-5 items-center mx-12 border border-black rounded-lg my-4 py-3">
-                    <h1 class="text-center ">{{ $item->event->name }}</h1>
-                    <h1 class="text-center ">{{ $item->sponsor->name }}</h1>
-                    <h1 class="text-center"> {{ $item->level->level }}</h1>
-
-                    <div class="flex justify-center">
-                        @if ($item->id_withdraw_status == 1)
+                <!-- Mobile View -->
+                <div class="sm:hidden bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+                    <div class="space-y-3">
+                        <div>
+                            <span class="font-semibold block mb-1">Nama Acara:</span>
+                            <span>{{ $item->event->name }}</span>
+                        </div>
+                        <div>
+                            <span class="font-semibold block mb-1">Nama Sponsor:</span>
+                            <span>{{ $item->sponsor->name }}</span>
+                        </div>
+                        <div>
+                            <span class="font-semibold block mb-1">Level Benefit:</span>
+                            <span>{{ $item->level->level }}</span>
+                        </div>
+                        <div>
+                            <span class="font-semibold block mb-1">Status:</span>
                             <div class="flex justify-center">
-                                <button href=""
-                                    class="px-7 py-1 bg-white border rounded-2xl border-neutral font-semibold text-neutral">
-                                    Belum di cairkan
-                                </button>
+                                @if ($item->id_withdraw_status == 1)
+                                    <span class="px-4 py-1 rounded-full border bg-white border-neutral text-neutral">
+                                        Belum dicairkan
+                                    </span>
+                                @elseif ($item->id_withdraw_status == 2)
+                                    <span class="px-4 py-1 rounded-full border bg-white border-[#21be32] text-[#21be32]">
+                                        Sedang diproses
+                                    </span>
+                                @elseif ($item->id_withdraw_status == 3)
+                                    <span class="px-4 py-1 rounded-full border bg-white border-[#2a9c49] text-[#2a9c49]">
+                                        Selesai
+                                    </span>
+                                @elseif ($item->id_withdraw_status == 4)
+                                    <span class="px-4 py-1 rounded-full border bg-white border-[#db3227] text-[#db3227]">
+                                        Gagal
+                                    </span>
+                                @endif
                             </div>
-                        @elseif ($item->id_withdraw_status == 2)
-                            <div class="flex justify-center">
-                                <button href=""
-                                    class="px-7 py-1 bg-white border rounded-2xl border-[#21be32] font-semibold text-[#21be32]">
-                                    Sedang di proses
-                                </button>
-                            </div>
-                        @elseif ($item->id_withdraw_status == 3)
-                            <div class="flex justify-center">
-                                <button href=""
-                                    class="px-7 py-1 bg-white border rounded-2xl border-[#2a9c49] font-semibold text-[#2a9c49]">
-                                    Selesai
-                                </button>
-                            </div>
-                        @elseif ($item->id_withdraw_status == 4)
-                            <div class="flex justify-center">
-                                <button href=""
-                                    class="px-7 py-1 bg-white border rounded-2xl border-[#db3227] font-semibold text-[#db3227]">
-                                    Gagal
-                                </button>
-                            </div>
-                        @endif
-                    </div>
-
-
-                    <div class="flex justify-center">
-                        <button class="flex font-semibold gap-2 bg-neutral text-white px-5 py-2 rounded-xl items-center"
-                            onclick="my_modalwd_{{ $item->id }}.showModal()"><i
-                                class="fa-solid fa-hand-holding-dollar"></i><span>Kirim</span></button>
-                        <dialog id="my_modalwd_{{ $item->id }}" class="modal">
-                            <div class="modal-box">
-                                <form method="dialog">
-                                    <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                                </form>
-                                <form action="" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="id" value={{ $item->id }}>
-                                    <label class="form-control w-full max-w-xs">
-                                        <div class="label">
-                                            <span class="label-text font-semibold text-lg">Nama bank</span>
-                                        </div>
-                                        <input type="text" placeholder="..." class="input input-bordered w-full max-w-xs"
-                                            name="bank_name" />
-                                    </label>
-                                    <label class="form-control w-full max-w-xs">
-                                        <div class="label">
-                                            <span class="label-text font-semibold text-lg">Nama pemilik bank</span>
-                                        </div>
-                                        <input type="text" placeholder="..." class="input input-bordered w-full max-w-xs"
-                                            name="account_name" />
-                                    </label>
-                                    <label class="form-control w-full max-w-xs">
-                                        <div class="label">
-                                            <span class="label-text font-semibold text-lg">Nomer rekening</span>
-                                        </div>
-                                        <input type="text" placeholder="..." class="input input-bordered w-full max-w-xs"
-                                            name="no_rek" />
-                                    </label>
-                                    <button
-                                        class="flex font-semibold gap-2 bg-neutral text-white px-5 py-2 rounded-xl items-center mt-6">
-                                        Kirim</button>
-                                </form>
-                            </div>
-                        </dialog>
+                        </div>
+                        <div class="pt-2">
+                            <button class="btn btn-neutral w-full gap-2"
+                                onclick="my_modalwd_{{ $item->id }}.showModal()">
+                                <i class="fa-solid fa-hand-holding-dollar"></i>
+                                <span>Kirim</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            @endforeach
 
+                <!-- Desktop View -->
+                <div class="hidden sm:grid grid-cols-5 items-center border border-gray-200 rounded-lg p-4">
+                    <div class="text-center truncate px-2">{{ $item->event->name }}</div>
+                    <div class="text-center truncate px-2">{{ $item->sponsor->name }}</div>
+                    <div class="text-center">{{ $item->level->level }}</div>
+                    <div class="flex justify-center">
+                        @if ($item->id_withdraw_status == 1)
+                            <span class="px-4 py-1 rounded-full border bg-white border-neutral text-neutral">
+                                Belum dicairkan
+                            </span>
+                        @elseif ($item->id_withdraw_status == 2)
+                            <span class="px-4 py-1 rounded-full border bg-white border-[#21be32] text-[#21be32]">
+                                Sedang diproses
+                            </span>
+                        @elseif ($item->id_withdraw_status == 3)
+                            <span class="px-4 py-1 rounded-full border bg-white border-[#2a9c49] text-[#2a9c49]">
+                                Selesai
+                            </span>
+                        @elseif ($item->id_withdraw_status == 4)
+                            <span class="px-4 py-1 rounded-full border bg-white border-[#db3227] text-[#db3227]">
+                                Gagal
+                            </span>
+                        @endif
+                    </div>
+                    <div class="flex justify-center">
+                        <button class="btn btn-neutral gap-2" onclick="my_modalwd_{{ $item->id }}.showModal()">
+                            <i class="fa-solid fa-hand-holding-dollar"></i>
+                            <span>Kirim</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Withdrawal Modal -->
+                <dialog id="my_modalwd_{{ $item->id }}" class="modal">
+                    <div class="modal-box w-11/12 max-w-md">
+                        <form method="dialog">
+                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                        </form>
+
+                        <form action="" method="POST" class="space-y-4">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $item->id }}">
+
+                            <div class="form-control w-full">
+                                <label class="label">
+                                    <span class="label-text font-semibold">Nama bank</span>
+                                </label>
+                                <input type="text" placeholder="Masukkan nama bank" class="input input-bordered w-full"
+                                    name="bank_name" required />
+                            </div>
+
+                            <div class="form-control w-full">
+                                <label class="label">
+                                    <span class="label-text font-semibold">Nama pemilik bank</span>
+                                </label>
+                                <input type="text" placeholder="Masukkan nama pemilik rekening"
+                                    class="input input-bordered w-full" name="account_name" required />
+                            </div>
+
+                            <div class="form-control w-full">
+                                <label class="label">
+                                    <span class="label-text font-semibold">Nomor rekening</span>
+                                </label>
+                                <input type="text" placeholder="Masukkan nomor rekening"
+                                    class="input input-bordered w-full" name="no_rek" required />
+                            </div>
+
+                            <button type="submit" class="btn btn-neutral w-full">
+                                Kirim
+                            </button>
+                        </form>
+                    </div>
+                    <form method="dialog" class="modal-backdrop">
+                        <button>close</button>
+                    </form>
+                </dialog>
+            @endforeach
         </div>
     </div>
 @endsection

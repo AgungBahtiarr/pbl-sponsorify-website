@@ -2,16 +2,15 @@
 @section('content')
     <div class="m-3 mt-20">
         <div class="flex flex-col items-center mb-14">
-            <h1 class="font-bold text-[30px] text-neutral">Pencarian sponsor</h1>
-            <h1 class="font-semibold text-[#7f7f7f]">Temukan sponsor impianmu disini!</h1>
+            <h1 class="font-bold text-[30px] text-neutral text-center">Pencarian sponsor</h1>
+            <h1 class="font-semibold text-[#7f7f7f] text-center">Temukan sponsor impianmu disini!</h1>
         </div>
+        
         <div>
             <form action="/sponsor/search" method="POST">
                 @csrf
-                <div class="flex justify-center">
-
-                    <label class="input input-bordered flex items-center gap-2 w-1/2">
-
+                <div class="flex justify-center px-4">
+                    <label class="input input-bordered flex items-center gap-2 w-full md:w-1/2">
                         <input type="text" class="grow" name="str" placeholder="Cari ..." />
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
                             class="w-4 h-4 opacity-70">
@@ -24,51 +23,46 @@
             </form>
         </div>
 
-        <div class="flex justify-start mt-11 mb-[76px] gap-2 overflow-auto md:justify-center">
+        <div class="flex justify-start mt-11 mb-[76px] gap-2 overflow-x-auto px-4 md:justify-center">
             @foreach ($categories as $category)
                 <form action="/sponsor/categories" method="post">
                     @csrf
                     <input type="hidden" name="id_category" value={{ $category->id }}>
-                    <button class="btn btn-outline hover:bg-neutral">{{ $category->category }}</button>
+                    <button class="btn btn-outline hover:bg-neutral whitespace-nowrap">{{ $category->category }}</button>
                 </form>
             @endforeach
-
         </div>
-        <div class="grid grid-cols-3 items-center overflow-scroll">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
             @foreach ($data as $sponsor)
-                <div class="card w-72 bg-base-100 shadow-xl my-6 md:w-96 ">
+                <div class="card bg-base-100 shadow-xl my-6 w-full max-w-sm mx-auto">
                     <div class="flex justify-center">
                         <div class="avatar">
-                            <div class="w-72 rounded-xl">
-                                <img src="http://127.0.0.1:8080/{{ $sponsor->image }}" />
+                            <div class="w-full rounded-xl">
+                                <img src="http://127.0.0.1:8080/{{ $sponsor->image }}" alt="{{ $sponsor->name }}" class="w-full object-cover"/>
                             </div>
                         </div>
                     </div>
 
                     <div class="card-body">
-                        <div class="flex flex-col gap-2 md:flex-row">
-                            <h2 class="card-title">
+                        <div class="flex flex-col gap-2 sm:flex-row items-start sm:items-center">
+                            <h2 class="card-title text-lg">
                                 {{ $sponsor->name }}
                             </h2>
-                            <div class="">
-                                <div class="badge badge-neutral truncate  ... h-8">{{ $sponsor->category->category }}</div>
-
+                            <div class="badge badge-neutral truncate h-8">
+                                {{ $sponsor->category->category }}
                             </div>
                         </div>
-                        <p class="h-24 text-ellipsis overflow-hidden ... text-pretty">{{ $sponsor->description }}</p>
-                        <div class="card-actions justify-center">
-                            <div class="rounded-lg bg-neutral text-white w-96 h-10 flex justify-center items-center">
-                                <a href="/event/sponsor/detail/{{ $sponsor->id }}">Lihat detail</a>
-                            </div>
+                        <p class="h-24 text-ellipsis overflow-hidden text-sm">{{ $sponsor->description }}</p>
+                        <div class="card-actions justify-center mt-4">
+                            <a href="/event/sponsor/detail/{{ $sponsor->id }}" 
+                               class="btn btn-neutral text-white w-full">
+                                Lihat detail
+                            </a>
                         </div>
                     </div>
                 </div>
             @endforeach
-
-
         </div>
-
-
-
     </div>
 @endsection

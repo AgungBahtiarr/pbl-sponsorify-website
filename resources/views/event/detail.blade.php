@@ -1,16 +1,16 @@
 @extends('layouts.event_layout')
 @section('content')
-    <div class=" flex flex-col m-3">
-        <div class="flex justify-between items-center mx-9">
-            <div>
-                <div class="flex flex-col justify-start gap-3 md:flex-row md:items-center">
-                    <p class="font-semibold text-[35px]">{{ $sponsor->name }}</p>
-                    <div class="badge badge-neutral truncate  ... h-7">{{ $sponsor->category->category }}</div>
+    <div class="flex flex-col m-3 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+            <div class="w-full sm:w-auto">
+                <div class="flex flex-col gap-3 md:flex-row md:items-center">
+                    <h1 class="font-semibold text-2xl sm:text-3xl lg:text-[35px] break-words">{{ $sponsor->name }}</h1>
+                    <div class="badge badge-neutral h-7 whitespace-nowrap">{{ $sponsor->category->category }}</div>
                 </div>
-                <div class="flex flex-row gap-3 font-medium text-[18px]">
+                <div class="flex flex-col sm:flex-row gap-3 font-medium text-base sm:text-lg mt-2">
                     <div class="flex items-center gap-2">
                         <i class="fa-solid fa-location-dot"></i>
-                        <p>{{ $sponsor->address }}</p>
+                        <p class="break-words">{{ $sponsor->address }}</p>
                     </div>
                     <div class="flex items-center gap-2">
                         <i class="fa-regular fa-calendar-days"></i>
@@ -18,51 +18,60 @@
                     </div>
                 </div>
             </div>
-            <label for="" class="btn btn-neutral">
+            <button class="btn btn-neutral w-full sm:w-auto">
                 <div class="flex items-center gap-2">
                     <i class="fa-solid fa-share-nodes"></i>
-                    <h1>Bagikan</h1>
+                    <span>Bagikan</span>
                 </div>
-            </label>
+            </button>
         </div>
-        <div class="flex justify-center">
-            <div class="avatar">
-                <div class="h-[400px] my-6 rounded">
-                    <img src="http://127.0.0.1:8080/{{ $sponsor->image }}" />
+
+        <div class="flex justify-center my-6">
+            <div class="avatar w-full max-w-4xl">
+                <div class="w-full aspect-video rounded overflow-hidden">
+                    <img src="http://127.0.0.1:8080/{{ $sponsor->image }}" 
+                         class="w-full h-full object-cover"
+                         alt="{{ $sponsor->name }}" />
                 </div>
             </div>
         </div>
-        <div class="mx-9">
-            <p class="font-bold text-[25px]">Deskripsi</p>
-            <p>
+
+        <div class="space-y-4">
+            <h2 class="font-bold text-xl sm:text-2xl">Deskripsi</h2>
+            <p class="text-base sm:text-lg whitespace-pre-wrap">
                 {{ $sponsor->description }}
             </p>
         </div>
 
-        <button class="btn btn-neutral mt-4 mx-9" onclick="my_modal_3.showModal()">Kirim proposal</button>
+        <button class="btn btn-neutral mt-6 w-full sm:w-auto" onclick="my_modal_3.showModal()">
+            Kirim proposal
+        </button>
+
         <dialog id="my_modal_3" class="modal">
-            <div class="modal-box">
+            <div class="modal-box w-11/12 max-w-md">
                 <form method="dialog">
                     <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                 </form>
-                <label class="form-control w-full max-w-xs">
-                    <div class="label">
-                        <span class="label-text">Pilih proposal acara yang akan kamu ajukan!</span>
-
-                    </div>
-                    <form action="/event/sponsor/detail" method="POST">
-                        @csrf
-                        <select name="id_event" class="select select-bordered">
+                <form action="/event/sponsor/detail" method="POST" class="space-y-4">
+                    @csrf
+                    <div class="form-control w-full">
+                        <label class="label">
+                            <span class="label-text">Pilih proposal acara yang akan kamu ajukan!</span>
+                        </label>
+                        <select name="id_event" class="select select-bordered w-full">
                             <option disabled selected>Pilih salah satu</option>
                             @foreach ($events as $event)
-                                <option value={{ $event->id }}>{{ $event->name }}</option>
+                                <option value="{{ $event->id }}">{{ $event->name }}</option>
                             @endforeach
                         </select>
-                </label>
-                <input type="hidden" name="id_sponsor" value={{ $sponsor->id }}>
-                <button class="btn btn-active btn-neutral mt-4 mx-3">Kirim</button>
+                    </div>
+                    <input type="hidden" name="id_sponsor" value="{{ $sponsor->id }}">
+                    <button class="btn btn-neutral w-full">Kirim</button>
                 </form>
             </div>
+            <form method="dialog" class="modal-backdrop">
+                <button>close</button>
+            </form>
         </dialog>
     </div>
 @endsection
