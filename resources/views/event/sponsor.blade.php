@@ -5,7 +5,7 @@
             <h1 class="font-bold text-[30px] text-neutral text-center">Pencarian sponsor</h1>
             <h1 class="font-semibold text-[#7f7f7f] text-center">Temukan sponsor impianmu disini!</h1>
         </div>
-        
+
         <div>
             <form action="/sponsor/search" method="POST">
                 @csrf
@@ -39,7 +39,7 @@
                     <div class="flex justify-center">
                         <div class="avatar">
                             <div class="w-full rounded-xl">
-                                <img src="http://127.0.0.1:8080/{{ $sponsor->image }}" alt="{{ $sponsor->name }}" class="w-full object-cover"/>
+                                <img src="/{{ $sponsor->image }}" alt="{{ $sponsor->name }}" class="w-full object-cover" />
                             </div>
                         </div>
                     </div>
@@ -55,8 +55,7 @@
                         </div>
                         <p class="h-24 text-ellipsis overflow-hidden text-sm">{{ $sponsor->description }}</p>
                         <div class="card-actions justify-center mt-4">
-                            <a href="/event/sponsor/detail/{{ $sponsor->id }}" 
-                               class="btn btn-neutral text-white w-full">
+                            <a href="/event/sponsor/detail/{{ $sponsor->id }}" class="btn btn-neutral text-white w-full">
                                 Lihat detail
                             </a>
                         </div>

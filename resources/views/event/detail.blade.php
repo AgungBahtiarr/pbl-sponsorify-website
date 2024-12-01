@@ -29,9 +29,7 @@
         <div class="flex justify-center my-6">
             <div class="avatar w-full max-w-4xl">
                 <div class="w-full aspect-video rounded overflow-hidden">
-                    <img src="http://127.0.0.1:8080/{{ $sponsor->image }}" 
-                         class="w-full h-full object-cover"
-                         alt="{{ $sponsor->name }}" />
+                    <img src="/{{ $sponsor->image }}" class="w-full h-full object-cover" alt="{{ $sponsor->name }}" />
                 </div>
             </div>
         </div>

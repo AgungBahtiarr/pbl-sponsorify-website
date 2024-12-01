@@ -61,7 +61,7 @@
                             <p><span class="font-medium">Lokasi:</span> {{ $item->location }}</p>
                             <p><span class="font-medium">Tanggal Mulai:</span> {{ $item->start_date }}</p>
                             <div>
-                                <a href={{ 'http://localhost:8000/' . $item->proposal }} class="text-blue-600 underline">
+                                <a href={{ '/' . $item->proposal }} class="text-blue-600 underline">
                                     Unduh Proposal
                                 </a>
                             </div>
@@ -79,8 +79,7 @@
                         <div class="text-center truncate px-2">{{ $item->description }}</div>
                         <div class="text-center truncate px-2">{{ $item->location }}</div>
                         <div class="text-center">
-                            <a href={{ 'http://localhost:8000/' . $item->proposal }}
-                                class="text-blue-600 underline hover:font-semibold">
+                            <a href={{ '/' . $item->proposal }} class="text-blue-600 underline hover:font-semibold">
                                 Unduh
                             </a>
                         </div>
