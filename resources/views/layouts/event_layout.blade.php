@@ -12,75 +12,74 @@
 
 <body>
     <nav>
-    <div class="navbar bg-neutral text-neutral-content">
-        <div class="navbar-start">
-            <div class="drawer lg:hidden">
-                <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-                <div class="drawer-content">
-                    <!-- Page content here -->
-                    <label for="my-drawer" class="drawer-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            class="inline-block w-6 h-6 stroke-current">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </label>
-                </div>
-                <div class="drawer-side">
-                    <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-                    <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-                        <!-- Sidebar content here -->
-                        <li><a href="/event/dashboard">Dasbor</a></li>
-                        <li><a href="/event/sponsors">Sponsor</a></li>
-                        <li><a href="/event/my_event">Acara</a></li>
-                        <li><a href="/event/status">Status</a></li>
-                        <li><a href="/event/report">Laporan</a></li>
-                        <li><a href="/event/withdraw">Pencairan</a></li>
-                    </ul>
-                </div>
-            </div>
-            <a class="btn btn-ghost text-xl">Sponsorify</a>
-        </div>
-        <div class="navbar-center hidden lg:flex">
-            <ul class="menu menu-horizontal px-1">
-                <li><a href="/event/dashboard">Dasbor</a></li>
-                <li><a href="/event/sponsors">Sponsor</a></li>
-                <li><a href="/event/my_event">Acara</a></li>
-                <li><a href="/event/status">Status</a></li>
-                <li><a href="/event/report">Laporan</a></li>
-                <li><a href="/event/withdraw">Pencairan</a></li>
-
-            </ul>
-        </div>
-        <div class="navbar-end">
-            <div class="flex gap-2">
-                <div class="dropdown dropdown-end">
-                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-                        <div class="w-10 rounded-full">
-                            <img alt="Tailwind CSS Navbar component"
-                                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                        </div>
+        <div class="navbar bg-neutral text-neutral-content">
+            <div class="navbar-start">
+                <div class="drawer lg:hidden">
+                    <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+                    <div class="drawer-content">
+                        <!-- Page content here -->
+                        <label for="my-drawer" class="drawer-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                class="inline-block w-6 h-6 stroke-current">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </label>
                     </div>
-                    <ul tabindex="0"
-                        class="text-black mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                        <li>
-                            <a class="justify-between">
-                                Profil
-                            </a>
-                        </li>
-                        <li><a>Pengaturan</a></li>
-                        <li>
-                            <form action="/auth/logout" method="POST">
-                                @csrf
-                                @method('delete')
-                                <button>Logout</button>
-                            </form>
-                        </li>
-                    </ul>
+                    <div class="drawer-side">
+                        <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+                        <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+                            <!-- Sidebar content here -->
+                            <li><a href="/event/dashboard">Dasbor</a></li>
+                            <li><a href="/event/sponsors">Sponsor</a></li>
+                            <li><a href="/event/my_event">Acara</a></li>
+                            <li><a href="/event/status">Status</a></li>
+                            <li><a href="/event/report">Laporan</a></li>
+                            <li><a href="/event/withdraw">Pencairan</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <a class="btn btn-ghost text-xl">Sponsorify</a>
+            </div>
+            <div class="navbar-center hidden lg:flex">
+                <ul class="menu menu-horizontal px-1">
+                    <li><a href="/event/dashboard">Dasbor</a></li>
+                    <li><a href="/event/sponsors">Sponsor</a></li>
+                    <li><a href="/event/my_event">Acara</a></li>
+                    <li><a href="/event/status">Status</a></li>
+                    <li><a href="/event/report">Laporan</a></li>
+                    <li><a href="/event/withdraw">Pencairan</a></li>
+
+                </ul>
+            </div>
+            <div class="navbar-end">
+                <div class="flex gap-2">
+                    <div class="dropdown dropdown-end">
+                        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                            <div class="w-10 rounded-full">
+                                <img src="https://avatar.iran.liara.run/public" />
+                            </div>
+                        </div>
+                        <ul tabindex="0"
+                            class="text-black mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                            <li>
+                                <a class="justify-between">
+                                    Profil
+                                </a>
+                            </li>
+                            <li><a>Pengaturan</a></li>
+                            <li>
+                                <form action="/auth/logout" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <button>Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </nav>
 
     <div class="shadow-lg border border-black my-4 mx-4 rounded-lg">

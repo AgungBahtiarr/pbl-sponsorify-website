@@ -44,7 +44,7 @@
             <div class="navbar-center hidden lg:flex">
                 <ul class="menu menu-horizontal px-1">
                     <li><a href="/sponsor/dashboard">Dashboard</a></li>
-                    <li><a href="/sponsor/event">Acara  masuk</a></li>
+                    <li><a href="/sponsor/event">Acara masuk</a></li>
                     <li><a href="/sponsor/history">Riwayat</a></li>
                     <li><a href="/sponsor/report">Laporan</a></li>
                     <li><a href="/sponsor/payment">Pembayaran</a></li>
@@ -55,8 +55,7 @@
                     <div class="dropdown dropdown-end">
                         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                             <div class="w-10 rounded-full">
-                                <img alt="Tailwind CSS Navbar component"
-                                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                <img src="https://avatar.iran.liara.run/public" />
                             </div>
                         </div>
                         <ul tabindex="0"
@@ -68,11 +67,11 @@
                             </li>
                             <li><a>Settings</a></li>
                             <li>
-                            <form action="/auth/logout" method="POST">
-                                @csrf
-                                @method('delete')
-                                <button>Logout</button>
-                            </form>
+                                <form action="/auth/logout" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <button>Logout</button>
+                                </form>
                             </li>
                         </ul>
                     </div>
