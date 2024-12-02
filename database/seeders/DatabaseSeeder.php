@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Adam Berkah',
             'email' => 'ab@gmail.com',
-            'password' => bcrypt('1'),
+            'password' => bcrypt('adam1234'),
             'id_role' => 1
         ]);
 
@@ -54,91 +54,91 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'JNT',
             'email' => 'j@gmail.com',
-            'password' => bcrypt('1'),
+            'password' => bcrypt('paket123'),
             'id_role' => 2
         ]);
 
         User::create([
             'name' => 'Butterfly cafe',
             'email' => 'b@gmail.com',
-            'password' => bcrypt('1'),
+            'password' => bcrypt('butterfly123'),
             'id_role' => 2
         ]);
 
         User::create([
             'name' => 'Ria Busana',
             'email' => 'r@gmail.com',
-            'password' => bcrypt('1'),
+            'password' => bcrypt('busana123'),
             'id_role' => 2
         ]);
 
         User::create([
             'name' => 'Honda',
             'email' => 'h@gmail.com',
-            'password' => bcrypt('1'),
+            'password' => bcrypt('honda123'),
             'id_role' => 2
         ]);
 
         User::create([
             'name' => 'Eiger',
             'email' => 'e@gmail.com',
-            'password' => bcrypt('1'),
+            'password' => bcrypt('eiger123'),
             'id_role' => 2
         ]);
 
         User::create([
             'name' => 'JCO',
             'email' => 'jc@gmail.com',
-            'password' => bcrypt('1'),
+            'password' => bcrypt('jco12345'),
             'id_role' => 2
         ]);
 
         User::create([
             'name' => 'Roxy',
             'email' => 'rx@gmail.com',
-            'password' => bcrypt('1'),
+            'password' => bcrypt('roxy1234'),
             'id_role' => 2
         ]);
 
         User::create([
             'name' => 'Toko Elektronik',
             'email' => 'te@gmail.com',
-            'password' => bcrypt('1'),
+            'password' => bcrypt('toko1234'),
             'id_role' => 2
         ]);
 
         User::create([
             'name' => 'Sicepat',
             'email' => 's@gmail.com',
-            'password' => bcrypt('1'),
+            'password' => bcrypt('sicepat123'),
             'id_role' => 2
         ]);
 
         User::create([
             'name' => 'Hachi cafe',
             'email' => 'hc@gmail.com',
-            'password' => bcrypt('1'),
+            'password' => bcrypt('hachi123'),
             'id_role' => 2
         ]);
 
         User::create([
             'name' => 'Wong osing',
             'email' => 'wo@gmail.com',
-            'password' => bcrypt('1'),
+            'password' => bcrypt('wong1234'),
             'id_role' => 2
         ]);
 
         User::create([
             'name' => 'Admin Baik',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('1'),
+            'password' => bcrypt('baik1234'),
             'id_role' => 3
         ]);
 
         User::create([
             'name' => 'admin falen',
             'email' => 'adminfalen@gmail.com',
-            'password' => bcrypt('1'),
+            'password' => bcrypt('admin123'),
             'id_role' => 3
         ]);
 
@@ -162,7 +162,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus urna duis convallis convallis. Id cursus metus aliquam eleifend mi in nulla. Mi in nulla posuere sollicitudin aliquam. Egestas fringilla phasellus faucibus scelerisque eleifend donec pretium. Facilisis volutpat est velit egestas dui. Nunc vel risus commodo viverra maecenas accumsan lacus vel facilisis. Viverra maecenas accumsan lacus vel. Enim praesent elementum facilisis leo vel. Nibh praesent tristique magna sit amet. Mauris commodo quis imperdiet massa tincidunt nunc. Erat pellentesque adipiscing commodo elit at imperdiet dui accumsan. Magna eget est lorem ipsum. Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque. Nisl condimentum id venenatis a condimentum vitae sapien pellentesque habitant. Lorem ipsum dolor sit amet consectetur.',
             'email' => 'a@gmail.com',
             'location' => 'https://maps.app.goo.gl/k61zcvBuF9BEeieW8',
-            'proposal' => 'proposal/1.1718535529.pdf',
+            'proposal' => 'proposal/proposal.pdf',
             'start_date' => '2024-06-18',
             'venue_name' => 'Lapangan Kalibaru',
             'image' => 'image/event1.jpg',
@@ -199,7 +199,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'Galaksi merupakan kepanjangan dari gala dan aksi penyambutan mahasiswa bidikmisi & KIP-K Politeknik negeri banyuwangi yang diselenggarkan oleh forbimwangi biasanya diselenggarakan h+7 setelah kegiatan PKKMB, kegiatan ini bertujuan untuk mengenalkan peran mahasiswa sebagai penerima KIP-K di poliwangi dan sebagai agent of change untuk indonesia',
             'email' => 'ab@gmail.com',
             'location' => 'https://maps.app.goo.gl/k61zcvBuF9BEeieW8',
-            'proposal' => 'proposal/1.1718535529.pdf',
+            'proposal' => 'proposal/proposal.pdf',
             'start_date' => '2024-08-27',
             'venue_name' => 'Aula Poliwangi',
             'image' => 'image/event2.jpg',
@@ -235,7 +235,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'Abdi Isun merupakan kegiatan pengabdian kepada masyarakat yang dilakukan oleh mahasiswa KIP-K yang berkolaborasi dengan mahasiswa penerima KIP-K universitas airlangga banyuwangi dengan sasarannya sendiri panti asuhan yang bertempat di perumahan banyuwangi.',
             'email' => 'ab@gmail.com',
             'location' => 'https://maps.app.goo.gl/k61zcvBuF9BEeieW8',
-            'proposal' => 'proposal/1.1718535529.pdf',
+            'proposal' => 'proposal/proposal.pdf',
             'start_date' => '2023-03-15',
             'venue_name' => 'Panti Asuhan Banyuwangi',
             'image' => 'image/event3.jpg',
@@ -271,7 +271,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'Banyuwangi Fest adalah rangkaian acara tahunan yang diadakan di Banyuwangi, Jawa Timur, yang bertujuan untuk mempromosikan kekayaan budaya, pariwisata, dan potensi lokal daerah tersebut. Festival ini menampilkan berbagai macam kegiatan dan pertunjukan yang mencerminkan keunikan dan keragaman budaya Banyuwangi.',
             'email' => 'a@gmail.com',
             'location' => 'https://maps.app.goo.gl/k61zcvBuF9BEeieW8',
-            'proposal' => 'proposal/1.1718535529.pdf',
+            'proposal' => 'proposal/proposal.pdf',
             'start_date' => '2023-12-20',
             'venue_name' => 'Taman Blambangan',
             'image' => 'image/event4.jpg',
@@ -306,7 +306,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'PKKMB (Pengenalan Kehidupan Kampus bagi Mahasiswa Baru) di Politeknik Negeri Banyuwangi (Poliwangi) adalah program orientasi yang dirancang untuk membantu mahasiswa baru dalam beradaptasi dengan lingkungan kampus, memahami sistem akademik, dan mengenal budaya serta nilai-nilai yang ada di Poliwangi. Program ini bertujuan untuk membekali mahasiswa baru dengan informasi dan keterampilan yang diperlukan agar mereka dapat menjalani masa studi dengan lancar dan sukses.',
             'email' => 'a@gmail.com',
             'location' => 'https://maps.app.goo.gl/k61zcvBuF9BEeieW8',
-            'proposal' => 'proposal/1.1718535529.pdf',
+            'proposal' => 'proposal/proposal.pdf',
             'start_date' => '2022-08-20',
             'venue_name' => 'Kampus Poliwangi',
             'image' => 'image/event5.jpg',
@@ -341,7 +341,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'Acara ini bertujuan untuk merayakan pencapaian dan kontribusi Poliwangi dalam dunia pendidikan, serta memperkuat rasa kebersamaan dan solidaritas di antara seluruh civitas akademika. Dies Natalis biasanya diisi dengan serangkaian kegiatan yang mencerminkan semangat inovasi, prestasi, dan kebanggaan sebagai bagian dari Poliwangi.',
             'email' => 'ab@gmail.com',
             'location' => 'https://maps.app.goo.gl/k61zcvBuF9BEeieW8',
-            'proposal' => 'proposal/1.1718535529.pdf',
+            'proposal' => 'proposal/proposal.pdf',
             'start_date' => '2024-05-27',
             'venue_name' => 'Gedung Serba Guna Poliwangi',
             'image' => 'image/event6.jpg',
@@ -376,7 +376,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'COMMIT (Competition of Information Technology) adalah acara tahunan yang diselenggarakan oleh Politeknik Negeri Banyuwangi (Poliwangi) sebagai ajang kompetisi dan pameran teknologi informasi bagi mahasiswa dan pelajar di seluruh Indonesia. Acara ini bertujuan untuk mengembangkan kreativitas, inovasi, dan kemampuan teknis di bidang teknologi informasi, serta memperkenalkan Poliwangi sebagai institusi yang unggul dalam pendidikan teknologi.',
             'email' => 'ab@gmail.com',
             'location' => 'https://maps.app.goo.gl/k61zcvBuF9BEeieW8',
-            'proposal' => 'proposal/1.1718535529.pdf',
+            'proposal' => 'proposal/proposal.pdf',
             'start_date' => '2024-04-05',
             'venue_name' => 'Lab Komputer Poliwangi',
             'image' => 'image/event7.jpg',
@@ -411,7 +411,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'Acara ini bertujuan untuk memberikan pengetahuan dan keterampilan praktis dalam bidang desain grafis kepada mahasiswa dan masyarakat umum. Workshop ini juga berfungsi sebagai platform untuk mengembangkan kreativitas dan keterampilan teknis peserta dalam menggunakan berbagai alat dan software desain grafis.',
             'email' => 'a@gmail.com',
             'location' => 'https://maps.app.goo.gl/k61zcvBuF9BEeieW8',
-            'proposal' => 'proposal/1.1718535529.pdf',
+            'proposal' => 'proposal/proposal.pdf',
             'start_date' => '2024-03-05',
             'venue_name' => 'Ruang Multimedia Poliwangi',
             'image' => 'image/event8.jpg',
@@ -446,7 +446,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'Acara ini dirancang untuk merayakan pencapaian dan keberadaan Geniwangi sebagai salah satu organisasi kemahasiswaan yang aktif dan berkontribusi dalam mengembangkan potensi mahasiswa di bidang seni dan budaya. Dies Natalis Geniwangi biasanya diselenggarakan dengan berbagai kegiatan menarik yang melibatkan seluruh civitas akademika dan masyarakat sekitar.',
             'email' => 'ab@gmail.com',
             'location' => 'https://maps.app.goo.gl/k61zcvBuF9BEeieW8',
-            'proposal' => 'proposal/1.1718535529.pdf',
+            'proposal' => 'proposal/proposal.pdf',
             'start_date' => '2024-06-29',
             'venue_name' => 'Aula Seni Poliwangi',
             'image' => 'image/event9.jpg',
@@ -481,7 +481,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'Malam Puncak Mahasiswa Teknik Informatika Poliwangi adalah acara tahunan yang diselenggarakan oleh Himpunan Mahasiswa Teknik Informatika (HMTI) Politeknik Negeri Banyuwangi. Acara ini bertujuan untuk merayakan pencapaian, mempererat kebersamaan, dan menampilkan bakat serta kreativitas mahasiswa Teknik Informatika.',
             'email' => 'a@gmail.com',
             'location' => 'https://maps.app.goo.gl/k61zcvBuF9BEeieW8',
-            'proposal' => 'proposal/1.1718535529.pdf',
+            'proposal' => 'proposal/proposal.pdf',
             'start_date' => '2022-12-11',
             'venue_name' => 'Gedung Teknik Informatika',
             'image' => 'image/event10.jpg',
