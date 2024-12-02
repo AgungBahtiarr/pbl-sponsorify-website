@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\BenefitLevel;
 use App\Models\Category;
 use App\Models\Event;
 use App\Models\PaymentStatus;
@@ -11,6 +12,8 @@ use App\Models\Status;
 use App\Models\User;
 use App\Models\WithdrawStatus;
 use Illuminate\Database\Seeder;
+
+use function PHPSTORM_META\map;
 
 class DatabaseSeeder extends Seeder
 {

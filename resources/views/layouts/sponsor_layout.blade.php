@@ -26,11 +26,11 @@
                             </svg>
                         </label>
                     </div>
-                    <div class="drawer-side">
+                    <div class="drawer-side z-50">
                         <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
                         <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
                             <!-- Sidebar content here -->
-                            <li><a href="/sponsor/dashboard">Dashboard</a></li>
+                            <li><a href="/sponsor/dashboard">Dasbor</a></li>
                             <li><a href="/sponsor/event">Acara masuk</a></li>
                             <li><a href="/sponsor/history">Riwayat</a></li>
                             <li><a href="/sponsor/report">Laporan</a></li>

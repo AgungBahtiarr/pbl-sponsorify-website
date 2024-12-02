@@ -58,7 +58,8 @@
                         <div class="space-y-2">
                             <p><span class="font-medium">Email:</span> {{ $item->email }}</p>
                             <p><span class="font-medium">Deskripsi:</span> {{ $item->description }}</p>
-                            <p><span class="font-medium">Lokasi:</span> {{ $item->location }}</p>
+                            <a href="{{ $item->location }}"><span class="font-medium">Lokasi:</span>
+                                <span class="text-blue-600 underline">{{ $item->venue_name }}</span></a>
                             <p><span class="font-medium">Tanggal Mulai:</span> {{ $item->start_date }}</p>
                             <div>
                                 <a href={{ '/' . $item->proposal }} class="text-blue-600 underline">
@@ -77,7 +78,9 @@
                         <div class="text-center truncate">{{ $item->name }}</div>
                         <div class="text-center truncate">{{ $item->email }}</div>
                         <div class="text-center truncate px-2">{{ $item->description }}</div>
-                        <div class="text-center truncate px-2">{{ $item->location }}</div>
+                        <a href="{{ $item->location }}"
+                            class="text-center truncate px-2 text-blue-600 underline hover:">{{ $item->venue_name }}</a
+                            href="">
                         <div class="text-center">
                             <a href={{ '/' . $item->proposal }} class="text-blue-600 underline hover:font-semibold">
                                 Unduh
