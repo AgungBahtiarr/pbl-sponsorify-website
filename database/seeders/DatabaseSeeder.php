@@ -169,6 +169,31 @@ class DatabaseSeeder extends Seeder
             'id_user' => 1
         ]);
 
+        BenefitLevel::create([
+            'id_event' => 1,
+            'level' => 'platinum',
+            'slot' => 1,
+            'fund' => 1000000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 1,
+            'level' => 'gold',
+            'slot' => 2,
+            'fund' => 700000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 1,
+            'level' => 'silver',
+            'slot' => 3,
+            'fund' => 500000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 1,
+            'level' => 'bronze',
+            'slot' => 10,
+            'fund' => 100000
+        ]);
+
         Event::create([
             'name' => 'Galaksi',
             'description' => 'Galaksi merupakan kepanjangan dari gala dan aksi penyambutan mahasiswa bidikmisi & KIP-K Politeknik negeri banyuwangi yang diselenggarkan oleh forbimwangi biasanya diselenggarakan h+7 setelah kegiatan PKKMB, kegiatan ini bertujuan untuk mengenalkan peran mahasiswa sebagai penerima KIP-K di poliwangi dan sebagai agent of change untuk indonesia',
@@ -179,6 +204,30 @@ class DatabaseSeeder extends Seeder
             'venue_name' => 'Aula Poliwangi',
             'image' => 'image/event2.jpg',
             'id_user' => 1
+        ]);
+        BenefitLevel::create([
+            'id_event' => 2,
+            'level' => 'platinum',
+            'slot' => 1,
+            'fund' => 1000000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 2,
+            'level' => 'gold',
+            'slot' => 2,
+            'fund' => 700000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 2,
+            'level' => 'silver',
+            'slot' => 3,
+            'fund' => 500000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 2,
+            'level' => 'bronze',
+            'slot' => 10,
+            'fund' => 100000
         ]);
 
         Event::create([
@@ -192,6 +241,30 @@ class DatabaseSeeder extends Seeder
             'image' => 'image/event3.jpg',
             'id_user' => 1
         ]);
+        BenefitLevel::create([
+            'id_event' => 3,
+            'level' => 'platinum',
+            'slot' => 1,
+            'fund' => 1000000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 3,
+            'level' => 'gold',
+            'slot' => 2,
+            'fund' => 700000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 3,
+            'level' => 'silver',
+            'slot' => 3,
+            'fund' => 500000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 3,
+            'level' => 'bronze',
+            'slot' => 10,
+            'fund' => 100000
+        ]);
 
         Event::create([
             'name' => 'Banyuwangi fest',
@@ -204,7 +277,30 @@ class DatabaseSeeder extends Seeder
             'image' => 'image/event4.jpg',
             'id_user' => 1
         ]);
-
+        BenefitLevel::create([
+            'id_event' => 4,
+            'level' => 'platinum',
+            'slot' => 1,
+            'fund' => 1000000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 4,
+            'level' => 'gold',
+            'slot' => 2,
+            'fund' => 700000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 4,
+            'level' => 'silver',
+            'slot' => 3,
+            'fund' => 500000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 4,
+            'level' => 'bronze',
+            'slot' => 10,
+            'fund' => 100000
+        ]);
         Event::create([
             'name' => 'PKKMB Poliwangi',
             'description' => 'PKKMB (Pengenalan Kehidupan Kampus bagi Mahasiswa Baru) di Politeknik Negeri Banyuwangi (Poliwangi) adalah program orientasi yang dirancang untuk membantu mahasiswa baru dalam beradaptasi dengan lingkungan kampus, memahami sistem akademik, dan mengenal budaya serta nilai-nilai yang ada di Poliwangi. Program ini bertujuan untuk membekali mahasiswa baru dengan informasi dan keterampilan yang diperlukan agar mereka dapat menjalani masa studi dengan lancar dan sukses.',
@@ -216,7 +312,30 @@ class DatabaseSeeder extends Seeder
             'image' => 'image/event5.jpg',
             'id_user' => 1
         ]);
-
+        BenefitLevel::create([
+            'id_event' => 5,
+            'level' => 'platinum',
+            'slot' => 1,
+            'fund' => 1000000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 5,
+            'level' => 'gold',
+            'slot' => 2,
+            'fund' => 700000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 5,
+            'level' => 'silver',
+            'slot' => 3,
+            'fund' => 500000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 5,
+            'level' => 'bronze',
+            'slot' => 10,
+            'fund' => 100000
+        ]);
         Event::create([
             'name' => 'Diesnatalis Poliwangi',
             'description' => 'Acara ini bertujuan untuk merayakan pencapaian dan kontribusi Poliwangi dalam dunia pendidikan, serta memperkuat rasa kebersamaan dan solidaritas di antara seluruh civitas akademika. Dies Natalis biasanya diisi dengan serangkaian kegiatan yang mencerminkan semangat inovasi, prestasi, dan kebanggaan sebagai bagian dari Poliwangi.',
@@ -228,7 +347,30 @@ class DatabaseSeeder extends Seeder
             'image' => 'image/event6.jpg',
             'id_user' => 1
         ]);
-
+        BenefitLevel::create([
+            'id_event' => 6,
+            'level' => 'platinum',
+            'slot' => 1,
+            'fund' => 1000000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 6,
+            'level' => 'gold',
+            'slot' => 2,
+            'fund' => 700000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 6,
+            'level' => 'silver',
+            'slot' => 3,
+            'fund' => 500000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 6,
+            'level' => 'bronze',
+            'slot' => 10,
+            'fund' => 100000
+        ]);
         Event::create([
             'name' => 'COMMIT POLIWANGI',
             'description' => 'COMMIT (Competition of Information Technology) adalah acara tahunan yang diselenggarakan oleh Politeknik Negeri Banyuwangi (Poliwangi) sebagai ajang kompetisi dan pameran teknologi informasi bagi mahasiswa dan pelajar di seluruh Indonesia. Acara ini bertujuan untuk mengembangkan kreativitas, inovasi, dan kemampuan teknis di bidang teknologi informasi, serta memperkenalkan Poliwangi sebagai institusi yang unggul dalam pendidikan teknologi.',
@@ -240,7 +382,30 @@ class DatabaseSeeder extends Seeder
             'image' => 'image/event7.jpg',
             'id_user' => 1
         ]);
-
+        BenefitLevel::create([
+            'id_event' => 7,
+            'level' => 'platinum',
+            'slot' => 1,
+            'fund' => 1000000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 7,
+            'level' => 'gold',
+            'slot' => 2,
+            'fund' => 700000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 7,
+            'level' => 'silver',
+            'slot' => 3,
+            'fund' => 500000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 7,
+            'level' => 'bronze',
+            'slot' => 10,
+            'fund' => 100000
+        ]);
         Event::create([
             'name' => 'Wokshop Desain Grafis',
             'description' => 'Acara ini bertujuan untuk memberikan pengetahuan dan keterampilan praktis dalam bidang desain grafis kepada mahasiswa dan masyarakat umum. Workshop ini juga berfungsi sebagai platform untuk mengembangkan kreativitas dan keterampilan teknis peserta dalam menggunakan berbagai alat dan software desain grafis.',
@@ -252,7 +417,30 @@ class DatabaseSeeder extends Seeder
             'image' => 'image/event8.jpg',
             'id_user' => 1
         ]);
-
+        BenefitLevel::create([
+            'id_event' => 8,
+            'level' => 'platinum',
+            'slot' => 1,
+            'fund' => 1000000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 8,
+            'level' => 'gold',
+            'slot' => 2,
+            'fund' => 700000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 8,
+            'level' => 'silver',
+            'slot' => 3,
+            'fund' => 500000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 8,
+            'level' => 'bronze',
+            'slot' => 10,
+            'fund' => 100000
+        ]);
         Event::create([
             'name' => 'Diesnatalis UKM Geniwangi',
             'description' => 'Acara ini dirancang untuk merayakan pencapaian dan keberadaan Geniwangi sebagai salah satu organisasi kemahasiswaan yang aktif dan berkontribusi dalam mengembangkan potensi mahasiswa di bidang seni dan budaya. Dies Natalis Geniwangi biasanya diselenggarakan dengan berbagai kegiatan menarik yang melibatkan seluruh civitas akademika dan masyarakat sekitar.',
@@ -264,7 +452,30 @@ class DatabaseSeeder extends Seeder
             'image' => 'image/event9.jpg',
             'id_user' => 1
         ]);
-
+        BenefitLevel::create([
+            'id_event' => 9,
+            'level' => 'platinum',
+            'slot' => 1,
+            'fund' => 1000000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 9,
+            'level' => 'gold',
+            'slot' => 2,
+            'fund' => 700000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 9,
+            'level' => 'silver',
+            'slot' => 3,
+            'fund' => 500000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 9,
+            'level' => 'bronze',
+            'slot' => 10,
+            'fund' => 100000
+        ]);
         Event::create([
             'name' => 'MAMI HMJBI',
             'description' => 'Malam Puncak Mahasiswa Teknik Informatika Poliwangi adalah acara tahunan yang diselenggarakan oleh Himpunan Mahasiswa Teknik Informatika (HMTI) Politeknik Negeri Banyuwangi. Acara ini bertujuan untuk merayakan pencapaian, mempererat kebersamaan, dan menampilkan bakat serta kreativitas mahasiswa Teknik Informatika.',
@@ -276,7 +487,30 @@ class DatabaseSeeder extends Seeder
             'image' => 'image/event10.jpg',
             'id_user' => 1
         ]);
-
+        BenefitLevel::create([
+            'id_event' => 10,
+            'level' => 'platinum',
+            'slot' => 1,
+            'fund' => 1000000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 10,
+            'level' => 'gold',
+            'slot' => 2,
+            'fund' => 700000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 10,
+            'level' => 'silver',
+            'slot' => 3,
+            'fund' => 500000
+        ]);
+        BenefitLevel::create([
+            'id_event' => 10,
+            'level' => 'bronze',
+            'slot' => 10,
+            'fund' => 100000
+        ]);
         //Category
         Category::create([
             'category' => 'Makanan dan minuman'
