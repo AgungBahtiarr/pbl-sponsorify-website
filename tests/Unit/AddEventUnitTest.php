@@ -21,8 +21,8 @@ class AddEventUnitTest extends TestCase
         Storage::fake('public');
 
         $response = $this->post('/api/login', [
-            'email' => 'agung@gmail.com',
-            'password' => 'sandi123'
+            'email' => 'ab@gmail.com',
+            'password' => 'adam1234'
         ]);
 
         $this->token = $response->json('token');
@@ -40,7 +40,7 @@ class AddEventUnitTest extends TestCase
             'location' => 'https://maps.app.goo.gl/kroonKXRdun2SfWo7',
             'venue_name' => 'Gedung Serba Guna',
             'proposal' => "proposal/proposal.pdf",
-            'start_date' => '2024-12-07',
+            'start_date' => '2025-12-07',
             'image' => 'image/poster.jpg',
             'fund1' => '10000000',
             'slot1' => '2',
