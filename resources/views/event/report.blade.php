@@ -6,6 +6,22 @@
             <p class="text-[#7f7f7f] font-semibold">Laporan yang akan anda ajukan</p>
         </div>
 
+        {{-- Alert Success --}}
+        @if(session('success'))
+        <div class="alert alert-success mb-4">
+            <i class="fas fa-check-circle"></i>
+            <span>{{ session('success') }}</span>
+        </div>
+        @endif
+
+        {{-- Alert Error --}}
+        @if(session('error'))
+        <div class="alert alert-error mb-4">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>{{ session('error') }}</span>
+        </div>
+        @endif
+
         <!-- Table Header - Hidden on Mobile -->
         <div class="hidden sm:block border-b border-black pb-3 mb-4">
             <div class="grid grid-cols-5 text-center font-semibold">
@@ -40,9 +56,11 @@
                             <span>{{ $event->sponsor->name }}</span>
                         </div>
                         <div class="pt-2">
-                            <button onclick="my_modal_{{ $event->id }}.showModal()" class="btn btn-neutral w-full gap-2">
+                            <button onclick="my_modal_{{ $event->id }}.showModal()"
+                                    class="btn btn-neutral w-full gap-2"
+                                    {{ isset($event->report) ? 'disabled' : '' }}>
                                 <i class="fa-solid fa-upload"></i>
-                                <span>Kirim laporan</span>
+                                <span>{{ isset($event->report) ? 'Laporan terkirim' : 'Kirim laporan' }}</span>
                             </button>
                         </div>
                     </div>
@@ -55,9 +73,11 @@
                     <div class="text-center">{{ date('d/m/Y', strtotime($event->created_at)) }}</div>
                     <div class="text-center truncate px-2">{{ $event->sponsor->name }}</div>
                     <div class="flex justify-center">
-                        <button onclick="my_modal_{{ $event->id }}.showModal()" class="btn btn-neutral gap-2">
+                        <button onclick="my_modal_{{ $event->id }}.showModal()"
+                                class="btn btn-neutral gap-2"
+                                {{ isset($event->report) ? 'disabled' : '' }}>
                             <i class="fa-solid fa-upload"></i>
-                            <span>Kirim laporan</span>
+                            <span>{{ isset($event->report) ? 'Laporan terkirim' : 'Kirim laporan' }}</span>
                         </button>
                     </div>
                 </div>
@@ -74,16 +94,28 @@
                             <p class="text-gray-600">Kirimkan tautan laporanmu</p>
                         </div>
 
-                        <form action="/event/report" method="POST" class="space-y-4">
+                        <form action="/event/report" method="POST" class="space-y-4" id="reportForm_{{ $event->id }}">
                             @csrf
                             <input type="hidden" name="id_transaction" value="{{ $event->id }}">
 
                             <div class="form-control w-full">
                                 <label class="label">
-                                    <span class="label-text font-semibold">Tautan</span>
+                                    <span class="label-text font-semibold">Tautan Google Drive</span>
                                 </label>
-                                <input type="text" placeholder="Masukkan tautan laporan"
-                                    class="input input-bordered w-full" name="report" required />
+                                <input type="text"
+                                       placeholder="https://drive.google.com/file/xxx"
+                                       class="input input-bordered w-full @error('report') input-error @enderror"
+                                       name="report"
+                                       required
+                                       pattern="https://drive\.google\.com/.*"
+                                       title="Link harus dari Google Drive"
+                                       oninvalid="this.setCustomValidity('Link harus dari Google Drive')"
+                                       oninput="this.setCustomValidity('')"/>
+                                @error('report')
+                                    <label class="label">
+                                        <span class="label-text-alt text-error">{{ $message }}</span>
+                                    </label>
+                                @enderror
                             </div>
 
                             <button type="submit" class="btn btn-neutral w-full">
@@ -98,4 +130,27 @@
             @endforeach
         </div>
     </div>
+
+    <script>
+        // Handle form submission
+        document.querySelectorAll('form[id^="reportForm_"]').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                const input = this.querySelector('input[name="report"]');
+
+                // Check if empty
+                if (!input.value.trim()) {
+                    e.preventDefault();
+                    alert('Link laporan wajib diisi');
+                    return;
+                }
+
+                // Check if it's a Google Drive link
+                if (!input.value.includes('drive.google.com')) {
+                    e.preventDefault();
+                    alert('Link harus dari Google Drive');
+                    return;
+                }
+            });
+        });
+    </script>
 @endsection

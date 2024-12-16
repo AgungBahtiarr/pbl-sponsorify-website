@@ -12,7 +12,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cookie;
 
-class ProposalResponseTest extends TestCase
+class ProposalResponseUnitTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -66,7 +66,8 @@ class ProposalResponseTest extends TestCase
             'proposal' => 'proposal.pdf',
             'start_date' => '2023-12-01',
             'id_user' => $this->eventOrganizer->id,
-            'image' => 'event.jpg'
+            'image' => 'event.jpg',
+            'venue_name' => 'Test Venue'
         ]);
 
         // Buat benefit levels
