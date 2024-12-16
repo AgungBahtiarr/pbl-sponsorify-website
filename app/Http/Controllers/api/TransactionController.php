@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\api;
+
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\Controller;
 use App\Models\BenefitLevel;
@@ -87,18 +88,19 @@ class TransactionController extends Controller
 
             // Update transaction
             $transaction = Transaction::find($request->id);
-            $transaction->update([
+
+            $data = [
                 'id_status' => $request->id_status,
                 'comment' => $request->comment,
                 'total_fund' => $request->total_fund,
                 'id_level' => $request->id_level
-            ]);
+            ];
+            $transaction->update($data);
 
             return response()->json([
                 'status' => 'success',
                 'message' => 'Respon telah terkirim'
             ], 200);
-
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',

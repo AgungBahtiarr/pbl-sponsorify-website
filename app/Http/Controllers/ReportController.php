@@ -26,17 +26,23 @@ class ReportController extends Controller
         ]);
     }
 
-    public function storeEvent(Request $request){
+    public function storeEvent(Request $request)
+    {
         $data = [
             'report' => $request->report,
             'id_transaction' => $request->id_transaction
         ];
 
-        $response = Http::post(env('API_URL').'/api/report',$data);
+        $response = Http::post(env('API_URL').'/api/report', $data);
+        $result = json_decode($response->body());
 
-        return redirect('/event/report');
+        // Redirect dengan pesan yang sesuai
+        if ($response->successful()) {
+            return redirect('/event/report')->with('success', $result->message);
+        } else {
+            return redirect('/event/report')->with('error', $result->message);
+        }
     }
-
 
     public function indexSponsor(){
         $token = Cookie::get('token');

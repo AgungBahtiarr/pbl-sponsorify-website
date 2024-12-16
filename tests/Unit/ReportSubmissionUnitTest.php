@@ -13,7 +13,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cookie;
 
-class ReportSubmissionTest extends TestCase
+class ReportSubmissionUnitTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -67,7 +67,8 @@ class ReportSubmissionTest extends TestCase
             'proposal' => 'proposal.pdf',
             'start_date' => '2023-12-01',
             'id_user' => $this->eventOrganizer->id,
-            'image' => 'event.jpg'
+            'image' => 'event.jpg',
+            'venue_name' => 'Test Venue'
         ]);
 
         // Buat benefit level

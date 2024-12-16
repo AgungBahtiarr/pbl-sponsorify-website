@@ -34,17 +34,31 @@ class SponsorEventController extends Controller
 
     public function show($id)
     {
-        $transaction = Http::get(env('API_URL').'/api/transaction/' . $id);
-        $transaction = json_decode($transaction);
-        $event = Http::get(env('API_URL').'/api/event/' . $transaction->event->id);
+        // Mengambil data transaksi berdasarkan ID
+        $transactionResponse = Http::get(env('API_URL').'/api/transaction/' . $id);
+        $transaction = json_decode($transactionResponse->body());
 
+        // Cek jika transaksi tidak ditemukan atau data transaksi null
+        if (!$transaction || !isset($transaction->event)) {
+            return view('sponsor.detaileventnotfound'); // Tampilkan halaman not found
+        }
 
+        // Mengambil data event berdasarkan ID yang ada di transaksi
+        $eventResponse = Http::get(env('API_URL').'/api/event/' . $transaction->event->id);
+        $event = json_decode($eventResponse->body());
 
-        $levels = BenefitLevel::where('id_event',  $transaction->event->id)->get();
+        // Jika event tidak ditemukan atau data event kosong
+        if (!$event) {
+            return view('sponsor.detaileventnotfound'); // Tampilkan halaman not found
+        }
 
+        // Mengambil data levels yang terkait dengan event
+        $levels = BenefitLevel::where('id_event', $transaction->event->id)->get();
+
+        // Menampilkan detail event
         return view('sponsor.detailEvent', [
             'transaction' => $transaction,
-            'event' => json_decode($event),
+            'event' => $event,
             'levels' => $levels
         ]);
     }

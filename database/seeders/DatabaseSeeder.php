@@ -9,6 +9,7 @@ use App\Models\PaymentStatus;
 use App\Models\Role;
 use App\Models\Sponsor;
 use App\Models\Status;
+use App\Models\Transaction;
 use App\Models\User;
 use App\Models\WithdrawStatus;
 use Illuminate\Database\Seeder;
@@ -677,6 +678,49 @@ class DatabaseSeeder extends Seeder
 
         WithdrawStatus::create([
             'status' => 'Gagal',
+        ]);
+
+
+        Transaction::create([
+            'id_event' => '1',
+            'id_sponsor' => 2,
+            'id_status' => 1,
+            'id_user' => 1,
+            'id_level' => 1,
+            'comment' => 'semoga eventnya sukses ya',
+            'no_rek' => '08942288383',
+            'bank_name' => 'bni',
+            'account_name' => 'falen',
+            'id_payment_status' => 2,
+            'id_withdraw_status' => 1,
+            'payment_date' => '2024-04-05',
+            'withdraw_date' => null,
+            'total_fund' => '500000'
+        ]);
+
+        BenefitLevel::create([
+            'id_event' => '1',
+            'level' => 'platinum',
+            'slot' => '2',
+            'fund' => '200000'
+        ]);
+        BenefitLevel::create([
+            'id_event' => '1',
+            'level' => 'gold',
+            'slot' => '2',
+            'fund' => '100000'
+        ]);
+        BenefitLevel::create([
+            'id_event' => '1',
+            'level' => 'bronze',
+            'slot' => '2',
+            'fund' => '300000'
+        ]);
+        BenefitLevel::create([
+            'id_event' => '1',
+            'level' => 'silver',
+            'slot' => '2',
+            'fund' => '400000'
         ]);
     }
 }

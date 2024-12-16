@@ -52,7 +52,9 @@ class TransactionController extends Controller
                 'id_level' => $request->id_level
             ];
 
+
             $response = Http::patch(env('API_URL').'/api/transaction', $data);
+
 
             if ($response->successful()) {
                 if ($request->id_status == 2) { // Terima proposal
