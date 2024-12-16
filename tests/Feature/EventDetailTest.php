@@ -65,21 +65,17 @@ class EventDetailTest extends TestCase
     /** @test */
 public function sponsor_cannot_view_nonexistent_event_detail()
 {
-    // ID transaksi yang tidak ada di database
+
     $nonExistentTransactionId = 9999;
 
-    // Kirim request untuk melihat detail event dengan ID yang tidak ada
     $response = $this->withCookies([
         'token' => $this->token,
         'roleUser' => $this->role,
         'authUser' => $this->authUser
     ])->get('/sponsor/detail/' . $nonExistentTransactionId);
 
-
-    // Pastikan view yang ditampilkan adalah detaileventnotfound
     $response->assertViewIs('sponsor.detaileventnotfound');
 
-    // Pastikan pesan yang ditampilkan pada halaman not found sesuai
     $response->assertSee('Detail Event Tidak Ditemukan');
 }
 
