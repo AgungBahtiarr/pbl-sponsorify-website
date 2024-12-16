@@ -23,8 +23,8 @@ class LoginEventUnitTest extends TestCase
     {
 
         $response = $this->post('/api/login', [
-            'email' => 'agung@gmail.com',
-            'password' => 'sandi123'
+            'email' => 'ab@gmail.com',
+            'password' => 'adam1234'
         ]);
 
         $response->assertStatus(200)->assertJsonFragment([
@@ -54,8 +54,8 @@ class LoginEventUnitTest extends TestCase
     public function test_user_cannot_login_with_wrong_password()
     {
         $response = $this->post('/api/login', [
-            'email' => 'agung@gmail.com',
-            'password' => 'PasswordSalah123'
+            'email' => 'ab@gmail.com',
+            'password' => 'adam12343'
         ]);
 
         $response->assertStatus(401)->assertJsonFragment([

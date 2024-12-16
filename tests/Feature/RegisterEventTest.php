@@ -35,7 +35,7 @@ class RegisterEventTest extends TestCase
     {
         $response = $this->post('/auth/register', [
             'name' => 'Jane Smith',
-            'email' => 'agung@gmail.com',
+            'email' => 'ab@gmail.com',
             'password' => 'Event456!',
             'id_role' => 1
         ]);

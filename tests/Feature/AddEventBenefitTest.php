@@ -24,8 +24,8 @@ class AddEventBenefitTest extends TestCase
         parent::setUp();
 
         $response = $this->post('/api/login', [
-            'email' => 'agung@gmail.com',
-            'password' => 'sandi123'
+            'email' => 'ab@gmail.com',
+            'password' => 'adam1234'
         ]);
 
         $this->token = $response->json('token');
@@ -37,13 +37,13 @@ class AddEventBenefitTest extends TestCase
         $formSatu = [
             'name' => 'Semarak merdeka',
             'description' => 'Test Description',
-            'email' => 'agung@gmail.com',
+            'email' => 'ab@gmail.com',
             'location' => 'https://maps.app.goo.gl/kroonKXRdun2SfWo7',
             'proposal' => 'proposal/proposal.pdf',
-            'start_date' => '2024-12-07',
+            'start_date' => '2025-12-07',
             'image' => 'image/poster.jpg',
-            'id_user' => $this->authUser
-
+            'id_user' => $this->authUser,
+            'venue_name' => 'Gedung Serba Guna Poliwangi'
         ];
 
         Session::put('formSatu', $formSatu);

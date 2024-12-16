@@ -24,8 +24,8 @@ class AddEventTest extends TestCase
 
         // Login untuk mendapatkan token
         $response = $this->post('/api/login', [
-            'email' => 'agung@gmail.com',
-            'password' => 'sandi123'
+            'email' => 'ab@gmail.com',
+            'password' => 'adam1234'
         ]);
 
         $this->token = $response->json('token');
@@ -42,7 +42,7 @@ class AddEventTest extends TestCase
             'location' => 'https://maps.app.goo.gl/kroonKXRdun2SfWo7',
             'venue_name' => 'Gedung Poliwangi',
             'proposal' => UploadedFile::fake()->create('proposal/proposal.pdf', 10000),
-            'start_date' => '2024-12-07',
+            'start_date' => '2025-12-07',
             'image' => UploadedFile::fake()->image('image/poster.jpg', 1000)
         ]);
 

@@ -23,8 +23,8 @@ class LoginEventTest extends TestCase
     {
 
         $response = $this->post('/auth/login', [
-            'email' => 'agung@gmail.com',
-            'password' => 'sandi123'
+            'email' => 'ab@gmail.com',
+            'password' => 'adam1234'
         ]);
 
 
@@ -34,7 +34,7 @@ class LoginEventTest extends TestCase
     public function test_user_cannot_login_with_wrong_password()
     {
         $response = $this->post('/auth/login', [
-            'email' => 'agung@gmail.com',
+            'email' => 'ab@gmail.com',
             'password' => 'PasswordSalah123'
         ]);
 
