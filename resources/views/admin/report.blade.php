@@ -1,12 +1,13 @@
 @extends('layouts.admin_layout')
 @section('content')
-    <div class="my-11">
-        <div class="ml-12">
-            <h1 class="font-semibold text-[30px]">Laporan Transaksi</h1>
-            {{-- <h1 class="font-semibold text-[#7f7f7f]">Apakah admin sudah menerima dana sponsorship?</h1> --}}
+    <div class="my-6 sm:my-11">
+        <div class="px-4 sm:ml-12">
+            <h1 class="text-2xl sm:text-[30px] font-semibold">Laporan Transaksi</h1>
         </div>
-        <div class="mt-10">
-            <div class="border-b border-black mx-12 pb-3">
+
+        <!-- Table Header - Hidden on Mobile -->
+        <div class="hidden sm:block mt-10">
+            <div class="border-b border-black mx-4 sm:mx-12 pb-3">
                 <ul class="grid grid-cols-6 text-center font-semibold">
                     <li>Nama Event</li>
                     <li>Nama Sponsor</li>
@@ -14,23 +15,56 @@
                     <li>Tanggal pembayaran</li>
                     <li>Tanggal penarikan</li>
                     <li>
-                        <a href="/admin/report/print" target="_blank" class="btn btn-primary">Cetak Laporan</a
-                            href="/admin/report/print">
+                        <a href="/admin/report/print" target="_blank" class="btn btn-primary">Cetak Laporan</a>
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="flex flex-col">
+
+        <!-- Mobile Print Button -->
+        <div class="sm:hidden px-4 mt-6">
+            <a href="/admin/report/print" target="_blank" class="btn btn-primary w-full">Cetak Laporan</a>
+        </div>
+
+        <!-- Data Cards -->
+        <div class="flex flex-col px-4 sm:px-12 mt-4">
             @foreach ($datas as $item)
-                <div class="grid grid-cols-6 items-center mx-12 border border-black rounded-lg my-4 py-3">
-                    <h1 class="text-center ">{{ $item->event->name }}</h1>
-                    <h1 class="text-center ">{{ $item->sponsor->name }}</h1>
-                    <h1 class="text-center ">Rp. {{ $item->level->fund }}</h1>
+                <!-- Mobile Card -->
+                <div class="block sm:hidden border border-black rounded-lg my-4 p-4">
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="font-semibold">Nama Event:</span>
+                            <span>{{ $item->event->name }}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="font-semibold">Nama Sponsor:</span>
+                            <span>{{ $item->sponsor->name }}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="font-semibold">Dana:</span>
+                            <span>Rp. {{ $item->level->fund }}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="font-semibold">Tanggal Pembayaran:</span>
+                            <span>{{ date('d/m/Y', strtotime($item->payment_date)) }}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="font-semibold">Tanggal Penarikan:</span>
+                            <span>{{ date('d/m/Y', strtotime($item->withdraw_date)) }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desktop Row -->
+                <div class="hidden sm:grid grid-cols-6 items-center border border-black rounded-lg my-4 py-3">
+                    <h1 class="text-center">{{ $item->event->name }}</h1>
+                    <h1 class="text-center">{{ $item->sponsor->name }}</h1>
+                    <h1 class="text-center">Rp. {{ $item->level->fund }}</h1>
                     <h1 class="text-center">{{ date('d/m/Y', strtotime($item->payment_date)) }}</h1>
                     <h1 class="text-center">{{ date('d/m/Y', strtotime($item->withdraw_date)) }}</h1>
-                    {{-- <div class="flex justify-center">
-                        <div class="badge badge-neutral">{{ $item->payment->status }}</div>
-                    </div> --}}
+                    <div class="text-center">
+                        <!-- Kosong untuk menjaga alignment -->
+                    </div>
                 </div>
             @endforeach
         </div>

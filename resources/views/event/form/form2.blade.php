@@ -37,7 +37,6 @@
                     <!-- Platinum -->
                     <div class="bg-white p-6 rounded-lg shadow-sm">
                         <h2 class="font-semibold text-xl mb-4">Platinum</h2>
-                        <input type="hidden" name="id_event">
                         <input type="hidden" name="level1" value="platinum">
 
                         <div class="space-y-4">
@@ -47,7 +46,7 @@
                                 </label>
                                 <input type="text" placeholder="Rp 10.000.000"
                                     class="input input-bordered w-full rupiah-input" name="fund1"
-                                    oninput="formatRupiah(this)" />
+                                    value="{{ old('fund1') }}" oninput="formatRupiah(this)" />
                             </div>
 
                             <div class="form-control">
@@ -55,7 +54,8 @@
                                     <span class="label-text">Slot sponsor</span>
                                 </label>
                                 <input type="number" placeholder="Jumlah slot (contoh: 2)"
-                                    class="input input-bordered w-full" name="slot1" min="1" />
+                                    class="input input-bordered w-full" name="slot1" value="{{ old('slot1') }}"
+                                    min="1" />
                             </div>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                                 </label>
                                 <input type="text" placeholder="Rp 7.500.000"
                                     class="input input-bordered w-full rupiah-input" name="fund2"
-                                    oninput="formatRupiah(this)" />
+                                    value="{{ old('fund2') }}" oninput="formatRupiah(this)" />
                             </div>
 
                             <div class="form-control">
@@ -80,7 +80,8 @@
                                     <span class="label-text">Slot sponsor</span>
                                 </label>
                                 <input type="number" placeholder="Jumlah slot (contoh: 3)"
-                                    class="input input-bordered w-full" name="slot2" min="1" />
+                                    class="input input-bordered w-full" name="slot2" value="{{ old('slot2') }}"
+                                    min="1" />
                             </div>
                         </div>
                     </div>
@@ -97,7 +98,7 @@
                                 </label>
                                 <input type="text" placeholder="Rp 5.000.000"
                                     class="input input-bordered w-full rupiah-input" name="fund3"
-                                    oninput="formatRupiah(this)" />
+                                    value="{{ old('fund3') }}" oninput="formatRupiah(this)" />
                             </div>
 
                             <div class="form-control">
@@ -105,7 +106,8 @@
                                     <span class="label-text">Slot sponsor</span>
                                 </label>
                                 <input type="number" placeholder="Jumlah slot (contoh: 4)"
-                                    class="input input-bordered w-full" name="slot3" min="1" />
+                                    class="input input-bordered w-full" name="slot3" value="{{ old('slot3') }}"
+                                    min="1" />
                             </div>
                         </div>
                     </div>
@@ -122,7 +124,7 @@
                                 </label>
                                 <input type="text" placeholder="Rp 2.500.000"
                                     class="input input-bordered w-full rupiah-input" name="fund4"
-                                    oninput="formatRupiah(this)" />
+                                    value="{{ old('fund4') }}" oninput="formatRupiah(this)" />
                             </div>
 
                             <div class="form-control">
@@ -130,7 +132,8 @@
                                     <span class="label-text">Slot sponsor</span>
                                 </label>
                                 <input type="number" placeholder="Jumlah slot (contoh: 5)"
-                                    class="input input-bordered w-full" name="slot4" min="1" />
+                                    class="input input-bordered w-full" name="slot4" value="{{ old('slot4') }}"
+                                    min="1" />
                             </div>
                         </div>
                     </div>
@@ -165,13 +168,9 @@
             });
 
             form.addEventListener('submit', function(e) {
-                e.preventDefault();
-
                 rupiahInputs.forEach(input => {
                     input.value = input.value.replace(/[Rp\s.]/g, '');
                 });
-
-                this.submit();
             });
         });
     </script>

@@ -13,12 +13,12 @@ class EventController extends Controller
     {
         $token = Cookie::get('token');
         $authUser = Cookie::get('authUser');
-        $transactions = Http::withToken($token)->get(env('API_URL')."/api/transactions");
+        $transactions = Http::withToken($token)->get(env('API_URL') . "/api/transactions");
         $transactions = json_decode($transactions);
 
-        $events = Http::withToken($token)->get(env('API_URL')."/api/events");
+        $events = Http::withToken($token)->get(env('API_URL') . "/api/events");
         $events = json_decode($events);
-        $reports = Http::get(env('API_URL'). '/api/reports');
+        $reports = Http::get(env('API_URL') . '/api/reports');
         $reports = json_decode($reports);
 
 
@@ -52,7 +52,7 @@ class EventController extends Controller
     {
 
         $token =  Cookie::get('token');
-        $events = Http::withToken($token)->get(env('API_URL').'/api/events');
+        $events = Http::withToken($token)->get(env('API_URL') . '/api/events');
         if ($events === null) {
             $events = [];
         } else {
@@ -171,11 +171,11 @@ class EventController extends Controller
         }
     }
 
-
     public function storeEvent(Request $request)
     {
-
         $token = Cookie::get('token');
+
+        // Validasi dasar
         $validator = Validator::make($request->all(), [
             'fund1' => 'required|numeric|min:100000',
             'fund2' => 'required|numeric|min:100000',
@@ -221,13 +221,36 @@ class EventController extends Controller
 
         if ($validator->fails()) {
             $errMessage = "";
-
             $errors = $validator->errors();
             foreach ($errors->all() as $error) {
                 $errMessage .= $error . ' ';
             }
             return redirect("/event/formDua")
                 ->withErrors(["message" => $errMessage])
+                ->withInput();
+        }
+
+        // Validasi hierarki fund
+        $fund1 = (int) $request->fund1;
+        $fund2 = (int) $request->fund2;
+        $fund3 = (int) $request->fund3;
+        $fund4 = (int) $request->fund4;
+
+        if ($fund1 <= $fund2) {
+            return redirect("/event/formDua")
+                ->withErrors(["message" => "Fund Platinum harus lebih besar dari Fund Gold"])
+                ->withInput();
+        }
+
+        if ($fund2 <= $fund3) {
+            return redirect("/event/formDua")
+                ->withErrors(["message" => "Fund Gold harus lebih besar dari Fund Silver"])
+                ->withInput();
+        }
+
+        if ($fund3 <= $fund4) {
+            return redirect("/event/formDua")
+                ->withErrors(["message" => "Fund Silver harus lebih besar dari Fund Bronze"])
                 ->withInput();
         }
 
@@ -238,7 +261,6 @@ class EventController extends Controller
         }
 
         try {
-
             $formDua = [
                 'fund1' => $request->fund1,
                 'slot1' => $request->slot1,
@@ -252,8 +274,7 @@ class EventController extends Controller
 
             $data = array_merge($formSatu, $formDua);
 
-            $response = Http::withToken($token)->post(env('API_URL').'/api/event', $data);
-
+            $response = Http::withToken($token)->post(env('API_URL') . '/api/event', $data);
 
             if ($response->status() == 201) {
                 $request->session()->forget('formSatu');
@@ -282,7 +303,7 @@ class EventController extends Controller
 
     public function destroy($id)
     {
-        $response = Http::delete(env('API_URL').'/api/event/' . $id);
+        $response = Http::delete(env('API_URL') . '/api/event/' . $id);
 
         // return $response;
         return redirect('/event/my_event');
