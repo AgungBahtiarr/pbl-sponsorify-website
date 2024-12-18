@@ -142,7 +142,7 @@ class ProposalResponseUnitTest extends TestCase
     }
 
     /**
-     * TC-Respon-02: Mencoba menolak proposal dengan pesan kurang dari 15 karakter
+     * TC-Respon-02: Mencoba menolak proposal dengan pesan kurang dari 3 karakter
      */
     #[Test]
     public function test_cannot_reject_proposal_with_comment_less_than_15_chars()
@@ -153,13 +153,13 @@ class ProposalResponseUnitTest extends TestCase
         ])->patchJson('/api/transaction', [
             'id' => $this->transaction->id,
             'id_status' => 3,
-            'comment' => 'Teks pendek'
+            'comment' => 'Te'
         ]);
 
         $response->assertStatus(422)
             ->assertJson([
                 'status' => 'error',
-                'message' => 'Teks pesan kurang dari 15 karakter'
+                'message' => 'Teks pesan kurang dari 3 karakter'
             ]);
     }
 
@@ -216,7 +216,7 @@ class ProposalResponseUnitTest extends TestCase
     }
 
     /**
-     * TC-Respon-05: Mencoba menerima proposal dengan pesan kurang dari 15 karakter
+     * TC-Respon-05: Mencoba menerima proposal dengan pesan kurang dari 3 karakter
      */
     #[Test]
     public function test_cannot_approve_proposal_with_comment_less_than_15_chars()
@@ -228,13 +228,13 @@ class ProposalResponseUnitTest extends TestCase
             'id' => $this->transaction->id,
             'id_status' => 2,
             'id_level' => $this->benefitLevels[1]->id,
-            'comment' => 'Teks pendek'
+            'comment' => 'Te'
         ]);
 
         $response->assertStatus(422)
             ->assertJson([
                 'status' => 'error',
-                'message' => 'Teks pesan kurang dari 15 karakter'
+                'message' => 'Teks pesan kurang dari 3 karakter'
             ]);
     }
 

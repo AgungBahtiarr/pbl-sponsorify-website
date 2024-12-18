@@ -64,10 +64,10 @@ class TransactionController extends Controller
     {
         try {
             // Validasi panjang pesan
-            if (strlen($request->comment) < 15) {
+            if (strlen($request->comment) < 3) {
                 return response()->json([
                     'status' => 'error',
-                    'message' => 'Teks pesan kurang dari 15 karakter'
+                    'message' => 'Teks pesan kurang dari 3 karakter'
                 ], 422);
             }
 

@@ -39,9 +39,9 @@ class TransactionController extends Controller
     {
         try {
             // Validasi panjang pesan
-            if (strlen($request->comment) < 15) {
+            if (strlen($request->comment) < 3) {
                 return redirect('/sponsor/event')
-                    ->with('error', 'Teks pesan kurang dari 15 karakter');
+                    ->with('error', 'Teks pesan kurang dari 3 karakter');
             }
 
             $data = [

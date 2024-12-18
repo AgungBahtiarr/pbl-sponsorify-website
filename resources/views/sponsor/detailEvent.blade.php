@@ -194,8 +194,8 @@
             const comment = document.getElementById('commentTerima').value;
             const commentError = document.getElementById('commentTerimError');
 
-            if (comment.length < 15) {
-                commentError.textContent = 'Teks pesan kurang dari 15 karakter';
+            if (comment.length < 3) {
+                commentError.textContent = 'Teks pesan kurang dari 3 karakter';
                 commentError.classList.remove('hidden');
                 isValid = false;
             } else if (comment.length > 255) {
@@ -219,8 +219,8 @@
             const comment = document.getElementById('commentTolak').value;
             const commentError = document.getElementById('commentTolakError');
 
-            if (comment.length < 15) {
-                commentError.textContent = 'Teks pesan kurang dari 15 karakter';
+            if (comment.length < 3) {
+                commentError.textContent = 'Teks pesan kurang dari 3 karakter';
                 commentError.classList.remove('hidden');
                 isValid = false;
             } else if (comment.length > 255) {
