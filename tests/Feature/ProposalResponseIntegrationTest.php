@@ -57,11 +57,11 @@ class ProposalResponseIntegrationTest extends TestCase
             'id' => 1,
             'id_status' => 2,
             'id_level' => 1,
-            'comment' => '14 char msg...' // 14 karakter
+            'comment' => 'ok'
         ]);
 
         $response->assertRedirect('/sponsor/event');
-        $response->assertSessionHas('error', 'Teks pesan kurang dari 15 karakter');
+        $response->assertSessionHas('error', 'Teks pesan kurang dari 3 karakter');
     }
 
     /**
@@ -72,11 +72,11 @@ class ProposalResponseIntegrationTest extends TestCase
         $response = $this->patch('/sponsor/review', [
             'id' => 1,
             'id_status' => 3, // status tolak
-            'comment' => '14 char msg...' // 14 karakter
+            'comment' => 'ok'
         ]);
 
         $response->assertRedirect('/sponsor/event');
-        $response->assertSessionHas('error', 'Teks pesan kurang dari 15 karakter');
+        $response->assertSessionHas('error', 'Teks pesan kurang dari 3 karakter');
     }
 
     /**
@@ -98,7 +98,7 @@ class ProposalResponseIntegrationTest extends TestCase
         ]);
 
         $response->assertRedirect('/sponsor/event');
-        $response->assertSessionHas('success', 'Respon telah terkirim'); 
+        $response->assertSessionHas('success', 'Respon telah terkirim');
 
         Http::assertSent(function ($request) {
             return $request->url() == 'http://localhost:8080/api/transaction' &&
