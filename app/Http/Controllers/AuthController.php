@@ -108,4 +108,8 @@ class AuthController extends Controller
 
         return redirect("/auth/login");
     }
+
+    public function landingPage(){
+        return view('layouts.landing_page');
+    }
 }
