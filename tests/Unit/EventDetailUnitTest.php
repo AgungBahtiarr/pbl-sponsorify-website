@@ -33,7 +33,7 @@ class EventDetailUnitTest extends TestCase
         $this->authUser = $response->json('user.id');
     }
 
-    /** @test */
+
     public function sponsor_can_view_event_detail()
     {
         $transaction = Transaction::where('id', 1)->first();
@@ -47,7 +47,7 @@ class EventDetailUnitTest extends TestCase
         $response->assertSee($event->name);
     }
 
-    /** @test */
+
     public function sponsor_cannot_view_nonexistent_event_detail()
     {
   

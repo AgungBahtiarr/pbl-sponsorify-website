@@ -26,8 +26,8 @@ class AddSponsorTest extends TestCase
         parent::setUp();
         Storage::fake('public');
         $response = $this->post('/api/login', [
-            'email' => 'sponsor@gmail.com',
-            'password' => 'sponsor123'
+            'email' => 'b@gmail.com',
+            'password' => 'butterfly123'
         ]);
         $this->token = $response->json('token');
         $this->role = $response->json('user.id_role');

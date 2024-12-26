@@ -27,7 +27,7 @@ class SponsorLoginTest extends TestCase
         $this->authUser = $response->json('user.id');
     }
 
-    /** @test */
+
     public function sponsor_can_login_and_redirect_to_company_data_page()
     {
         
@@ -40,7 +40,7 @@ class SponsorLoginTest extends TestCase
         $this->assertAuthenticated();
     }
 
-    /** @test */
+
     public function login_fails_with_invalid_credentials()
     {
         $response = $this->post('/auth/login', [
@@ -51,7 +51,7 @@ class SponsorLoginTest extends TestCase
         $response->assertRedirect('/auth/login');
     }
 
-    /** @test */
+
     public function login_requires_valid_email_format()
     {
         $response = $this->post('/auth/login', [

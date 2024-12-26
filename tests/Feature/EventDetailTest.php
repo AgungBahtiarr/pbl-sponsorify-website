@@ -30,7 +30,6 @@ class EventDetailTest extends TestCase
 
     }
 
-    /** @test */
     public function sponsor_can_view_event_detail()
     {
         // Ambil transaksi pertama untuk user yang login
@@ -62,7 +61,6 @@ class EventDetailTest extends TestCase
         $response->assertSee($event->responsible_person);
     }
 
-    /** @test */
 public function sponsor_cannot_view_nonexistent_event_detail()
 {
 

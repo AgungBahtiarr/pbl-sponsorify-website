@@ -14,22 +14,22 @@ class SendEventUnitTest extends TestCase
      * A basic unit test example.
      */
 
-     use RefreshDatabase;
+    use RefreshDatabase;
 
-     protected $token;
-     protected $headers;
-     protected $validData;
-     protected $authUser;
-     protected $event;
-     protected $sponsor;
-     protected function setUp(): void
-     {
-         parent::setUp();
+    protected $token;
+    protected $headers;
+    protected $validData;
+    protected $authUser;
+    protected $event;
+    protected $sponsor;
+    protected function setUp(): void
+    {
+        parent::setUp();
         Storage::fake('public');
 
         $response = $this->post('/api/login', [
-            'email' => 'agung@gmail.com',
-            'password' => 'sandi123'
+            'email' => 'ab@gmail.com',
+            'password' => 'adam1234'
         ]);
 
         $this->token = $response->json('token');
@@ -46,6 +46,7 @@ class SendEventUnitTest extends TestCase
             'location' => 'https://maps.app.goo.gl/kroonKXRdun2SfWo7',
             'proposal' => "proposal/proposal.pdf",
             'start_date' => '2024-12-07',
+            'venue_name' => 'Poliwangi',
             'image' => 'image/poster.jpg',
             'fund1' => '10000000',
             'slot1' => '2',
@@ -67,44 +68,47 @@ class SendEventUnitTest extends TestCase
             'image' => 'image.jpg',
             'id_user' => 2
         ]);
-     }
+    }
 
-     public function test_send_event_with_valid_data(){
+    public function test_send_event_with_valid_data()
+    {
         $response = $this->withHeaders($this->headers)
-        ->post('/api/transaction', [
-            'id_event'=> $this->event->id,
-            'id_sponsor'=> $this->sponsor->id
-        ]);
+            ->post('/api/transaction', [
+                'id_event' => $this->event->id,
+                'id_sponsor' => $this->sponsor->id
+            ]);
 
         $response->assertStatus(200);
-     }
-     public function test_send_event_with_invalid_data(){
+    }
+    public function test_send_event_with_invalid_data()
+    {
         $response = $this->withHeaders($this->headers)
-        ->post('/api/transaction', [
-            'id_event'=> 'id event A',
-            'id_sponsor'=> 'id sponsor A',
-        ]);
+            ->post('/api/transaction', [
+                'id_event' => 'id event A',
+                'id_sponsor' => 'id sponsor A',
+            ]);
 
         $response->assertStatus(500);
-     }
-     public function test_send_event_with_invalid_data_and_no(){
+    }
+    public function test_send_event_with_invalid_data_and_no()
+    {
         $response = $this->withHeaders($this->headers)
-        ->post('/api/transaction', [
-            'id_event'=> 'id event A',
-            'id_sponsor'=> 'id sponsor A',
-        ]);
+            ->post('/api/transaction', [
+                'id_event' => 'id event A',
+                'id_sponsor' => 'id sponsor A',
+            ]);
 
         $response->assertStatus(500);
-     }
+    }
 
-     public function test_send_event_with_invalid_data_and_not_registered_in_the_database(){
+    public function test_send_event_with_invalid_data_and_not_registered_in_the_database()
+    {
         $response = $this->withHeaders($this->headers)
-        ->post('/api/transaction', [
-            'id_event'=> 'id event 99',
-            'id_sponsor'=> 'id sponsor 99',
-        ]);
+            ->post('/api/transaction', [
+                'id_event' => 'id event 99',
+                'id_sponsor' => 'id sponsor 99',
+            ]);
 
         $response->assertStatus(500);
-     }
-
+    }
 }

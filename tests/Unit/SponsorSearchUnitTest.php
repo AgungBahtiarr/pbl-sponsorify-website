@@ -28,7 +28,7 @@ class SponsorSearchUnitTest extends TestCase
         $this->role = $response->json('user.id_role');
         $this->authUser = $response->json('user.id');
     }
-    /** @test */
+
     public function search_returns_correct_results_for_valid_keyword()
     {
         $response = $this->withCookies(['token' => $this->token, 'roleUser' => $this->role, 'authUser' => $this->authUser])->get('/event/sponsors', [
@@ -41,7 +41,7 @@ class SponsorSearchUnitTest extends TestCase
         $response->assertDontSee('Other Sponsor');
     }
 
-    /** @test */
+
     public function search_returns_no_results_for_nonexistent_keyword()
     {
         $response = $this->withCookies(['token' => $this->token, 'roleUser' => $this->role, 'authUser' => $this->authUser])->get('/event/sponsors', [
@@ -53,7 +53,7 @@ class SponsorSearchUnitTest extends TestCase
         $response->assertSee('');
     }
 
-    /** @test */
+
     public function search_requires_authentication()
     {
         $response = $this->post('/sponsor/search', ['str' => 'JNT Point Poliwangi']);
