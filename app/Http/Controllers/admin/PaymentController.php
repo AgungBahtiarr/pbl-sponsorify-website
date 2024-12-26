@@ -13,7 +13,6 @@ class PaymentController extends Controller
         $response = Http::get('http://localhost:8080/api/admin/payments');
         $response = json_decode($response);
 
-        // return $response;
         return view('admin.payment', [
             'datas' => $response
         ]);
