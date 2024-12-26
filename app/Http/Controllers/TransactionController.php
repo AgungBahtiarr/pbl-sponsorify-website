@@ -12,10 +12,10 @@ class TransactionController extends Controller
     public function indexDetail($id)
     {
         $token =  Cookie::get('token');
-        $events = Http::withToken($token)->get(env('API_URL').'/api/events');
+        $events = Http::withToken($token)->get(env('API_URL') . '/api/events');
         $idSponsor = $id;
 
-        $sponsor = Http::get(env('API_URL').'/api/sponsor/' . $id);
+        $sponsor = Http::get(env('API_URL') . '/api/sponsor/' . $id);
 
         return view('event.detail', [
             'events' => json_decode($events),
@@ -30,9 +30,13 @@ class TransactionController extends Controller
             'id_sponsor' => $request->id_sponsor,
         ];
         $token =  Cookie::get('token');
-        $trans = Http::withToken($token)->post(env('API_URL').'/api/transaction', $data);
+        $trans = Http::withToken($token)->post(env('API_URL') . '/api/transaction', $data);
 
-        return redirect('/event/sponsors/');
+        if ($trans->getStatusCode() == 201) {
+            return redirect('/event/status')->with('success', 'Proposal berhasil dikirim');
+        } else {
+            return redirect('/event/sponsors')->with('error', 'Proposal gagal dikirim');
+        }
     }
 
     public function update(Request $request)
@@ -53,7 +57,7 @@ class TransactionController extends Controller
             ];
 
 
-            $response = Http::patch(env('API_URL').'/api/transaction', $data);
+            $response = Http::patch(env('API_URL') . '/api/transaction', $data);
 
 
             if ($response->successful()) {

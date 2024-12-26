@@ -78,7 +78,7 @@ class SendEventUnitTest extends TestCase
                 'id_sponsor' => $this->sponsor->id
             ]);
 
-        $response->assertStatus(200);
+        $response->assertStatus(201);
     }
     public function test_send_event_with_invalid_data()
     {
@@ -88,7 +88,7 @@ class SendEventUnitTest extends TestCase
                 'id_sponsor' => 'id sponsor A',
             ]);
 
-        $response->assertStatus(500);
+        $response->assertStatus(404);
     }
     public function test_send_event_with_invalid_data_and_no()
     {
@@ -98,7 +98,7 @@ class SendEventUnitTest extends TestCase
                 'id_sponsor' => 'id sponsor A',
             ]);
 
-        $response->assertStatus(500);
+        $response->assertStatus(404);
     }
 
     public function test_send_event_with_invalid_data_and_not_registered_in_the_database()
@@ -109,6 +109,6 @@ class SendEventUnitTest extends TestCase
                 'id_sponsor' => 'id sponsor 99',
             ]);
 
-        $response->assertStatus(500);
+        $response->assertStatus(404);
     }
 }

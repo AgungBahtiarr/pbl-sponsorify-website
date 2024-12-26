@@ -5,7 +5,11 @@ namespace App\Http\Controllers\api;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\Controller;
 use App\Models\BenefitLevel;
+use App\Models\Event;
+use App\Models\Sponsor;
 use App\Models\Transaction;
+use GuzzleHttp\Psr7\Query;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -54,9 +58,34 @@ class TransactionController extends Controller
             'id_withdraw_status' => 1,
         ];
 
-        $data = Transaction::create($data);
+        $event = Event::findOrFail($request->id_event);
 
-        return response()->json($data);
+        if (!$event) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Event not found'
+            ], 404);
+        }
+
+        $sponsor = Sponsor::findOrFail($request->id_sponsor);
+
+        if (!$sponsor) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Sponsor not found'
+            ], 404);
+        }
+
+
+        try {
+            $data = Transaction::create($data);
+            return response()->json($data, 201);
+        } catch (QueryException $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->errorInfo
+            ], 500);
+        }
     }
 
 
