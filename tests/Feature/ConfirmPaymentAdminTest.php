@@ -6,7 +6,7 @@ use App\Models\Event;
 use App\Models\Sponsor;
 use App\Models\Transaction;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
@@ -16,7 +16,6 @@ class ConfirmPaymentAdminTest extends TestCase
 
     protected $token;
     protected $headers;
-    protected $validData;
     protected $role;
     protected $authUser;
     protected $event;
@@ -57,7 +56,7 @@ class ConfirmPaymentAdminTest extends TestCase
             'fund3' => '5000000',
             'slot3' => '4',
             'fund4' => '2500000',
-            'slot4' => '5'
+            'slot4' => '5',
         ]);
 
         $this->sponsor = Sponsor::create([
@@ -68,7 +67,7 @@ class ConfirmPaymentAdminTest extends TestCase
             'id_category' => 1,
             'max_submission_date' => 30,
             'image' => 'image.jpg',
-            'id_user' => 2
+            'id_user' => 2,
         ]);
 
         $this->transaction = Transaction::create([
@@ -85,26 +84,42 @@ class ConfirmPaymentAdminTest extends TestCase
             'id_withdraw_status' => 1,
             'payment_date' => '2024-04-05',
             'withdraw_date' => null,
-            'total_fund' => '500000'
+            'total_fund' => '500000',
         ]);
     }
 
-
     public function test_confirm_payment_with_valid_data()
     {
-        $response = $this->withCookies(['token' => $this->token, 'roleUser' => $this->role, 'authUser' => $this->authUser])->post('/admin/payment', data: [
-            'id' => 1,
+        // Mock API eksternal
+        Http::fake([
+            env('API_URL') . '/api/admin/payment' => Http::response([], 200), // Status sukses
+        ]);
+
+        $response = $this->withCookies([
+            'token' => $this->token,
+            'roleUser' => $this->role,
+            'authUser' => $this->authUser,
+        ])->post('/admin/payment', data: [
+            'id' => $this->transaction->id, // Pastikan id transaksi valid
             'id_payment_status' => 3,
         ]);
 
         $response->assertStatus(302)->assertRedirect('/admin/withdraw');
     }
 
-
     public function test_confirm_payment_with_unknown_id_transaction()
     {
-        $response = $this->withCookies(['token' => $this->token, 'roleUser' => $this->role, 'authUser' => $this->authUser])->post('/admin/payment', data: [
-            'id' => '2a92',
+        // Mock API eksternal
+        Http::fake([
+            env('API_URL') . '/api/admin/payment' => Http::response([], 404), // Simulasi gagal
+        ]);
+
+        $response = $this->withCookies([
+            'token' => $this->token,
+            'roleUser' => $this->role,
+            'authUser' => $this->authUser,
+        ])->post('/admin/payment', data: [
+            'id' => 'invalid-id',
             'id_payment_status' => 3,
         ]);
 
