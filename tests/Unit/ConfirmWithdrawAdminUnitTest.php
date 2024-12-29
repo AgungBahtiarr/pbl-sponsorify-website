@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
-class ConfirmPaymentAdminUnitTest extends TestCase
+class ConfirmWithdrawAdminUnitTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -78,33 +78,31 @@ class ConfirmPaymentAdminUnitTest extends TestCase
             'no_rek' => '08942288383',
             'bank_name' => 'bni',
             'account_name' => 'falen',
-            'id_payment_status' => 2,
-            'id_withdraw_status' => 1,
+            'id_payment_status' => 3,
+            'id_withdraw_status' => 2,
             'payment_date' => '2024-04-05',
-            'withdraw_date' => null,
+            'withdraw_date' => '2024-04-05',
             'total_fund' => '500000'
         ]);
     }
 
-
-    public function test_confirm_payment_with_valid_data()
+    public function test_confirm_withdraw_with_valid_data()
     {
-        $response = $this->post('/api/admin/payment', data: [
+        $response = $this->post('/api/admin/withdraw', data: [
             'id' => $this->transaction->id,
-            'id_payment_status' => 3,
+            'id_withdraw_status' => 3,
         ]);
 
         $response->assertStatus(200)->assertJsonFragment([
-            'id_payment_status' => 3,
+            'id_withdraw_status' => 3,
         ]);
     }
 
-
-    public function test_confirm_payment_with_unknown_id_transaction()
+    public function test_confirm_withdraw_with_unknown_id_transaction()
     {
-        $response = $this->post('/api/admin/payment', data: [
-            'id' => '2a92',
-            'id_payment_status' => 3,
+        $response = $this->post('/api/admin/withdraw', data: [
+            'id' => '29n29',
+            'id_withdraw_status' => 3,
         ]);
 
         $response->assertStatus(404);

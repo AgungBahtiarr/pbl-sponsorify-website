@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\Sponsor;
 use App\Models\Transaction;
+use Exception;
+use GuzzleHttp\Psr7\Query;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -167,11 +171,19 @@ class PaymentController extends Controller
             'id_payment_status' => $request->id_payment_status,
             'payment_date' => now()
         ];
-        $tran = Transaction::findOrFail($request->id);
-        $tran->update($data);
 
-        return response()->json($tran);
+        try {
+            $tran = Transaction::findOrFail($request->id);
+            $tran->update($data);
+            return response()->json($tran);
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Data tidak ditemukan: '
+            ], 404);
+        }
     }
+
 
 
     public function confirmWithdrawAdmin(Request $request)
@@ -181,9 +193,15 @@ class PaymentController extends Controller
             'withdraw_date' => now()
         ];
 
-        $tran = Transaction::findOrFail($request->id);
-        $tran->update($data);
-
-        return response()->json($tran);
+        try {
+            $tran = Transaction::findOrFail($request->id);
+            $tran->update($data);
+            return response()->json($tran);
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Data tidak ditemukan'
+            ], 404);
+        }
     }
 }
