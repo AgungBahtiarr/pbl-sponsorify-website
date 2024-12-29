@@ -175,11 +175,11 @@ class PaymentController extends Controller
         try {
             $tran = Transaction::findOrFail($request->id);
             $tran->update($data);
-            return response()->json($tran);
+            return response()->json($tran, 200);
         } catch (Exception $e) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Data tidak ditemukan: '
+                'message' => 'Data tidak ditemukan ' . $e->getMessage()
             ], 404);
         }
     }
@@ -196,11 +196,11 @@ class PaymentController extends Controller
         try {
             $tran = Transaction::findOrFail($request->id);
             $tran->update($data);
-            return response()->json($tran);
+            return response()->json($tran, 200);
         } catch (Exception $e) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Data tidak ditemukan'
+                'message' => 'Data tidak ditemukan ' . $e->getMessage()
             ], 404);
         }
     }

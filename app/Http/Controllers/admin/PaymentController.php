@@ -10,7 +10,7 @@ class PaymentController extends Controller
 {
     public function index()
     {
-        $response = Http::get('http://localhost:8080/api/admin/payments');
+        $response = Http::get(env("API_URL") . '/api/admin/payments');
         $response = json_decode($response);
 
         return view('admin.payment', [
@@ -25,7 +25,12 @@ class PaymentController extends Controller
             'id_payment_status' => $request->id_payment_status
         ];
 
-        $response = Http::post('http://localhost:8080/api/admin/payment', $data);
-        return redirect('/admin/withdraw');
+        $response = Http::post(env("API_URL") . '/api/admin/payment', $data);
+
+        if ($response->getStatusCode() == 404) {
+            return redirect('/admin/payment')->with('error', 'Failed to confirm payment');
+        } else {
+            return redirect('/admin/withdraw');
+        }
     }
 }

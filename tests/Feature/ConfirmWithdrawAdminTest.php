@@ -6,11 +6,10 @@ use App\Models\Event;
 use App\Models\Sponsor;
 use App\Models\Transaction;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
-class ConfirmPaymentAdminTest extends TestCase
+class ConfirmWithdrawAdminTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -92,22 +91,22 @@ class ConfirmPaymentAdminTest extends TestCase
 
     public function test_confirm_payment_with_valid_data()
     {
-        $response = $this->withCookies(['token' => $this->token, 'roleUser' => $this->role, 'authUser' => $this->authUser])->post('/admin/payment', data: [
+        $response = $this->withCookies(['token' => $this->token, 'roleUser' => $this->role, 'authUser' => $this->authUser])->post('/admin/withdraw', data: [
             'id' => 1,
-            'id_payment_status' => 3,
+            'id_withdraw_status' => 3,
         ]);
 
-        $response->assertStatus(302)->assertRedirect('/admin/withdraw');
+        $response->assertStatus(302)->assertRedirect('/admin/withdraw')->assertSessionHas('success', 'Success to confirm withdraw');
     }
 
 
     public function test_confirm_payment_with_unknown_id_transaction()
     {
-        $response = $this->withCookies(['token' => $this->token, 'roleUser' => $this->role, 'authUser' => $this->authUser])->post('/admin/payment', data: [
+        $response = $this->withCookies(['token' => $this->token, 'roleUser' => $this->role, 'authUser' => $this->authUser])->post('/admin/withdraw', data: [
             'id' => '2a92',
-            'id_payment_status' => 3,
+            'id_withdraw_status' => 3,
         ]);
 
-        $response->assertRedirect('/admin/payment')->assertSessionHas('error', 'Failed to confirm payment');
+        $response->assertRedirect('/admin/withdraw')->assertSessionHas('error', 'Failed to confirm withdraw');
     }
 }

@@ -8,22 +8,28 @@ use Illuminate\Support\Facades\Http;
 
 class WithdrawController extends Controller
 {
-    public function index(){
-        $response = Http::get('http://localhost:8080/api/admin/withdraws');
+    public function index()
+    {
+        $response = Http::get(env("API_URL") . '/api/admin/withdraws');
         $response = json_decode($response);
-        return view('admin.withdraw',[
+        return view('admin.withdraw', [
             'datas' => $response,
         ]);
     }
 
-    public function confirmWithdraw(Request $request){
+    public function confirmWithdraw(Request $request)
+    {
         $data = [
             'id' => $request->id,
             'id_withdraw_status' => $request->id_withdraw_status
         ];
 
-        $response = Http::post('http://localhost:8080/api/admin/withdraw',$data);
+        $response = Http::post(env("API_URL") . '/api/admin/withdraw', $data);
 
-        return redirect('admin/withdraw');
+        if ($response->getStatusCode() == 404) {
+            return redirect('/admin/withdraw')->with('error', 'Failed to confirm withdraw');
+        } else {
+            return redirect('admin/withdraw')->with('success', 'Success to confirm withdraw');
+        }
     }
 }
