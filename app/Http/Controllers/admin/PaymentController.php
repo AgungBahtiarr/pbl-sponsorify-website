@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -21,37 +20,17 @@ class PaymentController extends Controller
 
     public function confirmPayment(Request $request)
     {
-        // Validasi input
-        $request->validate([
-            'id' => 'required|integer|exists:transactions,id', // Validasi ID transaksi
-            'id_payment_status' => 'required|integer|in:1,2,3', // Validasi status pembayaran
-        ]);
+        $data = [
+            'id' => $request->id,
+            'id_payment_status' => $request->id_payment_status
+        ];
 
-        // Ambil transaksi berdasarkan ID
-        $transaction = Transaction::find($request->id);
+        $response = Http::post(env("API_URL") . '/api/admin/payment', $data);
 
-        // Cek apakah transaksi ditemukan
-        if (!$transaction) {
-            return response()->json([
-                'error' => 'Transaction not found'
-            ], 404);
+        if ($response->getStatusCode() == 404) {
+            return redirect('/admin/payment')->with('error', 'Failed to confirm payment');
+        } else {
+            return redirect('/admin/withdraw');
         }
-
-        // Cek jika pembayaran sudah dikonfirmasi sebelumnya
-        if ($transaction->id_payment_status == 3) { // Jika status sudah 3 (sudah dibayar)
-            return response()->json([
-                'error' => 'Payment already confirmed'
-            ], 400);
-        }
-
-        // Update status pembayaran
-        $transaction->id_payment_status = $request->id_payment_status;
-        $transaction->save();
-
-        // Kembalikan respons sukses
-        return response()->json([
-            'message' => 'Payment confirmed successfully',
-            'id_payment_status' => $transaction->id_payment_status,
-        ], 200);
     }
 }
