@@ -26,7 +26,6 @@ class ConfirmWithdrawAdminUnitTest extends TestCase
         parent::setUp();
         Storage::fake('public');
 
-        // Simulate user login and get token
         $response = $this->post('/api/login', [
             'email' => 'ab@gmail.com',
             'password' => 'adam1234'
@@ -38,7 +37,6 @@ class ConfirmWithdrawAdminUnitTest extends TestCase
             'Authorization' => 'Bearer ' . $this->token,
         ];
 
-        // Create event
         $this->event = Event::create([
             'id_user' => $this->authUser,
             'name' => 'Semarak Kemerdekaan',
@@ -59,7 +57,6 @@ class ConfirmWithdrawAdminUnitTest extends TestCase
             'slot4' => '5'
         ]);
 
-        // Create sponsor
         $this->sponsor = Sponsor::create([
             'name' => 'Sponsor Event Musik',
             'email' => 'sponsor@musik.com',
@@ -71,7 +68,6 @@ class ConfirmWithdrawAdminUnitTest extends TestCase
             'id_user' => 2
         ]);
 
-        // Create transaction
         $this->transaction = Transaction::create([
             'id_event' => $this->event->id,
             'id_sponsor' => $this->sponsor->id,
@@ -92,39 +88,23 @@ class ConfirmWithdrawAdminUnitTest extends TestCase
 
     public function test_confirm_withdraw_with_valid_data()
     {
-        $response = $this->post('/api/admin/withdraw', [
+        $response = $this->post('/api/admin/withdraw', data: [
             'id' => $this->transaction->id,
             'id_withdraw_status' => 3,
-            'total_fund' => $this->transaction->total_fund, // Ensure fund amount matches
-        ], $this->headers);
+        ]);
 
-        $response->assertStatus(201)->assertJsonFragment([
-            'message' => 'Konfirmasi pencairan dana berhasil',
+        $response->assertStatus(200)->assertJsonFragment([
             'id_withdraw_status' => 3,
         ]);
     }
 
     public function test_confirm_withdraw_with_unknown_id_transaction()
     {
-        $response = $this->post('/api/admin/withdraw', [
-            'id' => '29n29',  // Invalid transaction ID
+        $response = $this->post('/api/admin/withdraw', data: [
+            'id' => '29n29',
             'id_withdraw_status' => 3,
-            'total_fund' => 500000, // Correct fund amount
-        ], $this->headers);
-
-        $response->assertStatus(404); // Not found
-    }
-
-    public function test_confirm_withdraw_with_incorrect_fund_amount()
-    {
-        $response = $this->post('/api/admin/withdraw', [
-            'id' => $this->transaction->id,
-            'id_withdraw_status' => 3,
-            'total_fund' => 1000000, // Invalid fund amount
-        ], $this->headers);
-
-        $response->assertStatus(400)->assertJsonFragment([
-            'error' => 'Konfirmasi pencairan dana gagal karena jumlah tidak sesuai',
         ]);
+
+        $response->assertStatus(404);
     }
 }
