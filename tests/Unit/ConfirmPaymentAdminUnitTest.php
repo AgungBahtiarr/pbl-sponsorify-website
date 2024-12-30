@@ -84,29 +84,56 @@ class ConfirmPaymentAdminUnitTest extends TestCase
             'withdraw_date' => null,
             'total_fund' => '500000'
         ]);
+
+        $this->validData = [
+            'id' => $this->transaction->id,
+            'id_payment_status' => 3,
+        ];
     }
 
-
-    public function test_confirm_payment_with_valid_data()
+    public function test_confirm_payment_successful()
     {
-        $response = $this->post('/api/admin/payment', data: [
+        $response = $this->post('/api/admin/payment', $this->validData, $this->headers);
+
+        $response->assertStatus(200)
+                 ->assertJsonFragment([
+                     'id_payment_status' => 3,
+                 ]);
+
+        $this->assertDatabaseHas('transactions', [
             'id' => $this->transaction->id,
             'id_payment_status' => 3,
         ]);
-
-        $response->assertStatus(200)->assertJsonFragment([
-            'id_payment_status' => 3,
-        ]);
     }
 
-
-    public function test_confirm_payment_with_unknown_id_transaction()
+    public function test_confirm_withdraw_with_Enter_an_invalid_transaction_ID_in_the_form_of_a_string()
     {
-        $response = $this->post('/api/admin/payment', data: [
+        $response = $this->post('/api/admin/payment', [
             'id' => '2a92',
             'id_payment_status' => 3,
-        ]);
+        ], $this->headers);
 
         $response->assertStatus(404);
+    }
+
+    public function test_confirm_withdra_with_Enter_a_valid_transaction_ID()
+    {
+        $validIdData = [
+            'id' => $this->transaction->id,
+            'id_payment_status' => 3,
+        ];
+
+        $response = $this->post('/api/admin/payment', $validIdData, $this->headers);
+
+        $response->assertStatus(200)
+                 ->assertJsonFragment([
+                     'id' => $this->transaction->id,
+                     'id_payment_status' => 3,
+                 ]);
+
+        $this->assertDatabaseHas('transactions', [
+            'id' => $this->transaction->id,
+            'id_payment_status' => 3,
+        ]);
     }
 }

@@ -15,7 +15,6 @@ class ConfirmWithdrawAdminUnitTest extends TestCase
 
     protected $token;
     protected $headers;
-    protected $validData;
     protected $authUser;
     protected $event;
     protected $sponsor;
@@ -86,25 +85,57 @@ class ConfirmWithdrawAdminUnitTest extends TestCase
         ]);
     }
 
-    public function test_confirm_withdraw_with_valid_data()
+    public function test_confirm_withdra_with_Enter_a_valid_transaction_ID()
     {
-        $response = $this->post('/api/admin/withdraw', data: [
+        $response = $this->post('/api/admin/withdraw', [
             'id' => $this->transaction->id,
             'id_withdraw_status' => 3,
-        ]);
+        ], $this->headers);
 
-        $response->assertStatus(200)->assertJsonFragment([
+        $response->assertStatus(200)
+                 ->assertJsonFragment([
+                     'id_withdraw_status' => 3,
+                 ]);
+
+        $this->assertDatabaseHas('transactions', [
+            'id' => $this->transaction->id,
             'id_withdraw_status' => 3,
         ]);
     }
 
-    public function test_confirm_withdraw_with_unknown_id_transaction()
+    public function test_confirm_withdraw_with_Enter_an_invalid_transaction_ID_in_the_form_of_a_string()
     {
-        $response = $this->post('/api/admin/withdraw', data: [
+        $response = $this->post('/api/admin/withdraw', [
             'id' => '29n29',
             'id_withdraw_status' => 3,
-        ]);
+        ], $this->headers);
 
-        $response->assertStatus(404);
+        $response->assertStatus(404)
+                 ->assertJsonFragment([
+                    
+                
+                 ]);
+    }
+
+    public function test_confirm_withdraw_successful()
+    {
+        $withdrawData = [
+            'id' => $this->transaction->id,
+            'id_withdraw_status' => 3,
+        ];
+
+        $response = $this->post('/api/admin/withdraw', $withdrawData, $this->headers);
+
+        $response->assertStatus(200)
+                 ->assertJsonFragment([
+                     'id' => $this->transaction->id,
+                     'id_withdraw_status' => 3,
+                
+                 ]);
+
+        $this->assertDatabaseHas('transactions', [
+            'id' => $this->transaction->id,
+            'id_withdraw_status' => 3,
+        ]);
     }
 }
