@@ -16,13 +16,11 @@ class EventDetailUnitTest extends TestCase
     protected $role;
     protected $authUser;
 
-
-
     public function setUp(): void
     {
         parent::setUp();
 
-        // Login untuk mendapatkan token
+     
         $response = $this->post('/api/login', [
             'email' => 'b@gmail.com',
             'password' => 'butterfly123'
@@ -42,7 +40,6 @@ class EventDetailUnitTest extends TestCase
         $this->assertNotNull($event);
         $response = $this->withCookies(['token' => $this->token, 'roleUser' => $this->role, 'authUser' => $this->authUser])->get('/sponsor/detail/' . $transaction->id);
 
-
         $response->assertStatus(200);
         $response->assertSee($event->name);
     }
@@ -50,14 +47,44 @@ class EventDetailUnitTest extends TestCase
 
     public function sponsor_cannot_view_nonexistent_event_detail()
     {
-  
-    $nonExistentTransactionId = 9999;
+        $nonExistentTransactionId = 9999;
 
+        $response = $this->withCookies(['token' => $this->token, 'roleUser' => $this->role, 'authUser' => $this->authUser])->get('/sponsor/detail/' . $nonExistentTransactionId);
 
-    $response = $this->withCookies(['token' => $this->token,'roleUser' => $this->role,'authUser' => $this->authUser])->get('/sponsor/detail/' . $nonExistentTransactionId);
+        $response->assertViewIs('sponsor.detaileventnotfound');
+    }
 
+    /** @test */
+    public function sponsor_cannot_access_event_without_token()
+    {
+        $transaction = Transaction::where('id', 1)->first();
+        $this->assertNotNull($transaction);
 
-    $response->assertViewIs('sponsor.detaileventnotfound');
+        $response = $this->get('/sponsor/detail/' . $transaction->id);
 
+        $response->assertStatus(302);
+    }
+
+    /** @test */
+    public function sponsor_sees_error_for_invalid_token()
+    {
+        $transaction = Transaction::where('id', 1)->first();
+        $this->assertNotNull($transaction);
+
+        $response = $this->withCookies(['token' => 'invalid_token', 'roleUser' => $this->role, 'authUser' => $this->authUser])->get('/sponsor/detail/' . $transaction->id);
+
+        $response->assertStatus(302);
+
+    }
+
+    /** @test */
+    public function sponsor_cannot_access_event_without_proper_role()
+    {
+        $transaction = Transaction::where('id', 1)->first();
+        $this->assertNotNull($transaction);
+
+        $response = $this->withCookies(['token' => $this->token, 'roleUser' => 'wrong_role', 'authUser' => $this->authUser])->get('/sponsor/detail/' . $transaction->id);
+
+        $response->assertStatus(302);
     }
 }
