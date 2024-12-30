@@ -18,7 +18,6 @@ class SponsorSearchUnitTest extends TestCase
     {
         parent::setUp();
     
-
         $response = $this->post('/api/login', [
             'email' => 'ab@gmail.com',
             'password' => 'adam1234'
@@ -33,7 +32,6 @@ class SponsorSearchUnitTest extends TestCase
     {
         $response = $this->withCookies(['token' => $this->token, 'roleUser' => $this->role, 'authUser' => $this->authUser])->get('/event/sponsors', [
             'str' => 'JNT Point Poliwangi'
-
         ]);
 
         $response->assertStatus(200);
@@ -41,12 +39,10 @@ class SponsorSearchUnitTest extends TestCase
         $response->assertDontSee('Other Sponsor');
     }
 
-
     public function search_returns_no_results_for_nonexistent_keyword()
     {
         $response = $this->withCookies(['token' => $this->token, 'roleUser' => $this->role, 'authUser' => $this->authUser])->get('/event/sponsors', [
             'str' => 'NonExistentSponsor'
-
         ]);
 
         $response->assertStatus(200);
@@ -60,4 +56,25 @@ class SponsorSearchUnitTest extends TestCase
 
         $response->assertRedirect('/auth/login');
     }
+
+    public function search_supports_partial_keyword()
+    {
+        $response = $this->withCookies(['token' => $this->token, 'roleUser' => $this->role, 'authUser' => $this->authUser])->get('/event/sponsors', [
+            'str' => 'JNT'
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertSee('JNT Point Poliwangi');
+    }
+
+
+    public function search_handles_invalid_method()
+    {
+        $response = $this->withCookies(['token' => $this->token, 'roleUser' => $this->role, 'authUser' => $this->authUser])->post('/event/sponsors', [
+            'str' => 'JNT Point Poliwangi'
+        ]);
+
+        $response->assertStatus(405);
+    }
+
 }
