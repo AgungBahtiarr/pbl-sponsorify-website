@@ -7,6 +7,7 @@ use App\Models\Sponsor;
 use App\Models\Transaction;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
 class ConfirmWithdrawAdminTest extends TestCase
@@ -88,25 +89,51 @@ class ConfirmWithdrawAdminTest extends TestCase
         ]);
     }
 
-
+    // Test untuk valid data (menggunakan mocking HTTP)
     public function test_confirm_payment_with_valid_data()
     {
-        $response = $this->withCookies(['token' => $this->token, 'roleUser' => $this->role, 'authUser' => $this->authUser])->post('/admin/withdraw', data: [
-            'id' => 1,
+        // Mock HTTP request untuk menghindari API eksternal
+        Http::fake([
+            env("API_URL") . '/api/admin/withdraw' => Http::response([], 200),
+        ]);
+
+        // Lakukan request
+        $response = $this->withCookies([
+            'token' => $this->token,
+            'roleUser' => $this->role,
+            'authUser' => $this->authUser,
+        ])->post('/admin/withdraw', [
+            'id' => $this->transaction->id,  // Gunakan ID transaksi yang valid
             'id_withdraw_status' => 3,
         ]);
 
-        $response->assertStatus(302)->assertRedirect('/admin/withdraw')->assertSessionHas('success', 'Success to confirm withdraw');
+        // Asersi
+        $response->assertStatus(302)
+                 ->assertRedirect('/admin/withdraw')
+                 ->assertSessionHas('success', 'Success to confirm withdraw');
     }
 
-
+    // Test untuk ID transaksi tidak valid (menggunakan mocking HTTP)
     public function test_confirm_payment_with_unknown_id_transaction()
     {
-        $response = $this->withCookies(['token' => $this->token, 'roleUser' => $this->role, 'authUser' => $this->authUser])->post('/admin/withdraw', data: [
-            'id' => '2a92',
+        // Mock HTTP request untuk menghindari API eksternal
+        Http::fake([
+            env("API_URL") . '/api/admin/withdraw' => Http::response([], 404),
+        ]);
+
+        // Lakukan request dengan ID yang tidak valid
+        $response = $this->withCookies([
+            'token' => $this->token,
+            'roleUser' => $this->role,
+            'authUser' => $this->authUser,
+        ])->post('/admin/withdraw', [
+            'id' => 'invalid-id',  // ID tidak valid
             'id_withdraw_status' => 3,
         ]);
 
-        $response->assertRedirect('/admin/withdraw')->assertSessionHas('error', 'Failed to confirm withdraw');
+        // Asersi
+        $response->assertStatus(302)
+                 ->assertRedirect('/admin/withdraw')
+                 ->assertSessionHas('error', 'Failed to confirm withdraw');
     }
 }
