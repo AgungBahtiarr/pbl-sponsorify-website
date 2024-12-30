@@ -54,7 +54,7 @@ class EventDetailUnitTest extends TestCase
         $response->assertViewIs('sponsor.detaileventnotfound');
     }
 
-    /** @test */
+
     public function sponsor_cannot_access_event_without_token()
     {
         $transaction = Transaction::where('id', 1)->first();
@@ -65,7 +65,7 @@ class EventDetailUnitTest extends TestCase
         $response->assertStatus(302);
     }
 
-    /** @test */
+
     public function sponsor_sees_error_for_invalid_token()
     {
         $transaction = Transaction::where('id', 1)->first();
@@ -77,7 +77,7 @@ class EventDetailUnitTest extends TestCase
 
     }
 
-    /** @test */
+
     public function sponsor_cannot_access_event_without_proper_role()
     {
         $transaction = Transaction::where('id', 1)->first();
