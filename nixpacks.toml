@@ -1,2 +1,255 @@
-[phases.setup.nixPacksAppend]
-nixPkgs = ['bun']
+providers = []
+buildImage = 'ghcr.io/railwayapp/nixpacks:ubuntu-1733184274'
+
+[variables]
+IS_LARAVEL = 'yes'
+NIXPACKS_METADATA = 'php'
+NIXPACKS_PHP_ROOT_DIR = '/app/public'
+PORT = '80'
+
+[staticAssets]
+"nginx.template.conf" = '''
+worker_processes 5;
+daemon off;
+
+worker_rlimit_nofile 8192;
+
+events {
+  worker_connections  4096;  # Default: 1024
+}
+
+http {
+    include    $!{nginx}/conf/mime.types;
+    index    index.html index.htm index.php;
+
+    default_type application/octet-stream;
+    log_format   main '$remote_addr - $remote_user [$time_local]  $status '
+        '"$request" $body_bytes_sent "$http_referer" '
+        '"$http_user_agent" "$http_x_forwarded_for"';
+    access_log /dev/stdout;
+    error_log /dev/stdout;
+    sendfile     on;
+    tcp_nopush   on;
+    server_names_hash_bucket_size 128; # this seems to be required for some vhosts
+
+    server {
+        listen ${PORT};
+        listen [::]:${PORT};
+        server_name localhost;
+
+        $if(NIXPACKS_PHP_ROOT_DIR) (
+            root ${NIXPACKS_PHP_ROOT_DIR};
+        ) else (
+            root /app;
+        )
+     
+        add_header X-Frame-Options "SAMEORIGIN";
+        add_header X-Content-Type-Options "nosniff";
+     
+        index index.php;
+     
+        charset utf-8;
+     
+        $if(IS_LARAVEL) (
+            location / {
+                try_files $uri $uri/ /index.php?$query_string;
+            }
+        ) else ()
+        
+        $if(NIXPACKS_PHP_FALLBACK_PATH) (
+          location / {
+            try_files $uri $uri/ ${NIXPACKS_PHP_FALLBACK_PATH}?$query_string;
+          }
+        ) else ()
+     
+        location = /favicon.ico { access_log off; log_not_found off; }
+        location = /robots.txt  { access_log off; log_not_found off; }
+     
+        $if(IS_LARAVEL) (
+            error_page 404 /index.php;
+        ) else ()
+     
+        location ~ \.php$ {
+            fastcgi_pass 127.0.0.1:9000;
+            fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+            include $!{nginx}/conf/fastcgi_params;
+            include $!{nginx}/conf/fastcgi.conf;
+        }
+     
+        location ~ /\.(?!well-known).* {
+            deny all;
+        }
+    }
+}'''
+"php-fpm.conf" = '''
+[www]
+listen = 127.0.0.1:9000
+user = nobody
+pm = dynamic
+pm.max_children = 50
+pm.min_spare_servers = 4
+pm.max_spare_servers = 32
+pm.start_servers = 18
+clear_env = no
+catch_workers_output = yes
+'''
+"scripts/config/template.mjs" = '''
+import { readFile, writeFile } from "fs/promises";
+import { getNixPath } from "../util/nix.mjs";
+
+const replaceStr = input =>
+    input
+        // If statements
+        .replaceAll(/\$if\s*\((\w+)\)\s*\(([^]*?)\)\s*else\s*\(([^]*?)\)/gm,
+            (_all, condition, value, otherwise) =>
+                process.env[condition] ? replaceStr(value) : replaceStr(otherwise)
+        )
+        // Variables
+        .replaceAll(/\${(\w+)}/g,
+            (_all, name) => process.env[name]
+        )
+        // Nix paths
+        .replaceAll(/\$!{(\w+)}/g,
+            (_all, exe) => getNixPath(exe)
+        )
+
+export async function compileTemplate(infile, outfile) {
+    await writeFile(outfile,
+        replaceStr(await readFile(infile, { encoding: 'utf8' })),
+        { encoding: 'utf8' })
+}
+'''
+"scripts/prestart.mjs" = '''
+#!/usr/bin/env node
+import { compileTemplate } from "./config/template.mjs";
+import { e } from "./util/cmd.mjs";
+import { checkEnvErrors, isLaravel } from "./util/laravel.mjs";
+import Logger from "./util/logger.mjs";
+import { access, constants } from 'node:fs/promises'
+
+const prestartLogger = new Logger('prestart');
+const serverLogger = new Logger('server');
+
+if (process.argv.length != 4) {
+    prestartLogger.error(`Usage: ${process.argv[1]} <config-file> <output-file>`)
+    process.exit(1);
+}
+
+await Promise.all([
+    isLaravel() ? checkEnvErrors('/app') : Promise.resolve(),
+    access('/app/storage', constants.R_OK)
+        .then(() => e('chmod -R ugo+rw /app/storage'))
+        .catch(() => {}),
+    compileTemplate(process.argv[2], process.argv[3])
+]).catch(err => prestartLogger.error(err));
+
+serverLogger.info(`Server starting on port ${process.env.PORT}`)
+'''
+"scripts/util/cmd.mjs" = '''
+import { execSync } from "child_process";
+
+export const e = cmd => execSync(cmd).toString().replace('\n', '');'''
+"scripts/util/laravel.mjs" = '''
+import Logger from "./logger.mjs"
+import * as fs from 'node:fs/promises'
+import * as path from 'node:path'
+
+const variableHints = {
+    'APP_ENV': 'You should probably set this to `production`.'
+};
+
+const logger = new Logger('laravel');
+
+export const isLaravel = () => process.env['IS_LARAVEL'] != null;
+
+function checkVariable(name) {
+    if (!process.env[name]) {
+        let hint =
+            `Your app configuration references the ${name} environment variable, but it is not set.`
+            + (variableHints[name] ?? '');
+
+        logger.warn(hint);
+    }
+}
+
+export async function checkEnvErrors(srcdir) {
+    const envRegex = /env\(["']([^,]*)["']\)/g;
+    const configDir = path.join(srcdir, 'config');
+
+    const config =
+        (await Promise.all(
+            (await fs.readdir(configDir))
+                .filter(fileName => fileName.endsWith('.php'))
+                .map(fileName => fs.readFile(path.join(configDir, fileName)))
+        )).join('');
+
+    for (const match of config.matchAll(envRegex)) {
+        if (match[1] != 'APP_KEY') checkVariable(match[1]);
+    }
+
+    if (!process.env.APP_KEY) {
+        logger.warn('Your app key is not set! Please set a random 32-character string in your APP_KEY environment variable. This can be easily generated with `openssl rand -hex 16`.');
+    }
+}
+'''
+"scripts/util/logger.mjs" = '''
+export default class Logger {
+    /** @type string */
+    #tag;
+
+    /**
+    * @param {string} tag
+    */
+    constructor(tag) {
+        this.#tag = tag
+    }
+
+    #log(color, messageType, message, fn = console.log) {
+        fn(`\x1b[${color}m[${this.#tag}:${messageType}]\x1b[0m ${message}`)
+    }
+
+    info(message) {
+        this.#log(34, 'info', message)
+    }
+
+    warn(message) {
+        this.#log(35, 'warn', message, console.warn)
+    }
+
+    error(message) {
+        this.#log(31, 'error', message, console.error)
+    }
+}
+'''
+"scripts/util/nix.mjs" = '''
+import { e } from "./cmd.mjs";
+
+export const getNixPath = (exe) => e(`nix-store -q ${e(`which ${exe}`)}`);
+'''
+[phases.build]
+dependsOn = ['install']
+cmds = ['bun run build']
+
+[phases.install]
+dependsOn = ['setup']
+cmds = [
+    'mkdir -p /var/log/nginx && mkdir -p /var/cache/nginx',
+    'composer install --ignore-platform-reqs',
+    'npm ci',
+]
+
+[phases.setup]
+nixPkgs = [
+    '(php.withExtensions (pe: pe.enabled ++ []))',
+    'nginx',
+    'libmysqlclient',
+    'phpPackages.composer',
+    'nodejs_18',
+    'bun',
+]
+nixLibs = ['libmysqlclient']
+nixOverlays = ['https://github.com/railwayapp/nix-npm-overlay/archive/main.tar.gz']
+nixpkgsArchive = 'dbc4f15b899ac77a8d408d8e0f89fa9c0c5f2b78'
+
+[start]
+cmd = 'node /assets/scripts/prestart.mjs /assets/nginx.template.conf /nginx.conf && (php-fpm -y /assets/php-fpm.conf & nginx -c /nginx.conf)'
