@@ -1,4 +1,4 @@
-providers = []
+providers = ["php"]
 buildImage = 'ghcr.io/railwayapp/nixpacks:ubuntu-1733184274'
 
 [variables]
@@ -248,7 +248,9 @@ nixPkgs = [
     'bun',
 ]
 nixLibs = ['libmysqlclient']
-nixOverlays = ['https://github.com/railwayapp/nix-npm-overlay/archive/main.tar.gz']
+nixOverlays = [
+    'https://github.com/railwayapp/nix-npm-overlay/archive/main.tar.gz',
+]
 nixpkgsArchive = 'dbc4f15b899ac77a8d408d8e0f89fa9c0c5f2b78'
 
 [start]
