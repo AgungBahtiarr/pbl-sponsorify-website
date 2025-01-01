@@ -1,0 +1,2 @@
+[phases.setup.nixPacksAppend]
+nixPkgs = ['bun']
