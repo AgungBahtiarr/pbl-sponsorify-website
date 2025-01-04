@@ -7,11 +7,11 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
-    "axios": "^1.7.7",
-    "daisyui": "^4.12.14",
-    "laravel-vite-plugin": "^1.0.5",
-    "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.14",
-    "vite": "^5.4.10"
+    "axios": "^1.7.9",
+    "daisyui": "^4.12.23",
+    "laravel-vite-plugin": "^1.1.1",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "vite": "^5.4.11"
   }
 }
