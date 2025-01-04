@@ -19,10 +19,8 @@ use App\Http\Middleware\isLogin;
 use App\Http\Middleware\isSponsor;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return redirect('/auth/login');
-});
-Route::get('/landingPage',[AuthController::class,'landingPage']);
+
+Route::get('/', [AuthController::class, 'landingPage']);
 Route::get('/auth/login', [AuthController::class, 'indexLogin']);
 Route::get('/auth/register', [AuthController::class, 'indexRegister']);
 Route::post('/auth/register', [AuthController::class, 'storeRegister']);
