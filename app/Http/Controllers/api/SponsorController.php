@@ -41,7 +41,7 @@ class SponsorController extends Controller
     public function search(Request $request)
     {
         $str = $request->str;
-        $data = Sponsor::with('category')->where('name', 'like', '%' . $str . '%')->get();
+        $data = Sponsor::with('category')->where('name', 'ilike', '%' . $str . '%')->get();
 
         return response()->json($data);
     }
@@ -59,13 +59,13 @@ class SponsorController extends Controller
     //         "id_category" => $request->id_category,
     //         "max_submission_date" => $request->max_submission_date,
     //         "image"=> $reques            // 'name' => 'required|string|max:255',
-            // 'email' => 'required|email:rfc,dns,regex:/(.+)@(.+)\.(.+)/i',
-            // 'description' => 'required|string',
-            // 'address' => 'required|string',
-            // 'id_category' => 'required|exists:categories,id',
-            // 'max_submission_date' => 'required|integer|min:0|max:90',
-            // 'image' => 'required|string',
-            // 'id_user' => 'required|exists:users,id't->image,
+    // 'email' => 'required|email:rfc,dns,regex:/(.+)@(.+)\.(.+)/i',
+    // 'description' => 'required|string',
+    // 'address' => 'required|string',
+    // 'id_category' => 'required|exists:categories,id',
+    // 'max_submission_date' => 'required|integer|min:0|max:90',
+    // 'image' => 'required|string',
+    // 'id_user' => 'required|exists:users,id't->image,
     //         "id_user" => $request->id_user
     //     ];
 
