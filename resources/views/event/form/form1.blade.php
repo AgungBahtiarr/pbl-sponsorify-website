@@ -51,8 +51,9 @@
                         <label class="label">
                             <span class="label-text">Alamat (Link Google Map)</span>
                         </label>
-                        <input type="text" placeholder="Masukkan link Google Maps" class="input input-bordered w-full"
-                            name="location" />
+                        <input type="text"
+                            placeholder="Masukkan link Google Maps (https://maps.app.goo.gl/aRKJ43xhLhVqexgi6)"
+                            class="input input-bordered w-full" name="location" />
                     </div>
 
                     <!-- Venue -->
